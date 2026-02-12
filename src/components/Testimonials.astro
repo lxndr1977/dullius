@@ -1,0 +1,222 @@
+---
+// Testimonials.astro
+import { ChevronLeft, ChevronRight, Quote } from "@lucide/astro";
+
+const testimonials = [
+  {
+    name: "Mariana Costa",
+    role: "Mae de aluna - Ballet Infantil",
+    text: "Minha filha comecou na Dullius com 4 anos e a evolucao dela e incrivel. A escola tem um carinho especial com cada crianca, e os espetaculos de final de ano sao emocionantes. Nao troco por nenhuma outra!",
+    initials: "MC",
+  },
+  {
+    name: "Fernanda Almeida",
+    role: "Aluna - Jazz Adulto",
+    text: "Comecei a dancar aos 35 anos e tinha muito receio. A equipe da Dullius me acolheu de um jeito que me senti em casa desde a primeira aula. Hoje a danca faz parte da minha vida e nao consigo imaginar sem.",
+    initials: "FA",
+  },
+  {
+    name: "Rafael Oliveira",
+    role: "Aluno - Dancas Urbanas",
+    text: "O nivel dos professores de dancas urbanas e absurdo. Ja fiz aulas em varias escolas de Porto Alegre e nenhuma chega perto da Dullius. A estrutura e impecavel e o ambiente e muito gostoso.",
+    initials: "RO",
+  },
+  {
+    name: "Lucia Ferreira",
+    role: "Mae de aluna - AcroDance",
+    text: "A seguranca e o profissionalismo da Dullius me conquistaram. Minha filha pratica AcroDance e a evolucao tecnica dela, sempre com todo cuidado, me deixa muito tranquila e orgulhosa.",
+    initials: "LF",
+  },
+  {
+    name: "Camila Santos",
+    role: "Aluna - Ballet Adulto",
+    text: "Realizar o sonho de dancar ballet depois dos 40 so foi possivel pelo acolhimento da Dullius. As turmas adultas sao maravilhosas, o ritmo e respeitoso e a professora e uma inspiracao.",
+    initials: "CS",
+  },
+];
+---
+
+<section class="py-24 lg:py-32 bg-zinc-50">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="mb-16 text-center">
+      <p class="text-sm font-semibold uppercase tracking-widest text-accent">
+        Depoimentos
+      </p>
+      <h2
+        class="mt-3 text-4xl text-zinc-900 md:text-5xl lg:text-6xl font-medium tracking-tighter text-balance"
+      >
+        O que dizem nossos alunos
+      </h2>
+      <p
+        class="mx-auto mt-4 max-w-2xl text-lg xl:text-xl text-zinc-800 leading-relaxed"
+      >
+        Histórias reais de quem vive a magia da danca na Dullius Dance.
+      </p>
+    </div>
+
+    <div class="relative mx-auto max-w-4xl">
+      <div class="overflow-hidden" data-testimonials-container>
+        <div
+          class="flex transition-transform duration-500 ease-in-out"
+          data-testimonials-slider
+        >
+          {
+            testimonials.map((testimonial) => (
+              <div class="w-full flex-shrink-0 px-4">
+                <div class="flex flex-col items-center text-center">
+                  <div class="mb-8 flex h-12 w-12 items-center justify-center rounded-full bg-red-50 text-red-700">
+                    <Quote class="h-6 w-6" />
+                  </div>
+                  <blockquote class="text-xl text-zinc-800 leading-relaxed md:text-2xl text-balance">
+                    {`"${testimonial.text}"`}
+                  </blockquote>
+                  <div class="mt-10 flex flex-col items-center gap-3">
+                    <div class="flex h-14 w-14 items-center justify-center rounded-full bg-zinc-800 text-white font-semibold text-lg">
+                      {testimonial.initials}
+                    </div>
+                    <div>
+                      <p class="font-semibold text-zinc-800">
+                        {testimonial.name}
+                      </p>
+                      <p class="mt-0.5 text-sm text-muted-zinc-800">
+                        {testimonial.role}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="mt-12 flex items-center justify-center gap-4">
+        <button
+          type="button"
+          data-prev-btn
+          class="flex h-11 w-11 items-center justify-center rounded-full border border-zinc-200 text-zinc-800 transition-all duration-200 hover:bg-secondary"
+          aria-label="Depoimento anterior"
+        >
+          <ChevronLeft class="h-5 w-5" />
+        </button>
+
+        <div class="flex items-center gap-2" data-dots-container>
+          {
+            testimonials.map((_, index) => (
+              <button
+                type="button"
+                data-dot-btn
+                data-index={index}
+                class={`h-2 rounded-full transition-all duration-300 ${
+                  index === 0
+                    ? "w-8 bg-zinc-300"
+                    : "w-2 bg-zinc-300  hover:bg-zinc-300"
+                }`}
+                aria-label={`Ver depoimento ${index + 1}`}
+              />
+            ))
+          }
+        </div>
+
+        <button
+          type="button"
+          data-next-btn
+          class="flex h-11 w-11 items-center justify-center rounded-full border border-zinc-200 text-zinc-800 transition-all duration-200 hover:bg-secondary"
+          aria-label="Proximo depoimento"
+        >
+          <ChevronRight class="h-5 w-5" />
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ totalTestimonials: testimonials.length }}>
+  let current = 0;
+  let isAutoPlaying = true;
+  let autoPlayTimer = null;
+
+  const slider = document.querySelector("[data-testimonials-slider]");
+  const container = document.querySelector("[data-testimonials-container]");
+  const prevBtn = document.querySelector("[data-prev-btn]");
+  const nextBtn = document.querySelector("[data-next-btn]");
+  const dots = document.querySelectorAll("[data-dot-btn]");
+
+  function updateSlider() {
+    if (slider) {
+      slider.style.transform = `translateX(-${current * 100}%)`;
+    }
+
+    // Update dots
+    dots.forEach((dot, index) => {
+      if (index === current) {
+        dot.classList.remove("w-2", "bg-border");
+        dot.classList.add("w-8", "bg-accent");
+      } else {
+        dot.classList.remove("w-8", "bg-accent");
+        dot.classList.add("w-2", "bg-border");
+      }
+    });
+  }
+
+  function next() {
+    current = (current + 1) % totalTestimonials;
+    updateSlider();
+  }
+
+  function prev() {
+    current = (current - 1 + totalTestimonials) % totalTestimonials;
+    updateSlider();
+  }
+
+  function goTo(index) {
+    current = index;
+    updateSlider();
+  }
+
+  function startAutoPlay() {
+    if (autoPlayTimer) clearInterval(autoPlayTimer);
+    autoPlayTimer = setInterval(() => {
+      if (isAutoPlaying) {
+        next();
+      }
+    }, 7000);
+  }
+
+  function stopAutoPlay() {
+    isAutoPlaying = false;
+    if (autoPlayTimer) {
+      clearInterval(autoPlayTimer);
+    }
+  }
+
+  // Event listeners
+  prevBtn?.addEventListener("click", () => {
+    prev();
+    stopAutoPlay();
+  });
+
+  nextBtn?.addEventListener("click", () => {
+    next();
+    stopAutoPlay();
+  });
+
+  dots.forEach((dot) => {
+    dot.addEventListener("click", () => {
+      const index = parseInt(dot.getAttribute("data-index") || "0");
+      goTo(index);
+      stopAutoPlay();
+    });
+  });
+
+  container?.addEventListener("mouseenter", () => {
+    isAutoPlaying = false;
+  });
+
+  container?.addEventListener("mouseleave", () => {
+    isAutoPlaying = true;
+  });
+
+  // Start autoplay
+  startAutoPlay();
+</script>

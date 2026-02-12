@@ -1,0 +1,92 @@
+---
+import { ArrowRight, CalendarDays, Star } from "@lucide/astro";
+import { Image } from "astro:assets";
+
+// Importe a imagem diretamente se estiver usando assets otimizados do Astro
+// import heroImage from "@/images/metodo-dullius-hero.jpg";
+---
+
+<section id="inicio" class="relative overflow-hidden pt-24 lg:pt-0 bg-zinc-100">
+  <div
+    class="mx-auto flex min-h-[90vh] max-w-7xl items-center gap-12 px-6 py-16 lg:flex-row lg:gap-16 lg:py-0"
+  >
+    <!-- Left column -->
+    <div class="flex flex-1 flex-col items-start">
+      <div
+        class="inline-flex items-center gap-2 rounded-full bg-red-50 px-4 py-1.5 text-sm font-medium text-red-700"
+      >
+        <Star class="h-3.5 w-3.5" />
+        À partir de 2 anos de idade
+      </div>
+
+      <h1
+        class="mt-6 text-4xl text-zinc-900 md:text-5xl lg:text-6xl xl:text-7xl text-balance leading-tight"
+      >
+        Método Dullius
+      </h1>
+
+      <p
+        class="mt-4 text-lg text-zinc-800 leading-relaxed lg:text-xl text-pretty max-w-lg"
+      >
+        Danca classica, moderna, acrobatica e expressao em uma so aula. O metodo
+        exclusivo que encanta criancas e transforma vidas ha mais de 30 anos.
+      </p>
+
+      <div class="mt-4 flex flex-wrap gap-3">
+        {
+          ["Ballet", "Jazz", "Acrobacia", "Teatro", "Expressao"].map((tag) => (
+            <span class="rounded-full border border-zinc-200 bg-zinc-100 px-3 py-1 text-xs font-medium text-zinc-900">
+              {tag}
+            </span>
+          ))
+        }
+      </div>
+
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+        <a
+          href="#contato"
+          class="inline-flex items-center justify-center rounded-full bg-red-700 px-8 py-3.5 text-base font-medium text-white hover:bg-red-600 transition-colors h-14"
+        >
+          Quero me Inscrever
+          <ArrowRight class="ml-2 h-4 w-4" />
+        </a>
+
+        <a
+          href="#contato"
+          class="inline-flex items-center justify-center rounded-full border border-zinc-300 bg-transparent px-8 py-3.5 text-base font-medium text-zinc-900 hover:bg-secondary transition-colors h-14"
+        >
+          <CalendarDays class="mr-2 h-4 w-4" />
+          Agendar Aula Experimental
+        </a>
+      </div>
+
+      <p class="mt-4 text-sm text-zinc-800">
+        Aula experimental gratuita e sem compromisso
+      </p>
+    </div>
+
+    <!-- Right column - image -->
+    <div class="flex-1">
+      <div class="relative aspect-[4/3] w-full overflow-hidden rounded-3xl">
+        <img
+          src="/images/short-1.jpg"
+          alt="Criancas dancando no Metodo Dullius"
+          class="absolute inset-0 w-full h-full object-cover"
+        />
+        <!-- Se preferir usar o componente Image otimizado do Astro:
+        <Image
+          src={heroImage}
+          alt="Criancas dancando no Metodo Dullius"
+          class="absolute inset-0 w-full h-full object-cover"
+          widths={[400, 800, 1200]}
+          sizes="(max-width: 1024px) 100vw, 50vw"
+        />
+        -->
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-foreground/10 to-transparent lg:bg-gradient-to-r lg:from-card/20 lg:to-transparent"
+        >
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,119 @@
+---
+// Courses.astro
+import { ArrowRight } from "@lucide/astro";
+import { Image } from "astro:assets";
+
+const courses = [
+  {
+    title: "Metodo Dullius",
+    description:
+      "Danca classica, moderna, acrobatica e expressao em uma so aula. A partir de 2 anos.",
+    image: "/images/short-1.jpg",
+    age: "A partir de 2 anos",
+    href: "/cursos/metodo-dullius",
+  },
+  {
+    title: "Ballet",
+    description:
+      "A danca mais tradicional, ensinada de maneira inovadora e com tecnica refinada.",
+    image: "/images/short-1.jpg",
+    age: "Todas as idades",
+    href: "/cursos/metodo-dullius",
+  },
+  {
+    title: "Jazz",
+    description:
+      "Trabalhos criativos e dinamicos que exploram ritmo, expressao e energia.",
+    image: "/images/short-1.jpg",
+    age: "A partir de 6 anos",
+    href: "/cursos/metodo-dullius",
+  },
+  {
+    title: "Dancas Urbanas",
+    description:
+      "A danca de rua e pura energia! Hip-Hop, Breaking e muito mais.",
+    image: "/images/short-1.jpg",
+    age: "A partir de 8 anos",
+    href: "/cursos/metodo-dullius",
+  },
+  {
+    title: "Adulto",
+    description:
+      "Qualidade de vida atraves do movimento. Ballet e Jazz para adultos.",
+    image: "/images/short-1.jpg",
+    age: "Adultos",
+    href: "/cursos/metodo-dullius",
+  },
+  {
+    title: "AcroDance",
+    description:
+      "A fusao perfeita entre ginastica e danca. Flexibilidade e forca.",
+    image: "/images/short-1.jpg",
+    age: "A partir de 6 anos",
+    href: "/cursos/metodo-dullius",
+  },
+];
+---
+
+<section id="cursos" class="py-24 lg:py-32 bg-zinc-100">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="mb-16 text-center">
+      <p class="text-sm font-semibold uppercase tracking-widest text-red-700">
+        Nossos Cursos
+      </p>
+      <h2
+        class="mt-3 text-4xl text-zinc-900 font-medium tracking-tighter md:text-5xl lg:text-6xl text-balance"
+      >
+        Encontre o seu ritmo
+      </h2>
+      <p
+        class="mx-auto mt-4 max-w-2xl text-lg xl:text-xl text-zinc-800 leading-relaxed"
+      >
+        Oferecemos modalidades para todas as idades e níveis, com método
+        exclusivo e professores altamente qualificados.
+      </p>
+    </div>
+
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        courses.map((course) => (
+          <a
+            href={course.href || "#contato"}
+            class="group relative overflow-hidden rounded-2xl bg-white"
+          >
+            <div class="relative aspect-[4/3] overflow-hidden">
+              <img
+                src={course.image}
+                alt={course.title}
+                class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div class="absolute inset-0 bg-foreground/20 transition-all duration-300 group-hover:bg-foreground/40" />
+              <span class="absolute left-4 top-4 rounded-full bg-white px-3 py-1 text-xs font-medium text-zinc-800 backdrop-blur-sm">
+                {course.age}
+              </span>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center justify-between">
+                <h3 class=" text-xl text-zinc-900">{course.title}</h3>
+                <ArrowRight class="h-4 w-4 text-accent transition-transform duration-300 group-hover:translate-x-1" />
+              </div>
+              <p class="mt-2 text-sm text-zinc-800 leading-relaxed">
+                {course.description}
+              </p>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+
+    <div class="mt-12 text-center">
+      <a
+        href="#contato"
+        class="inline-flex items-center gap-2 rounded-full bg-red-700 px-8 py-4 font-semibold text-white transition-colors hover:bg-red-600"
+      >
+        Agende sua aula experimental
+        <ArrowRight class="h-4 w-4" />
+      </a>
+    </div>
+  </div>
+</section>

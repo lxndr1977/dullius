@@ -1,0 +1,742 @@
+---
+import { Play, ChevronLeft, ChevronRight, X, Eye } from "@lucide/astro";
+
+// Props do componente
+interface Props {
+  showCourseInfo?: boolean;
+  whatsappNumber?: string;
+  whatsappMessage?: string;
+  autoplay?: boolean;
+}
+
+const {
+  showCourseInfo = true,
+  whatsappNumber = "5551999999999",
+  whatsappMessage = "Olá! Gostaria de saber mais sobre os cursos.",
+  autoplay = true,
+} = Astro.props;
+
+// Função auxiliar para extrair o ID do vídeo da URL
+function getVideoId(url: string) {
+  const match = url.match(/\/embed\/([a-zA-Z0-9_-]+)/);
+  return match ? match[1] : null;
+}
+
+const shorts = [
+  {
+    id: 1,
+    thumbnail: "/images/short-1.jpg",
+    title: "Ballet Classico - Solo",
+    views: "12.4K",
+    videoUrl: "https://www.youtube.com/embed/EsLOLK0B_CU?autoplay=1&mute=1",
+    courseTitle: "Ballet",
+    coursePrice: "R$ 183,76",
+    courseLink: "#",
+  },
+  {
+    id: 2,
+    thumbnail: "/images/short-1.jpg",
+    title: "Dancas Urbanas - Free Style",
+    views: "8.7K",
+    videoUrl: "https://www.youtube.com/embed/nrTR92mExyk?autoplay=1&mute=1",
+    courseTitle: "Dancas Urbanas - Free Style",
+    coursePrice: "R$ 299,90",
+    courseLink: "#",
+  },
+  {
+    id: 3,
+    thumbnail: "/images/short-1.jpg",
+    title: "Ballet Infantil - Turma A",
+    views: "25.1K",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    courseTitle: "Ballet Infantil - Curso Completo",
+    coursePrice: "R$ 249,90",
+    courseLink: "#",
+  },
+  {
+    id: 4,
+    thumbnail: "/images/short-1.jpg",
+    title: "Jazz",
+    views: "15.3K",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    courseTitle: "Jazz Avançado",
+    coursePrice: "R$ 349,90",
+    courseLink: "#",
+  },
+  {
+    id: 5,
+    thumbnail: "/images/short-1.jpg",
+    title: "Método Dullius",
+    views: "9.8K",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    courseTitle: "Método Dullius",
+    coursePrice: "R$ 279,90",
+    courseLink: "#",
+  },
+  {
+    id: 6,
+    thumbnail: "/images/short-1.jpg",
+    title: "AcroDance - Destaques",
+    views: "18.2K",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    courseTitle: "AcroDance - Técnicas Avançadas",
+    coursePrice: "R$ 399,90",
+    courseLink: "#",
+  },
+];
+---
+
+<section
+  class="shorts-gallery bg-foreground py-24 lg:py-32"
+  aria-label="Galeria de Shorts"
+  data-autoplay={autoplay}
+>
+  <div class="mx-auto max-w-7xl px-6">
+    <div
+      class="mb-16 flex flex-col items-center gap-6 text-center md:flex-row md:items-end md:justify-between md:text-left"
+    >
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-widest text-red-700">
+          Shorts
+        </p>
+        <h2
+          class="mt-3 text-4xl text-background md:text-5xl lg:text-6xl font-medium tracking-tighter text-balance"
+        >
+          Assista nossos destaques
+        </h2>
+        <p
+          class="mt-4 max-w-xl text-lg xl:text-xl text-background/60 leading-relaxed"
+        >
+          Acompanhe os melhores momentos das aulas.
+        </p>
+      </div>
+
+      <div class="flex gap-2">
+        <button
+          type="button"
+          data-scroll="left"
+          class="nav-btn flex h-11 w-11 items-center justify-center rounded-full border border-background/20 text-background hover:bg-background/10 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+          aria-label="Rolar para a esquerda"
+        >
+          <ChevronLeft class="h-5 w-5" />
+        </button>
+        <button
+          type="button"
+          data-scroll="right"
+          class="nav-btn flex h-11 w-11 items-center justify-center rounded-full border border-background/20 text-background hover:bg-background/10 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+          aria-label="Rolar para a direita"
+        >
+          <ChevronRight class="h-5 w-5" />
+        </button>
+      </div>
+    </div>
+  </div>
+
+  {/* Container de scroll com padding igual ao da galeria de fotos */}
+  <div
+    class="scroll-container scrollbar-hide flex gap-4 overflow-x-auto px-6 lg:px-[calc((100vw-80rem)/2+1.5rem)]"
+    role="region"
+    aria-label="Galeria de shorts"
+  >
+    {
+      shorts.map((short, index) => {
+        const videoId = getVideoId(short.videoUrl);
+        return (
+          <div
+            class="short-card group relative flex-shrink-0 cursor-pointer"
+            data-index={index}
+            data-video-id={videoId}
+            data-video-url={short.videoUrl}
+            data-video-title={short.title}
+            data-course-title={short.courseTitle}
+            data-course-price={short.coursePrice}
+            data-course-link={short.courseLink}
+          >
+            <div class="relative h-[420px] w-[236px] overflow-hidden rounded-2xl sm:h-[480px] sm:w-[270px]">
+              {/* Camada da Imagem (Thumbnail) */}
+              <div class="thumbnail-layer absolute inset-0 z-10 transition-opacity duration-500 bg-black">
+                <img
+                  src={short.thumbnail}
+                  alt={short.title}
+                  loading="lazy"
+                  class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div class="absolute inset-0 bg-foreground/20 group-hover:bg-foreground/40 transition-all" />
+
+                <div class="play-overlay absolute inset-0 flex items-center justify-center transition-opacity duration-300">
+                  <div class="flex h-14 w-14 items-center justify-center rounded-full bg-red-700 text-white shadow-xl">
+                    <Play class="ml-0.5 h-6 w-6" />
+                  </div>
+                </div>
+
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-zinc-900/90 via-zinc-900/80 to-transparent p-5 pt-16 text-left text-white">
+                  <p class="text-sm font-semibold text-background leading-tight">
+                    {short.title}
+                  </p>
+                  <div class="mt-2 flex items-center gap-1.5 text-background/60">
+                    <Eye class="h-3.5 w-3.5" />
+                    <span class="text-xs">{short.views} views</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Iframe do vídeo (hidden por padrão) */}
+              <iframe
+                data-iframe-index={index}
+                class="video-iframe absolute inset-0 z-0 h-full w-full rounded-2xl opacity-0 pointer-events-none"
+                src=""
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+                loading="lazy"
+              />
+            </div>
+          </div>
+        );
+      })
+    }
+  </div>
+</section>
+
+{/* Modal do Player Full */}
+<div
+  id="video-modal"
+  class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-md p-4 opacity-0 transition-opacity duration-300"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Video player em tela cheia"
+  data-show-course-info={showCourseInfo}
+  data-whatsapp-number={whatsappNumber}
+  data-whatsapp-message={whatsappMessage}
+>
+  <button
+    type="button"
+    id="close-modal"
+    class="absolute right-4 top-4 z-[60] flex h-12 w-12 items-center justify-center rounded-full bg-white/20 text-white hover:bg-white/30 active:bg-white/40 transition-all touch-manipulation"
+    aria-label="Fechar video"
+  >
+    <X class="h-6 w-6" />
+  </button>
+
+  <div class="relative w-full max-w-md mx-auto flex flex-col items-center">
+    {/* Container do Vídeo */}
+    <div
+      class="relative aspect-[9/16] h-[85vh] max-h-[800px] w-auto overflow-hidden rounded-2xl bg-black shadow-2xl"
+    >
+      <iframe
+        id="modal-iframe"
+        src=""
+        class="absolute inset-0 h-full w-full"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen></iframe>
+    </div>
+
+    {/* Informações do Curso (visível apenas se showCourseInfo = true) */}
+    {
+      showCourseInfo && (
+        <div class="course-info-container mt-4 w-full max-w-[400px] flex items-center justify-between gap-3">
+          {/* Seção do Curso */}
+          <div class="flex-1 bg-[#b8e6d5] rounded-lg px-4 py-3 flex items-center justify-between group hover:bg-[#a3dcc7] transition-colors">
+            <div class="flex items-center gap-3">
+              <img
+                id="course-thumbnail"
+                src=""
+                alt="Curso"
+                class="w-12 h-12 rounded-lg object-cover"
+              />
+              <div class="flex flex-col">
+                <span
+                  id="course-title"
+                  class="text-sm font-semibold text-gray-900 leading-tight"
+                >
+                  Modalidade Método Dullius
+                </span>
+              </div>
+            </div>
+            <a
+              href="#"
+              id="course-link"
+              class="text-gray-900 hover:text-gray-700
+            transition-colors"
+              aria-label="Saiba mais sobre o curso"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </a>
+          </div>
+          {/* Botão WhatsApp */}
+          <a
+            href="#"
+            id="whatsapp-btn"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex-shrink-0 w-14 h-14 bg-[#25D366] rounded-full flex
+          items-center justify-center hover:bg-[#20bd5a] active:scale-95
+          transition-all shadow-lg touch-manipulation"
+            aria-label="Entrar em
+          contato via WhatsApp"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="28"
+              height="28"
+              viewBox="0 0 24 24"
+              fill="white"
+            >
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+            </svg>
+          </a>
+        </div>
+      )
+    }
+  </div>
+</div>
+
+<script>
+  // @ts-nocheck
+
+  function initShortsGallery() {
+    const section = document.querySelector(".shorts-gallery");
+    const globalAutoplay = section.dataset.autoplay === "true";
+    const cards = document.querySelectorAll(".short-card");
+    const scrollContainer = document.querySelector(".scroll-container");
+    const btnLeft = document.querySelector('button[data-scroll="left"]');
+    const btnRight = document.querySelector('button[data-scroll="right"]');
+
+    if (!cards.length || !scrollContainer || !btnLeft || !btnRight) return;
+
+    // ===== DRAG DESKTOP =====
+    let isPointerDown = false;
+    let startX = 0;
+    let scrollStart = 0;
+    let velocity = 0;
+    let lastX = 0;
+    let lastTime = 0;
+    let hasDragged = false;
+
+    const friction = 0.95;
+    const minVelocity = 0.5;
+
+    scrollContainer.addEventListener("pointerdown", (e) => {
+      if (e.button !== 0) return;
+
+      isPointerDown = true;
+      hasDragged = false;
+      velocity = 0;
+
+      scrollContainer.classList.add("dragging");
+
+      startX = e.clientX;
+      scrollStart = scrollContainer.scrollLeft;
+      lastX = e.clientX;
+      lastTime = performance.now();
+    });
+
+    scrollContainer.addEventListener("pointermove", (e) => {
+      if (!isPointerDown) return;
+
+      const dx = e.clientX - startX;
+
+      if (Math.abs(dx) > 6) {
+        hasDragged = true;
+      }
+      scrollContainer.scrollLeft = scrollStart - dx;
+
+      const now = performance.now();
+      const deltaTime = now - lastTime;
+
+      if (deltaTime > 0) {
+        velocity = (e.clientX - lastX) / deltaTime;
+      }
+
+      lastX = e.clientX;
+      lastTime = now;
+    });
+
+    scrollContainer.addEventListener("pointerup", () => {
+      isPointerDown = false;
+      scrollContainer.classList.remove("dragging");
+
+      setTimeout(() => {
+        hasDragged = false;
+      }, 50);
+    });
+
+    scrollContainer.addEventListener("pointercancel", () => {
+      isPointerDown = false;
+      scrollContainer.classList.remove("dragging");
+    });
+
+    // ===== VARIÁVEIS DE ESTADO =====
+    let activeIndex = -1;
+    let isModalOpen = false;
+    let observerInitialized = false;
+
+    // ===== DEBOUNCE PARA PERFORMANCE =====
+    function debounce(func, wait) {
+      let timeout;
+      return function executedFunction(...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func(...args), wait);
+      };
+    }
+
+    // ===== ATUALIZAR BOTÕES DE NAVEGAÇÃO =====
+    const updateNavButtons = debounce(() => {
+      const scrollLeft = scrollContainer.scrollLeft;
+      const scrollWidth = scrollContainer.scrollWidth;
+      const clientWidth = scrollContainer.clientWidth;
+
+      btnLeft.disabled = scrollLeft <= 10;
+      btnRight.disabled = scrollLeft >= scrollWidth - clientWidth - 10;
+    }, 100);
+
+    // ===== CONSTRUIR URL DO VÍDEO =====
+    function buildVideoUrl(videoId, autoplay = true, muted = true) {
+      const params = new URLSearchParams({
+        autoplay: autoplay ? "1" : "0",
+        mute: muted ? "1" : "0",
+        controls: "0",
+        rel: "0",
+        modestbranding: "1",
+        playsinline: "1",
+        loop: "1",
+        playlist: videoId,
+        enablejsapi: "1",
+      });
+
+      return `https://www.youtube.com/embed/${videoId}?${params.toString()}`;
+    }
+
+    // ===== PLAY VIDEO =====
+    function playVideo(index) {
+      if (isModalOpen || index === activeIndex) return;
+
+      const currentCard = cards[index];
+      const videoId = currentCard.dataset.videoId;
+      const iframe = currentCard.querySelector(".video-iframe");
+      const thumbnail = currentCard.querySelector(".thumbnail-layer");
+
+      if (!iframe || !videoId) return;
+
+      stopCurrentVideo();
+
+      activeIndex = index;
+
+      if (!iframe.src) {
+        iframe.src = buildVideoUrl(videoId, globalAutoplay, true);
+      } else if (globalAutoplay) {
+        iframe.contentWindow?.postMessage(
+          '{"event":"command","func":"playVideo","args":""}',
+          "*",
+        );
+      }
+
+      requestAnimationFrame(() => {
+        currentCard.scrollIntoView({
+          behavior: "smooth",
+          inline: "center",
+          block: "nearest",
+        });
+      });
+
+      if (globalAutoplay) {
+        setTimeout(() => {
+          if (thumbnail) {
+            thumbnail.style.opacity = "0";
+            thumbnail.style.pointerEvents = "none";
+          }
+          iframe.style.opacity = "1";
+          iframe.style.pointerEvents = "auto";
+        }, 300);
+      }
+    }
+
+    // ===== STOP VIDEO =====
+    function stopCurrentVideo() {
+      if (activeIndex === -1) return;
+
+      const prevCard = cards[activeIndex];
+      if (!prevCard) return;
+
+      const iframe = prevCard.querySelector(".video-iframe");
+      const thumbnail = prevCard.querySelector(".thumbnail-layer");
+
+      if (iframe) {
+        iframe.contentWindow.postMessage(
+          '{"event":"command","func":"pauseVideo","args":""}',
+          "*",
+        );
+        iframe.style.opacity = "0";
+        iframe.style.pointerEvents = "none";
+      }
+
+      if (thumbnail) {
+        thumbnail.style.opacity = "1";
+        thumbnail.style.pointerEvents = "auto";
+      }
+    }
+
+    // ===== INTERSECTION OBSERVER PARA AUTOPLAY =====
+    function initIntersectionObserver() {
+      if (observerInitialized) return;
+      observerInitialized = true;
+
+      const options = {
+        root: scrollContainer,
+        threshold: 0.7,
+        rootMargin: "0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        if (isModalOpen) return;
+
+        let mostVisible = null;
+        let maxRatio = 0;
+
+        entries.forEach((entry) => {
+          if (entry.intersectionRatio > maxRatio) {
+            maxRatio = entry.intersectionRatio;
+            mostVisible = entry;
+          }
+        });
+
+        if (
+          globalAutoplay &&
+          mostVisible &&
+          mostVisible.isIntersecting &&
+          maxRatio >= 0.7
+        ) {
+          const card = mostVisible.target;
+          const index = parseInt(card.dataset.index);
+          playVideo(index);
+        }
+      }, options);
+
+      cards.forEach((card) => observer.observe(card));
+
+      requestAnimationFrame(() => {
+        if (globalAutoplay) {
+          setTimeout(() => playVideo(0), 500);
+        }
+      });
+    }
+
+    // ===== LÓGICA DO MODAL =====
+    const modal = document.getElementById("video-modal");
+    const modalIframe = document.getElementById("modal-iframe");
+    const closeBtn = document.getElementById("close-modal");
+    const showCourseInfo = modal.dataset.showCourseInfo === "true";
+
+    function openModal(card) {
+      const clickedIndex = parseInt(card.dataset.index);
+      isModalOpen = true;
+      const videoId = card.dataset.videoId;
+
+      stopCurrentVideo();
+
+      if (showCourseInfo) {
+        const courseTitle = card.dataset.courseTitle;
+        const coursePrice = card.dataset.coursePrice;
+        const courseLink = card.dataset.courseLink;
+        const courseThumbnail = card.querySelector("img")?.src;
+
+        const courseTitleEl = document.getElementById("course-title");
+        const coursePriceEl = document.getElementById("course-price");
+        const courseLinkEl = document.getElementById("course-link");
+        const courseThumbnailEl = document.getElementById("course-thumbnail");
+
+        if (courseTitleEl) courseTitleEl.textContent = courseTitle;
+        if (coursePriceEl) coursePriceEl.textContent = coursePrice;
+        if (courseLinkEl) courseLinkEl.href = courseLink;
+        if (courseThumbnailEl) courseThumbnailEl.src = courseThumbnail;
+
+        const whatsappBtn = document.getElementById("whatsapp-btn");
+        const whatsappNumber = modal.dataset.whatsappNumber;
+        const whatsappMessage = encodeURIComponent(
+          modal.dataset.whatsappMessage,
+        );
+
+        if (whatsappBtn) {
+          whatsappBtn.href = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+        }
+      }
+
+      modalIframe.src = buildVideoUrl(videoId, true, false);
+
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          modal.classList.remove("opacity-0");
+          modal.classList.add("opacity-100");
+        });
+      });
+
+      document.body.style.overflow = "hidden";
+      activeIndex = clickedIndex;
+    }
+
+    function closeModal() {
+      modal.classList.remove("opacity-100");
+      modal.classList.add("opacity-0");
+
+      setTimeout(() => {
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+        modalIframe.src = "";
+        document.body.style.overflow = "";
+
+        isModalOpen = false;
+
+        if (activeIndex !== -1) {
+          playVideo(activeIndex);
+        }
+      }, 300);
+    }
+
+    // ===== EVENT LISTENERS =====
+    scrollContainer.addEventListener("click", (e) => {
+      const card = e.target.closest(".short-card");
+      if (!card) return;
+
+      if (hasDragged) {
+        return;
+      }
+
+      openModal(card);
+    });
+
+    if (closeBtn) {
+      const closeHandler = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        closeModal();
+      };
+
+      closeBtn.addEventListener("click", closeHandler);
+      closeBtn.addEventListener("touchend", closeHandler);
+    }
+
+    if (modal) {
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          closeModal();
+        }
+      });
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && isModalOpen) {
+        closeModal();
+      }
+    });
+
+    // ===== NAVEGAÇÃO MANUAL =====
+    const scroll = (direction) => {
+      const cardWidth = 270 + 16;
+      const scrollAmount = direction === "left" ? -cardWidth : cardWidth;
+
+      scrollContainer.scrollBy({
+        left: scrollAmount,
+        behavior: "smooth",
+      });
+
+      setTimeout(updateNavButtons, 300);
+    };
+
+    btnLeft.addEventListener("click", () => scroll("left"));
+    btnRight.addEventListener("click", () => scroll("right"));
+
+    scrollContainer.addEventListener("scroll", updateNavButtons, {
+      passive: true,
+    });
+
+    const resizeObserver = new ResizeObserver(updateNavButtons);
+    resizeObserver.observe(scrollContainer);
+
+    updateNavButtons();
+    initIntersectionObserver();
+
+    return () => {
+      stopCurrentVideo();
+      resizeObserver.disconnect();
+    };
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initShortsGallery);
+  } else {
+    initShortsGallery();
+  }
+
+  document.addEventListener("astro:page-load", initShortsGallery);
+</script>
+
+<style>
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .video-iframe {
+    border-radius: 1rem;
+    transition: opacity 0.5s ease;
+  }
+
+  .short-card,
+  .thumbnail-layer,
+  .video-iframe {
+    will-change: opacity;
+  }
+
+  @media (max-width: 768px) {
+    #close-modal {
+      height: 48px;
+      width: 48px;
+      -webkit-tap-highlight-color: transparent;
+    }
+  }
+
+  .scroll-container {
+    -webkit-overflow-scrolling: touch;
+    cursor: grab;
+  }
+
+  .scroll-container.dragging {
+    cursor: grabbing;
+    user-select: none;
+  }
+
+  .scroll-container.dragging,
+  .scroll-container.dragging * {
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .shorts-gallery[data-autoplay="true"] .play-overlay {
+    opacity: 0;
+  }
+
+  .shorts-gallery[data-autoplay="true"] .short-card:hover .play-overlay {
+    opacity: 1;
+  }
+
+  .shorts-gallery[data-autoplay="false"] .play-overlay {
+    opacity: 1;
+  }
+</style>

@@ -1,0 +1,307 @@
+---
+import { ChevronLeft, ChevronRight, ArrowRight } from "@lucide/astro";
+
+const slides = [
+  {
+    type: "video",
+    src: "/images/hero-video.mp4",
+    title: "Quem dança é mais feliz",
+    subtitle: "Aulas para todas as idades a partir dos 2 anos",
+    cta: "Inscreva-se",
+  },
+  {
+    type: "image",
+    src: "/images/short-1.jpg",
+    title: "Viva essa Magia!",
+    subtitle: "Descubra o poder da dança na Dullius Dance",
+    cta: "Agende uma aula experimental",
+  },
+  {
+    type: "image",
+    src: "/images/short-2.webp",
+    title: "A Magia do Palco!",
+    subtitle: "Apresentações que transformam vidas",
+    cta: "Faça parte dessa história",
+  },
+];
+---
+
+<section id="inicio" class="relative h-screen w-full overflow-hidden">
+  <!-- Slides Container -->
+  <div class="absolute inset-0">
+    {
+      slides.map((slide, index) => (
+        <div
+          class={`slide absolute inset-0 transition-opacity duration-700 ease-in-out ${index === 0 ? "opacity-100" : "opacity-0"}`}
+          data-index={index}
+        >
+          {slide.type === "image" ? (
+            <img
+              src={slide.src}
+              alt={slide.title}
+              class="h-full w-full object-cover"
+            />
+          ) : (
+            <video
+              data-video
+              data-index={index}
+              src={slide.src}
+              class="h-full w-full object-cover"
+              autoplay={index === 0}
+              muted
+              loop
+              playsinline
+              preload="auto"
+            />
+          )}
+          <div class="absolute inset-0 bg-black/50" />
+        </div>
+      ))
+    }
+  </div>
+
+  <!-- Content -->
+  <div
+    class="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center"
+  >
+    <div class="max-w-3xl xl:max-w-4xl">
+      <h1
+        id="hero-title"
+        class="hero-title text-5xl leading-tighter tracking-tight text-white md:text-7xl lg:text-8xl"
+      >
+        {slides[0].title}
+      </h1>
+      <p
+        id="hero-subtitle"
+        class="hero-subtitle mt-6 text-lg font-medium tracking-wide text-white md:text-xl"
+      >
+        {slides[0].subtitle}
+      </p>
+      <div
+        class="hero-actions mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
+      >
+        <a
+          href="#contato"
+          class="inline-flex items-center gap-2 rounded-full bg-red-700 px-8 py-4 font-semibold text-white transition-colors hover:bg-primary/90"
+        >
+          <span id="hero-cta">{slides[0].cta}</span>
+
+          <ArrowRight class="h-4 w-4" />
+        </a>
+        <a
+          href="#cursos"
+          class="rounded-full border border-white bg-transparent px-8 py-4 text-base font-semibold text-white hover:bg-white/10 transition-colors"
+        >
+          Ver Cursos
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation Arrows -->
+  <button
+    type="button"
+    id="prev-btn"
+    class="absolute left-6 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white/10 p-3 text-white backdrop-blur-sm transition-all hover:bg-white/20"
+    aria-label="Slide anterior"
+  >
+    <ChevronLeft size={20} />
+  </button>
+  <button
+    type="button"
+    id="next-btn"
+    class="absolute right-6 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white/10 p-3 text-white backdrop-blur-sm transition-all hover:bg-white/20"
+    aria-label="Proximo slide"
+  >
+    <ChevronRight size={20} />
+  </button>
+
+  <!-- Dots -->
+  <div class="absolute bottom-10 left-1/2 z-20 flex -translate-x-1/2 gap-3">
+    {
+      slides.map((_, index) => (
+        <button
+          type="button"
+          data-dot-btn
+          data-index={index}
+          class={`h-2 rounded-full transition-all duration-300 ${
+            index === 0
+              ? "w-8 bg-zinc-300"
+              : "w-2 bg-zinc-300 hover:bg-zinc-300"
+          }`}
+          aria-label={`Ir para slide ${index + 1}`}
+        />
+      ))
+    }
+  </div>
+
+  <!-- Slide data for JavaScript -->
+  <script
+    type="application/json"
+    id="slide-data"
+    set:html={JSON.stringify(slides)}
+  />
+</section>
+
+<style>
+  @keyframes fadeInSlide {
+    from {
+      opacity: 0;
+      transform: translateY(1rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .hero-title {
+    animation: fadeInSlide 700ms ease-out;
+  }
+
+  .hero-subtitle {
+    animation: fadeInSlide 700ms ease-out 150ms backwards;
+  }
+
+  .hero-actions {
+    animation: fadeInSlide 700ms ease-out 300ms backwards;
+  }
+</style>
+
+<script is:inline>
+  // Recuperar dados dos slides a partir do JSON embutido
+  const slideDataElement = document.getElementById("slide-data");
+  const slideData = JSON.parse(slideDataElement.textContent);
+
+  const slides = document.querySelectorAll(".slide");
+  const videos = document.querySelectorAll("[data-video]");
+  const dots = document.querySelectorAll("[data-dot-btn]");
+  const prevBtn = document.getElementById("prev-btn");
+  const nextBtn = document.getElementById("next-btn");
+  const heroTitle = document.getElementById("hero-title");
+  const heroSubtitle = document.getElementById("hero-subtitle");
+  const heroCta = document.getElementById("hero-cta");
+
+  let current = 0;
+  let isTransitioning = false;
+
+  // Função para gerenciar reprodução de vídeos
+  function handleVideoPlayback(index) {
+    videos.forEach((video, i) => {
+      const videoIndex = parseInt(video.dataset.index);
+      if (videoIndex === index) {
+        // Tenta reproduzir o vídeo
+        video.play().catch((err) => {
+          console.log("Erro ao reproduzir vídeo:", err);
+          // Se falhar, tenta novamente após um pequeno delay
+          setTimeout(() => {
+            video
+              .play()
+              .catch((e) => console.log("Tentativa de reprodução falhou:", e));
+          }, 100);
+        });
+      } else {
+        video.pause();
+        video.currentTime = 0; // Volta ao início
+      }
+    });
+  }
+
+  function updateContent(index) {
+    // Remove animation classes
+    heroTitle.style.animation = "none";
+    heroSubtitle.style.animation = "none";
+
+    // Force reflow
+    void heroTitle.offsetWidth;
+
+    // Update content
+    heroTitle.textContent = slideData[index].title;
+    heroSubtitle.textContent = slideData[index].subtitle;
+    heroCta.textContent = slideData[index].cta;
+
+    // Re-apply animations
+    heroTitle.style.animation = "";
+    heroSubtitle.style.animation = "";
+  }
+
+  function goToSlide(index) {
+    if (isTransitioning) return;
+
+    isTransitioning = true;
+
+    // Update slides
+    slides[current].classList.remove("opacity-100");
+    slides[current].classList.add("opacity-0");
+
+    slides[index].classList.remove("opacity-0");
+    slides[index].classList.add("opacity-100");
+
+    // Update dots
+    dots[current].classList.remove("w-8");
+    dots[current].classList.add("w-2");
+
+    dots[index].classList.remove("w-2");
+    dots[index].classList.add("w-8");
+
+    // Update current index
+    current = index;
+
+    // Update content
+    updateContent(current);
+
+    // Handle video playback após a transição começar
+    setTimeout(() => {
+      handleVideoPlayback(current);
+    }, 100);
+
+    setTimeout(() => {
+      isTransitioning = false;
+    }, 700);
+  }
+
+  function next() {
+    goToSlide((current + 1) % slides.length);
+  }
+
+  function prev() {
+    goToSlide((current - 1 + slides.length) % slides.length);
+  }
+
+  // Event listeners
+  prevBtn?.addEventListener("click", prev);
+  nextBtn?.addEventListener("click", next);
+
+  dots.forEach((dot) => {
+    dot.addEventListener("click", (e) => {
+      const index = parseInt(e.currentTarget.dataset.index);
+      goToSlide(index);
+    });
+  });
+
+  // Garantir que o primeiro slide com vídeo inicie a reprodução
+  document.addEventListener("DOMContentLoaded", () => {
+    if (slideData[0].type === "video") {
+      handleVideoPlayback(0);
+    }
+  });
+
+  // Auto-advance
+  const autoAdvance = setInterval(next, 6000);
+
+  // Cleanup on page navigation
+  document.addEventListener("astro:before-swap", () => {
+    clearInterval(autoAdvance);
+    videos.forEach((video) => {
+      video.pause();
+      video.currentTime = 0;
+    });
+  });
+
+  // Tentar reproduzir vídeos quando a página fica visível
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden && slideData[current].type === "video") {
+      handleVideoPlayback(current);
+    }
+  });
+</script>

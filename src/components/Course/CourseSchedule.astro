@@ -1,0 +1,120 @@
+---
+import { Clock, Users, CalendarDays } from "@lucide/astro";
+
+const scheduleData = [
+  {
+    group: "Baby (2 a 3 anos)",
+    slots: [
+      { day: "Terca e Quinta", time: "9h30 - 10h15" },
+      { day: "Sabado", time: "10h00 - 10h45" },
+    ],
+    spots: 8,
+  },
+  {
+    group: "Mini (3 a 4 anos)",
+    slots: [
+      { day: "Segunda e Quarta", time: "14h00 - 14h50" },
+      { day: "Terca e Quinta", time: "10h15 - 11h05" },
+      { day: "Sabado", time: "11h00 - 11h50" },
+    ],
+    spots: 10,
+  },
+  {
+    group: "Infantil I (4 a 5 anos)",
+    slots: [
+      { day: "Segunda e Quarta", time: "15h00 - 16h00" },
+      { day: "Terca e Quinta", time: "14h00 - 15h00" },
+      { day: "Sabado", time: "9h00 - 10h00" },
+    ],
+    spots: 12,
+  },
+  {
+    group: "Infantil II (5 a 6 anos)",
+    slots: [
+      { day: "Segunda e Quarta", time: "16h00 - 17h00" },
+      { day: "Terca e Quinta", time: "15h00 - 16h00" },
+    ],
+    spots: 12,
+  },
+  {
+    group: "Infantil III (6 a 7 anos)",
+    slots: [
+      { day: "Segunda e Quarta", time: "17h00 - 18h15" },
+      { day: "Terca e Quinta", time: "16h00 - 17h15" },
+    ],
+    spots: 14,
+  },
+  {
+    group: "Juvenil (7 a 9 anos)",
+    slots: [
+      { day: "Segunda e Quarta", time: "18h15 - 19h30" },
+      { day: "Terca e Quinta", time: "17h15 - 18h30" },
+    ],
+    spots: 14,
+  },
+];
+---
+
+<section id="horarios" class="bg-secondary/50 py-24 lg:py-32">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="mb-16 text-center">
+      <p class="text-sm font-semibold uppercase tracking-widest text-accent">
+        Horarios
+      </p>
+      <h2
+        class="mt-3 font-serif text-4xl text-foreground md:text-5xl text-balance"
+      >
+        Grade de horarios disponiveis
+      </h2>
+      <p class="mx-auto mt-4 max-w-2xl text-lg text-zinc-800 leading-relaxed">
+        Escolha o melhor horario para o seu filho(a). As vagas sao limitadas
+        para garantir atencao individual.
+      </p>
+    </div>
+
+    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        scheduleData.map((schedule) => (
+          <div class="group flex flex-col rounded-2xl border border-zinc-200 bg-zinc-100 p-6 transition-all duration-300 hover:shadow-lg">
+            <div class="flex items-start justify-between">
+              <h3 class="font-serif text-lg text-foreground">
+                {schedule.group}
+              </h3>
+              <span class="rounded-full bg-zinc-200 px-2.5 py-0.5 text-xs font-medium text-zinc-700">
+                <Users class="mr-1 inline h-3 w-3" />
+                {schedule.spots} vagas
+              </span>
+            </div>
+
+            <div class="mt-5 flex flex-col gap-3 flex-grow">
+              {schedule.slots.map((slot) => (
+                <div class="flex items-center gap-3 rounded-xl bg-white/80 px-4 py-3">
+                  <CalendarDays class="h-4 w-4 shrink-0 opacity-60" />
+                  <div class="flex flex-1 flex-col gap-0.5 sm:flex-row sm:items-center sm:justify-between sm:gap-2">
+                    <span class="text-sm font-medium">{slot.day}</span>
+                    <span class="flex items-center gap-1.5 text-sm opacity-70">
+                      <Clock class="h-3.5 w-3.5" />
+                      {slot.time}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* <a
+              href="#contato"
+              class="mt-5 w-full inline-flex items-center justify-center rounded-full bg-red-700 text-white hover:bg-red-800 px-4 py-2 text-sm font-medium transition-colors"
+            >
+              Reservar Vaga
+            </a> */}
+          </div>
+        ))
+      }
+    </div>
+
+    <p class="mt-8 text-center text-sm text-zinc-800">
+      Horarios sujeitos a alteracao. Entre em contato para confirmar
+      disponibilidade.
+    </p>
+  </div>
+</section>

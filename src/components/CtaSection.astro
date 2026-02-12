@@ -1,0 +1,41 @@
+---
+// CtaSection.astro
+import { ArrowRight } from "@lucide/astro";
+---
+
+<section class="bg-red-700 py-24 lg:py-32">
+  <div class="mx-auto max-w-4xl px-6 text-center">
+    <h2
+      class="text-4xl text-white md:text-5xl lg:text-6xl font-medium tracking-tighter text-balance"
+    >
+      Comece sua jornada na dança hoje
+    </h2>
+    <p
+      class="mx-auto mt-6 max-w-xl text-lg xl:text-xl text-white leading-relaxed"
+    >
+      Agende uma aula experimental gratuita e descubra por que somos referência
+      em dança em Porto Alegre.
+    </p>
+    <div
+      class="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
+    >
+      <a
+        href="#contato"
+        class="inline-flex items-center justify-center rounded-full bg-white px-8 py-2 text-base font-semibold text-red-600 transition-colors hover:bg-accent/90"
+      >
+        Agendar Aula Experimental
+        <ArrowRight class="ml-2 h-4 w-4" />
+      </a>
+
+      <a
+        href="https://wa.me/5551985947939"
+        target="_blank"
+        rel="noopener
+      noreferrer"
+        class="inline-flex items-center justify-center rounded-full border border-white bg-transparent px-8 py-2 text-base font-semibold text-white transition-colors hover:text-white"
+      >
+        Falar pelo WhatsApp
+      </a>
+    </div>
+  </div>
+</section>

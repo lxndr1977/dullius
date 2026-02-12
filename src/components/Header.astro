@@ -1,0 +1,212 @@
+---
+// Header.astro
+import { Menu, X, Phone, ArrowRight } from "@lucide/astro";
+
+interface Props {
+  variant?: "home" | "internal";
+}
+
+const { variant = "home" } = Astro.props;
+
+const homeLinks = [
+  { label: "Inicio", href: "#inicio" },
+  { label: "Cursos", href: "#cursos" },
+  { label: "Galeria", href: "#galeria" },
+  { label: "Por que Dullius", href: "#por-que" },
+  { label: "Escola", href: "#escola" },
+  { label: "Contato", href: "#contato" },
+];
+
+const internalLinks = [
+  { label: "Inicio", href: "/" },
+  { label: "Sobre o Curso", href: "#sobre" },
+  { label: "Horarios", href: "#horarios" },
+  { label: "Galeria", href: "#galeria" },
+  { label: "FAQ", href: "#faq" },
+  { label: "Contato", href: "#contato" },
+];
+
+const navLinks = variant === "home" ? homeLinks : internalLinks;
+const alwaysSolid = variant === "internal";
+---
+
+<header
+  class={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    alwaysSolid ? "bg-zinc-100/10 backdrop-blur-md shadow-sm" : "bg-transparent"
+  }`}
+  data-header
+  data-always-solid={alwaysSolid}
+>
+  <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+    <a href="/" class="flex items-center gap-2">
+      <span
+        class={`text-2xl tracking-tight transition-colors duration-300 ${
+          alwaysSolid ? "text-zinc-800" : "text-white"
+        }`}
+        data-brand
+      >
+        Dullius Dance
+      </span>
+    </a>
+
+    <nav class="hidden items-center gap-8 lg:flex">
+      {
+        navLinks.map((link) => (
+          <a
+            href={link.href}
+            class={`text-sm font-medium tracking-wide uppercase transition-colors duration-300 hover:opacity-70 ${
+              alwaysSolid ? "text-zinc-800" : "text-white"
+            }`}
+            data-nav-link
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="hidden items-center gap-4 lg:flex">
+      <a
+        href="#contato"
+        class="inline-flex items-center justify-center rounded-full bg-red-700 px-6 py-2 text-sm font-semibold text-white transition-colors hover:bg-red-600"
+      >
+        Inscreva-se
+        <ArrowRight class="ml-2 h-4 w-4" />
+      </a>
+    </div>
+
+    <button
+      type="button"
+      class={`lg:hidden transition-colors duration-300 ${
+        alwaysSolid ? "text-zinc-800" : "text-white"
+      }`}
+      data-mobile-toggle
+      aria-label="Abrir menu"
+    >
+      <Menu class="h-6 w-6" data-menu-icon />
+      <X class="h-6 w-6 hidden" data-close-icon />
+    </button>
+  </div>
+
+  <div
+    class="hidden bg-white/98 backdrop-blur-md border-b border-border border-zinc-200 lg:hidden"
+    data-mobile-menu
+  >
+    <nav class="mx-auto flex max-w-7xl flex-col gap-1 px-6 py-4">
+      {
+        navLinks.map((link) => (
+          <a
+            href={link.href}
+            class="rounded-lg px-4 py-3 text-sm font-medium uppercase tracking-wide text-zinc-800 transition-colors hover:bg-muted"
+            data-mobile-link
+          >
+            {link.label}
+          </a>
+        ))
+      }
+      <div
+        class="mt-4 flex flex-col gap-3 border-t border-border border-zinc-200 pt-4"
+      >
+        <a
+          href="tel:5198594793"
+          class="flex items-center gap-2 px-4 font-medium text-muted-zinc-800"
+        >
+          <Phone class="h-4 w-4" />
+          (51) 98594.7939
+        </a>
+
+        <a
+          href="#contato"
+          class="inline-flex items-center justify-center rounded-full bg-red-700 px-6 py-2 font-medium text-white transition-colors hover:bg-red-600"
+          data-mobile-link
+        >
+          Agende sua Aula
+        </a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<script>
+  // Scroll behavior
+  const header = document.querySelector("[data-header]");
+  const alwaysSolid = header?.getAttribute("data-always-solid") === "true";
+  const brand = document.querySelector("[data-brand]");
+  const navLinks = document.querySelectorAll("[data-nav-link]");
+  const phone = document.querySelector("[data-phone]");
+  const mobileToggle = document.querySelector("[data-mobile-toggle]");
+
+  function updateHeaderStyle(scrolled: boolean) {
+    if (alwaysSolid) return;
+
+    const showSolid = scrolled;
+
+    if (showSolid) {
+      header?.classList.add("bg-white/95", "backdrop-blur-md", "shadow-sm");
+      header?.classList.remove("bg-transparent");
+      brand?.classList.add("text-zinc-800");
+      brand?.classList.remove("text-white");
+      navLinks.forEach((link) => {
+        link.classList.add("text-zinc-800");
+        link.classList.remove("text-white");
+      });
+      phone?.classList.add("text-zinc-800");
+      phone?.classList.remove("text-white");
+      mobileToggle?.classList.add("text-zinc-800");
+      mobileToggle?.classList.remove("text-white");
+    } else {
+      header?.classList.remove("bg-white/95", "backdrop-blur-md", "shadow-sm");
+      header?.classList.add("bg-transparent");
+      brand?.classList.remove("text-zinc-800");
+      brand?.classList.add("text-white");
+      navLinks.forEach((link) => {
+        link.classList.remove("text-zinc-800");
+        link.classList.add("text-white");
+      });
+      phone?.classList.remove("text-zinc-800");
+      phone?.classList.add("text-white");
+      mobileToggle?.classList.remove("text-zinc-800");
+      mobileToggle?.classList.add("text-white");
+    }
+  }
+
+  function handleScroll() {
+    const scrolled = window.scrollY > 20;
+    updateHeaderStyle(scrolled);
+  }
+
+  window.addEventListener("scroll", handleScroll);
+  handleScroll(); // Initial check
+
+  // Mobile menu toggle
+  const menuIcon = document.querySelector("[data-menu-icon]");
+  const closeIcon = document.querySelector("[data-close-icon]");
+  const mobileMenu = document.querySelector("[data-mobile-menu]");
+  const mobileLinks = document.querySelectorAll("[data-mobile-link]");
+
+  mobileToggle?.addEventListener("click", () => {
+    const isOpen = !mobileMenu?.classList.contains("hidden");
+
+    if (isOpen) {
+      mobileMenu?.classList.add("hidden");
+      menuIcon?.classList.remove("hidden");
+      closeIcon?.classList.add("hidden");
+      mobileToggle?.setAttribute("aria-label", "Abrir menu");
+    } else {
+      mobileMenu?.classList.remove("hidden");
+      menuIcon?.classList.add("hidden");
+      closeIcon?.classList.remove("hidden");
+      mobileToggle?.setAttribute("aria-label", "Fechar menu");
+    }
+  });
+
+  // Close mobile menu when clicking links
+  mobileLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      mobileMenu?.classList.add("hidden");
+      menuIcon?.classList.remove("hidden");
+      closeIcon?.classList.add("hidden");
+      mobileToggle?.setAttribute("aria-label", "Abrir menu");
+    });
+  });
+</script>
