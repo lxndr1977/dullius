@@ -4,9 +4,9 @@ import { ChevronLeft, ChevronRight, Quote } from "@lucide/astro";
 
 const testimonials = [
   {
-    name: "Mariana Costa",
-    role: "Mae de aluna - Ballet Infantil",
-    text: "Minha filha comecou na Dullius com 4 anos e a evolucao dela e incrivel. A escola tem um carinho especial com cada crianca, e os espetaculos de final de ano sao emocionantes. Nao troco por nenhuma outra!",
+    name: "Ilda Nocchi",
+    role: "Mãe de Alice",
+    text: "Pensar no desenvolvimento íntegro do ser humano é pensar também em quanto uma criança precisa ser apostada e acreditada. E isto é o que encontrei na Dullius, que através da seriedade com que trata a arte faz uma grande aposta nas crianças que se sentem parte importante de uma grande construção.",
     initials: "MC",
   },
   {
@@ -39,7 +39,7 @@ const testimonials = [
 <section class="py-24 lg:py-32 bg-zinc-50">
   <div class="mx-auto max-w-7xl px-6">
     <div class="mb-16 text-center">
-      <p class="text-sm font-semibold uppercase tracking-widest text-accent">
+      <p class="text-sm font-semibold uppercase tracking-widest text-primary">
         Depoimentos
       </p>
       <h2
@@ -64,7 +64,7 @@ const testimonials = [
             testimonials.map((testimonial) => (
               <div class="w-full flex-shrink-0 px-4">
                 <div class="flex flex-col items-center text-center">
-                  <div class="mb-8 flex h-12 w-12 items-center justify-center rounded-full bg-red-50 text-red-700">
+                  <div class="mb-8 flex h-12 w-12 items-center justify-center rounded-full bg-red-50 text-primary">
                     <Quote class="h-6 w-6" />
                   </div>
                   <blockquote class="text-xl text-zinc-800 leading-relaxed md:text-2xl text-balance">

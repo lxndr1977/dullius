@@ -1,9 +1,10 @@
 ---
 // CtaSection.astro
 import { ArrowRight } from "@lucide/astro";
+import Button from "./ui/Button.astro";
 ---
 
-<section class="bg-red-700 py-24 lg:py-32">
+<section class="bg-primary py-24 lg:py-32">
   <div class="mx-auto max-w-4xl px-6 text-center">
     <h2
       class="text-4xl text-white md:text-5xl lg:text-6xl font-medium tracking-tighter text-balance"
@@ -19,23 +20,23 @@ import { ArrowRight } from "@lucide/astro";
     <div
       class="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
     >
-      <a
+      <Button
         href="#contato"
-        class="inline-flex items-center justify-center rounded-full bg-white px-8 py-2 text-base font-semibold text-red-600 transition-colors hover:bg-accent/90"
+        variant="white"
       >
         Agendar Aula Experimental
         <ArrowRight class="ml-2 h-4 w-4" />
-      </a>
+      </Button>
 
-      <a
+      <Button
         href="https://wa.me/5551985947939"
+        variant="outline"
         target="_blank"
         rel="noopener
       noreferrer"
-        class="inline-flex items-center justify-center rounded-full border border-white bg-transparent px-8 py-2 text-base font-semibold text-white transition-colors hover:text-white"
       >
         Falar pelo WhatsApp
-      </a>
+      </Button>
     </div>
   </div>
 </section>

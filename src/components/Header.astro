@@ -1,6 +1,7 @@
 ---
 // Header.astro
 import { Menu, X, Phone, ArrowRight } from "@lucide/astro";
+import  Button from "./ui/Button.astro";
 
 interface Props {
   variant?: "home" | "internal";
@@ -37,7 +38,7 @@ const alwaysSolid = variant === "internal";
   data-header
   data-always-solid={alwaysSolid}
 >
-  <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+  <div class="mx-auto flex max-w-7xl xl:container items-center justify-between px-6 py-4">
     <a href="/" class="flex items-center gap-2">
       <span
         class={`text-2xl tracking-tight transition-colors duration-300 ${
@@ -66,13 +67,9 @@ const alwaysSolid = variant === "internal";
     </nav>
 
     <div class="hidden items-center gap-4 lg:flex">
-      <a
-        href="#contato"
-        class="inline-flex items-center justify-center rounded-full bg-red-700 px-6 py-2 text-sm font-semibold text-white transition-colors hover:bg-red-600"
-      >
+     <Button variant="primary" href="tel:5198594793">
         Inscreva-se
-        <ArrowRight class="ml-2 h-4 w-4" />
-      </a>
+      </Button>
     </div>
 
     <button
@@ -107,21 +104,12 @@ const alwaysSolid = variant === "internal";
       <div
         class="mt-4 flex flex-col gap-3 border-t border-border border-zinc-200 pt-4"
       >
-        <a
-          href="tel:5198594793"
-          class="flex items-center gap-2 px-4 font-medium text-muted-zinc-800"
-        >
-          <Phone class="h-4 w-4" />
-          (51) 98594.7939
-        </a>
-
-        <a
+        <Button
           href="#contato"
-          class="inline-flex items-center justify-center rounded-full bg-red-700 px-6 py-2 font-medium text-white transition-colors hover:bg-red-600"
           data-mobile-link
         >
           Agende sua Aula
-        </a>
+        </Button>
       </div>
     </nav>
   </div>

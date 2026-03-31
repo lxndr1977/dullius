@@ -1,1 +1,12 @@
 @import "tailwindcss";
+
+
+@theme {
+  --font-sans: var(--font-lexend), ui-sans-serif, system-ui, sans-serif;
+  
+  --color-primary: #ec3237;
+  --color-accent: #00D4F0;
+  --color-dark: #0D0F14;
+  
+  --background-image-gradient-industrial: linear-gradient(135deg, #00AADB 0%, #0088B0 100%);
+}

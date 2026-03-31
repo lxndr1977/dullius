@@ -4,7 +4,7 @@ import { ChevronLeft, ChevronRight, X } from "@lucide/astro";
 
 const images = [
   { src: "/images/short-1.jpg", alt: "Apresentacao de ballet no palco" },
-  { src: "/images/short-1.jpg", alt: "Recital de jazz" },
+  { src: "/images/short-2.png", alt: "Recital de jazz" },
   { src: "/images/short-1.jpg", alt: "Performance de danca contemporanea" },
   { src: "/images/short-1.jpg", alt: "Alunos de ballet no palco" },
   { src: "/images/short-1.jpg", alt: "Performance de dancas urbanas" },
@@ -13,12 +13,12 @@ const images = [
 ---
 
 <section id="galeria" class="bg-foreground py-24 lg:py-32">
-  <div class="mx-auto max-w-7xl px-6">
+  <div class="mx-auto max-w-7xl xl:container px-6">
     <div
       class="mb-16 flex flex-col items-center gap-6 text-center md:flex-row md:items-end md:justify-between md:text-left"
     >
       <div>
-        <p class="text-sm font-semibold uppercase tracking-widest text-red-700">
+        <p class="text-sm font-semibold uppercase tracking-widest text-primary">
           Galeria
         </p>
         <h2
@@ -58,7 +58,7 @@ const images = [
 
   <div
     data-gallery-scroll
-    class="scrollbar-hide flex gap-4 overflow-x-auto px-6 lg:px-[calc((100vw-80rem)/2+1.5rem)]"
+    class="scrollbar-hide flex gap-4 overflow-x-auto px-6 lg:px-[calc((100vw-97rem)/2+1.5rem)]"
     role="region"
     aria-label="Galeria de fotos"
   >
@@ -90,8 +90,8 @@ const images = [
           data-index={i}
           class={`h-2 rounded-full transition-all duration-300 ${
             i === 0
-              ? "w-8 bg-accent"
-              : "w-2 bg-background/30 hover:bg-background/50"
+              ? "w-8 bg-primary"
+              : "w-2 bg-primary/30 hover:bg-primary/50"
           }`}
           aria-label={`Ir para foto ${i + 1}`}
         />
@@ -190,7 +190,7 @@ const images = [
     scrollLeftBtn.disabled = !canScrollLeft;
     scrollRightBtn.disabled = !canScrollRight;
 
-    const cardWidth = scrollContainer.clientWidth * 0.42;
+    const cardWidth = scrollContainer.clientWidth * 0.22;
     const gap = 16;
     const idx = Math.round(scrollContainer.scrollLeft / (cardWidth + gap));
     activeIndex = Math.min(idx, images.length - 1);
@@ -200,7 +200,7 @@ const images = [
 
   function scroll(direction) {
     if (!scrollContainer) return;
-    const cardWidth = scrollContainer.clientWidth * 0.42;
+    const cardWidth = scrollContainer.clientWidth * 0.22;
     const gap = 16;
     const distance = cardWidth + gap;
     scrollContainer.scrollBy({
@@ -211,7 +211,7 @@ const images = [
 
   function scrollToIndex(index) {
     if (!scrollContainer) return;
-    const cardWidth = scrollContainer.clientWidth * 0.42;
+    const cardWidth = scrollContainer.clientWidth * 0.22;
     const gap = 16;
     scrollContainer.scrollTo({
       left: index * (cardWidth + gap),

@@ -1,5 +1,6 @@
 ---
 import { ChevronLeft, ChevronRight, ArrowRight } from "@lucide/astro";
+import Button from "./ui/Button.astro";
 
 const slides = [
   {
@@ -80,20 +81,11 @@ const slides = [
       <div
         class="hero-actions mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
       >
-        <a
+        <Button
           href="#contato"
-          class="inline-flex items-center gap-2 rounded-full bg-red-700 px-8 py-4 font-semibold text-white transition-colors hover:bg-primary/90"
-        >
+          >
           <span id="hero-cta">{slides[0].cta}</span>
-
-          <ArrowRight class="h-4 w-4" />
-        </a>
-        <a
-          href="#cursos"
-          class="rounded-full border border-white bg-transparent px-8 py-4 text-base font-semibold text-white hover:bg-white/10 transition-colors"
-        >
-          Ver Cursos
-        </a>
+        </Button>
       </div>
     </div>
   </div>

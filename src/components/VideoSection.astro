@@ -4,10 +4,10 @@ import { Play } from "@lucide/astro";
 ---
 
 <section class="bg-zinc-100 py-24 lg:py-32">
-  <div class="mx-auto max-w-7xl px-6">
+  <div class="mx-auto max-w-7xl xl:container px-6">
     <div class="grid items-center gap-12 lg:grid-cols-2">
       <div>
-        <p class="text-sm font-semibold uppercase tracking-widest text-red-700">
+        <p class="text-sm font-semibold uppercase tracking-widest text-primary">
           Conheça a Dullius Dance
         </p>
         <h2
@@ -25,11 +25,11 @@ import { Play } from "@lucide/astro";
         </p>
         <div class="mt-8 flex flex-col gap-6 sm:flex-row sm:gap-12">
           <div>
-            <p class="text-4xl text-red-700 font-bold tracking-tighter">+ 30</p>
+            <p class="text-4xl text-primary font-bold tracking-tighter">+ 30</p>
             <p class="mt-1 text-sm text-zinc-800">Anos de historia</p>
           </div>
           <div>
-            <p class="text-4xl text-red-700 font-bold tracking-tighter">
+            <p class="text-4xl text-primary font-bold tracking-tighter">
               + 5.000
             </p>
             <p class="mt-1 text-sm text-zinc-800">Alunos formados</p>
@@ -60,15 +60,15 @@ import { Play } from "@lucide/astro";
             data-play-button
           >
             <div
-              class="flex h-20 w-20 items-center justify-center rounded-full bg-red-700 text-white shadow-2xl transition-transform hover:cursor-pointer"
+              class="flex h-16 w-16 items-center justify-center rounded-full bg-primary text-white shadow-2xl transition-transform hover:cursor-pointer"
             >
-              <Play class="ml-1 h-8 w-8" />
+              <Play class="-ml-0.5 h-6 w-6" />
             </div>
           </button>
         </div>
 
         <div
-          class="relative aspect-video overflow-hidden rounded-2xl hidden bg-red-50"
+          class="relative aspect-video overflow-hidden rounded-2xl hidden bg-primary"
           data-video-iframe
         >
           <iframe
