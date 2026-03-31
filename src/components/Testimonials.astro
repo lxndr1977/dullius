@@ -7,122 +7,103 @@ const testimonials = [
     name: "Ilda Nocchi",
     role: "Mãe de Alice",
     text: "Pensar no desenvolvimento íntegro do ser humano é pensar também em quanto uma criança precisa ser apostada e acreditada. E isto é o que encontrei na Dullius, que através da seriedade com que trata a arte faz uma grande aposta nas crianças que se sentem parte importante de uma grande construção.",
-    initials: "MC",
+    initials: "IN",
   },
   {
     name: "Fernanda Almeida",
     role: "Aluna - Jazz Adulto",
-    text: "Comecei a dancar aos 35 anos e tinha muito receio. A equipe da Dullius me acolheu de um jeito que me senti em casa desde a primeira aula. Hoje a danca faz parte da minha vida e nao consigo imaginar sem.",
+    text: "Comecei a dançar aos 35 anos e tinha muito receio. A equipe da Dullius me acolheu de um jeito que me senti em casa desde a primeira aula. Hoje a dança faz parte da minha vida e não consigo imaginar sem.",
     initials: "FA",
   },
   {
     name: "Rafael Oliveira",
-    role: "Aluno - Dancas Urbanas",
-    text: "O nivel dos professores de dancas urbanas e absurdo. Ja fiz aulas em varias escolas de Porto Alegre e nenhuma chega perto da Dullius. A estrutura e impecavel e o ambiente e muito gostoso.",
+    role: "Aluno - Danças Urbanas",
+    text: "O nível dos professores de danças urbanas é absurdo. Já fiz aulas em várias escolas de Porto Alegre e nenhuma chega perto da Dullius. A estrutura é impecável e o ambiente é muito gostoso.",
     initials: "RO",
   },
   {
     name: "Lucia Ferreira",
-    role: "Mae de aluna - AcroDance",
-    text: "A seguranca e o profissionalismo da Dullius me conquistaram. Minha filha pratica AcroDance e a evolucao tecnica dela, sempre com todo cuidado, me deixa muito tranquila e orgulhosa.",
+    role: "Mãe de aluna - AcroDance",
+    text: "A segurança e o profissionalismo da Dullius me conquistaram. Minha filha pratica AcroDance e a evolução técnica dela, sempre com todo cuidado, me deixa muito tranquila e orgulhosa.",
     initials: "LF",
   },
   {
     name: "Camila Santos",
     role: "Aluna - Ballet Adulto",
-    text: "Realizar o sonho de dancar ballet depois dos 40 so foi possivel pelo acolhimento da Dullius. As turmas adultas sao maravilhosas, o ritmo e respeitoso e a professora e uma inspiracao.",
+    text: "Realizar o sonho de dançar ballet depois dos 40 só foi possível pelo acolhimento da Dullius. As turmas adultas são maravilhosas, o ritmo é respeitoso e a professora é uma inspiração.",
     initials: "CS",
   },
 ];
 ---
 
-<section class="py-24 lg:py-32 bg-zinc-50">
+<section class="py-24 lg:py-32 bg-zinc-50 overflow-hidden">
   <div class="mx-auto max-w-7xl px-6">
     <div class="mb-16 text-center">
       <p class="text-sm font-semibold uppercase tracking-widest text-primary">
         Depoimentos
       </p>
-      <h2
-        class="mt-3 text-4xl text-zinc-900 md:text-5xl lg:text-6xl font-medium tracking-tighter text-balance"
-      >
+      <h2 class="mt-3 text-4xl text-zinc-900 md:text-5xl lg:text-6xl font-medium tracking-tighter text-balance">
         O que dizem nossos alunos
       </h2>
-      <p
-        class="mx-auto mt-4 max-w-2xl text-lg xl:text-xl text-zinc-800 leading-relaxed"
-      >
-        Histórias reais de quem vive a magia da danca na Dullius Dance.
+      <p class="mx-auto mt-4 max-w-2xl text-lg xl:text-xl text-zinc-800 leading-relaxed">
+        Histórias reais de quem vive a magia da dança na Dullius Dance.
       </p>
     </div>
 
-    <div class="relative mx-auto max-w-4xl">
-      <div class="overflow-hidden" data-testimonials-container>
-        <div
-          class="flex transition-transform duration-500 ease-in-out"
-          data-testimonials-slider
-        >
-          {
-            testimonials.map((testimonial) => (
-              <div class="w-full flex-shrink-0 px-4">
-                <div class="flex flex-col items-center text-center">
-                  <div class="mb-8 flex h-12 w-12 items-center justify-center rounded-full bg-red-50 text-primary">
-                    <Quote class="h-6 w-6" />
+    <div class="relative">
+      <div 
+        class="flex overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar" 
+        data-testimonials-slider
+      >
+        {
+          testimonials.map((testimonial) => (
+            <div
+              class="flex-shrink-0 px-3 snap-start"
+              data-testimonials-slide
+            >
+              <div class="flex flex-col gap-4 rounded-2xl border border-zinc-200 bg-white p-6 h-full select-none">
+                <div class="flex h-10 w-10 items-center justify-center rounded-full bg-red-50 text-primary flex-shrink-0">
+                  <Quote class="h-5 w-5" />
+                </div>
+                <blockquote class="text-sm text-zinc-700 leading-relaxed flex-1">
+                  {`"${testimonial.text}"`}
+                </blockquote>
+                <div class="flex items-center gap-3 pt-4 border-t border-zinc-100">
+                  <div class="flex h-10 w-10 items-center justify-center rounded-full bg-zinc-800 text-white font-semibold text-sm flex-shrink-0">
+                    {testimonial.initials}
                   </div>
-                  <blockquote class="text-xl text-zinc-800 leading-relaxed md:text-2xl text-balance">
-                    {`"${testimonial.text}"`}
-                  </blockquote>
-                  <div class="mt-10 flex flex-col items-center gap-3">
-                    <div class="flex h-14 w-14 items-center justify-center rounded-full bg-zinc-800 text-white font-semibold text-lg">
-                      {testimonial.initials}
-                    </div>
-                    <div>
-                      <p class="font-semibold text-zinc-800">
-                        {testimonial.name}
-                      </p>
-                      <p class="mt-0.5 text-sm text-muted-zinc-800">
-                        {testimonial.role}
-                      </p>
-                    </div>
+                  <div>
+                    <p class="font-semibold text-zinc-800 text-sm">
+                      {testimonial.name}
+                    </p>
+                    <p class="mt-0.5 text-xs text-zinc-500">
+                      {testimonial.role}
+                    </p>
                   </div>
                 </div>
               </div>
-            ))
-          }
-        </div>
+            </div>
+          ))
+        }
       </div>
 
-      <div class="mt-12 flex items-center justify-center gap-4">
+      <div class="mt-10 flex items-center justify-center gap-4">
         <button
           type="button"
           data-prev-btn
-          class="flex h-11 w-11 items-center justify-center rounded-full border border-zinc-200 text-zinc-800 transition-all duration-200 hover:bg-secondary"
+          class="flex h-11 w-11 items-center justify-center rounded-full border border-zinc-200 text-zinc-800 transition-all duration-200 hover:bg-zinc-100 active:scale-95"
           aria-label="Depoimento anterior"
         >
           <ChevronLeft class="h-5 w-5" />
         </button>
 
-        <div class="flex items-center gap-2" data-dots-container>
-          {
-            testimonials.map((_, index) => (
-              <button
-                type="button"
-                data-dot-btn
-                data-index={index}
-                class={`h-2 rounded-full transition-all duration-300 ${
-                  index === 0
-                    ? "w-8 bg-zinc-300"
-                    : "w-2 bg-zinc-300  hover:bg-zinc-300"
-                }`}
-                aria-label={`Ver depoimento ${index + 1}`}
-              />
-            ))
-          }
-        </div>
+        <div class="flex items-center gap-2" data-dots-container></div>
 
         <button
           type="button"
           data-next-btn
-          class="flex h-11 w-11 items-center justify-center rounded-full border border-zinc-200 text-zinc-800 transition-all duration-200 hover:bg-secondary"
-          aria-label="Proximo depoimento"
+          class="flex h-11 w-11 items-center justify-center rounded-full border border-zinc-200 text-zinc-800 transition-all duration-200 hover:bg-zinc-100 active:scale-95"
+          aria-label="Próximo depoimento"
         >
           <ChevronRight class="h-5 w-5" />
         </button>
@@ -131,92 +112,110 @@ const testimonials = [
   </div>
 </section>
 
-<script define:vars={{ totalTestimonials: testimonials.length }}>
-  let current = 0;
-  let isAutoPlaying = true;
-  let autoPlayTimer = null;
+<style>
+  /* Esconde a barra de scroll mantendo a funcionalidade */
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+</style>
 
+<script define:vars={{ totalTestimonials: testimonials.length }}>
   const slider = document.querySelector("[data-testimonials-slider]");
-  const container = document.querySelector("[data-testimonials-container]");
   const prevBtn = document.querySelector("[data-prev-btn]");
   const nextBtn = document.querySelector("[data-next-btn]");
-  const dots = document.querySelectorAll("[data-dot-btn]");
+  const dotsContainer = document.querySelector("[data-dots-container]");
+  const slides = document.querySelectorAll("[data-testimonials-slide]");
 
-  function updateSlider() {
-    if (slider) {
-      slider.style.transform = `translateX(-${current * 100}%)`;
+  let currentPage = 0;
+  let itemsPerPage = 1;
+  let totalPages = 1;
+
+  function getItemsVisible() {
+    if (window.innerWidth >= 1024) return 3;
+    if (window.innerWidth >= 768) return 2;
+    return 1.2; // Permite ver um pedaço do próximo slide no mobile
+  }
+
+  function setSlideWidths() {
+    const visible = getItemsVisible();
+    const gap = 0; // O gap já está sendo controlado pelo padding lateral (px-3)
+    slides.forEach((slide) => {
+      slide.style.width = `${100 / visible}%`;
+    });
+  }
+
+  function recalculatePages() {
+    itemsPerPage = Math.max(1, Math.floor(getItemsVisible()));
+    totalPages = Math.ceil(totalTestimonials / itemsPerPage);
+    renderDots();
+  }
+
+  function renderDots() {
+    if (!dotsContainer) return;
+    dotsContainer.innerHTML = '';
+    for (let i = 0; i < totalPages; i++) {
+      const btn = document.createElement('button');
+      btn.className = `h-1.5 rounded-full transition-all duration-300 ${i === currentPage ? 'w-6 bg-zinc-800' : 'w-1.5 bg-zinc-300'}`;
+      btn.addEventListener('click', () => {
+        const slideIndex = i * itemsPerPage;
+        scrollToSlide(slideIndex);
+      });
+      dotsContainer.appendChild(btn);
     }
+  }
 
-    // Update dots
+  function scrollToSlide(index) {
+    if (!slider) return;
+    const slideWidth = slides[0].offsetWidth;
+    slider.scrollTo({
+      left: index * slideWidth,
+      behavior: 'smooth'
+    });
+  }
+
+  // Sincroniza os dots e a página atual quando o usuário arrasta manualmente
+  function syncStateOnScroll() {
+    const slideWidth = slides[0].offsetWidth;
+    const scrollPosition = slider.scrollLeft;
+    const activeSlideIndex = Math.round(scrollPosition / slideWidth);
+    
+    const newPage = Math.floor(activeSlideIndex / itemsPerPage);
+    
+    if (newPage !== currentPage && newPage < totalPages) {
+      currentPage = newPage;
+      updateDots();
+    }
+  }
+
+  function updateDots() {
+    const dots = dotsContainer.querySelectorAll("button");
     dots.forEach((dot, index) => {
-      if (index === current) {
-        dot.classList.remove("w-2", "bg-border");
-        dot.classList.add("w-8", "bg-accent");
+      if (index === currentPage) {
+        dot.className = "h-1.5 rounded-full transition-all duration-300 w-6 bg-zinc-800";
       } else {
-        dot.classList.remove("w-8", "bg-accent");
-        dot.classList.add("w-2", "bg-border");
+        dot.className = "h-1.5 rounded-full transition-all duration-300 w-1.5 bg-zinc-300";
       }
     });
   }
 
-  function next() {
-    current = (current + 1) % totalTestimonials;
-    updateSlider();
-  }
-
-  function prev() {
-    current = (current - 1 + totalTestimonials) % totalTestimonials;
-    updateSlider();
-  }
-
-  function goTo(index) {
-    current = index;
-    updateSlider();
-  }
-
-  function startAutoPlay() {
-    if (autoPlayTimer) clearInterval(autoPlayTimer);
-    autoPlayTimer = setInterval(() => {
-      if (isAutoPlaying) {
-        next();
-      }
-    }, 7000);
-  }
-
-  function stopAutoPlay() {
-    isAutoPlaying = false;
-    if (autoPlayTimer) {
-      clearInterval(autoPlayTimer);
-    }
-  }
-
-  // Event listeners
+  // Eventos
   prevBtn?.addEventListener("click", () => {
-    prev();
-    stopAutoPlay();
+    const targetIndex = Math.max(0, (currentPage - 1) * itemsPerPage);
+    scrollToSlide(targetIndex);
   });
 
   nextBtn?.addEventListener("click", () => {
-    next();
-    stopAutoPlay();
+    const targetIndex = Math.min(totalTestimonials - 1, (currentPage + 1) * itemsPerPage);
+    scrollToSlide(targetIndex);
   });
 
-  dots.forEach((dot) => {
-    dot.addEventListener("click", () => {
-      const index = parseInt(dot.getAttribute("data-index") || "0");
-      goTo(index);
-      stopAutoPlay();
-    });
+  slider?.addEventListener("scroll", syncStateOnScroll);
+
+  window.addEventListener("resize", () => {
+    setSlideWidths();
+    recalculatePages();
   });
 
-  container?.addEventListener("mouseenter", () => {
-    isAutoPlaying = false;
-  });
-
-  container?.addEventListener("mouseleave", () => {
-    isAutoPlaying = true;
-  });
-
-  // Start autoplay
-  startAutoPlay();
+  // Init
+  setSlideWidths();
+  recalculatePages();
 </script>

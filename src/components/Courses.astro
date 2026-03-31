@@ -49,14 +49,14 @@ const courses = [
     title: "AcroDance",
     description:
       "A fusão perfeita entre ginástica e dança. Flexibilidade e força.",
-    image: "/images/short-1.jpg",
+    image: "/images/short-7.webp",
     age: "A partir de 6 anos",
     href: "/cursos/metodo-dullius",
   },
 ];
 ---
 
-<section id="cursos" class="py-24 lg:py-32 bg-zinc-100">
+<section id="cursos" class="py-24 lg:py-32">
   <div class="mx-auto max-w-7xl xl:container px-6">
     <div class="mb-16 text-center">
       <p class="text-sm font-semibold uppercase tracking-widest text-primary">
@@ -75,12 +75,12 @@ const courses = [
       </p>
     </div>
 
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-3">
       {
         courses.map((course) => (
           <a
             href={course.href || "#contato"}
-            class="group relative overflow-hidden rounded-2xl bg-white"
+            class="group relative overflow-hidden border border-zinc-100 rounded-2xl bg-white shadow-md transition-shadow duration-300 hover:shadow-lg"
           >
             <div class="relative aspect-[4/3] overflow-hidden">
               <img
