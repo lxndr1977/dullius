@@ -1,0 +1,59 @@
+---
+import { twMerge } from 'tailwind-merge';
+
+interface Props {
+  variant?: 'primary' | 'outline' | 'white' | 'link' | 'outlinePrimary' | 'outlineWhite' | 'transparent';
+  size?: 'sm' | 'base' | 'lg' | 'xl';
+  href?: string;
+  class?: string;
+  [key: string]: any;
+}
+
+const { variant = 'primary', size = 'base', href, class: className, ...rest } = Astro.props;
+
+const variants = {
+  primary: 'bg-primary text-white hover:bg-primary/90 hover:-translate-y-0.5',
+  outlinePrimary: 'bg-transparent border border-primary text-primary hover:border-primary/70 hover:bg-primary/5 hover:-translate-y-0.5',
+  outlineWhite: 'bg-transparent border border-white text-white hover:border-white/70 hover:bg-white/5 hover:-translate-y-0.5',
+  outline: 'bg-transparent border border-neutral-800 text-neutral-700 hover:border-neutral-800/70 hover:bg-neutral-800/5 hover:-translate-y-0.5',
+  white: 'bg-white text-primary/80 font-bold hover:bg-gray-50 hover:-translate-y-0.5',
+  transparent: 'bg-white text-neutral-800 hover:bg-white/30 hover:-translate-y-0.5',
+  link: '',
+};
+
+const sizes = {
+  sm: 'text-sm',
+  base: 'text-base',
+  lg: 'text-lg',
+  xl: 'text-xl',
+};
+
+const base = 'inline-flex w-fit rounded items-center justify-center gap-2 px-4.5 py-2.5 font-semibold transition-all duration-300 cursor-pointer ease-in-out';
+
+const classes = twMerge(base, variants[variant], sizes[size], className);
+---
+
+{variant === 'link' ? (
+  
+   <a href={href ?? '#'}
+    class={twMerge(
+      'group inline-flex items-center gap-2 font-semibold uppercase text-primary tracking-wider transition-all duration-300 ease-in-out relative',
+      sizes[size],
+      className
+    )}
+    {...rest}
+  >
+    <span class="relative after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-current after:transition-all after:duration-300 group-hover:after:w-full">
+      <slot />
+    </span>
+    <span class="transition-transform duration-300 group-hover:translate-x-3">→</span>
+  </a>
+) : href ? (
+  <a href={href} class={classes} {...rest}>
+    <slot />
+  </a>
+) : (
+  <button class={classes} {...rest}>
+    <slot />
+  </button>
+)}

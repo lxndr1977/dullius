@@ -1,0 +1,34 @@
+@import "tailwindcss";
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
+@import 'swiper/css/effect-fade';
+@import 'trig-js/src/trig-animations.css';
+
+@theme inline {
+  --font-sans: var(--font-outfit);
+}
+
+@theme {
+  --color-primary: #fd0000;
+  --color-accent: #00D4F0;
+  --color-dark: #0D0F14;
+}
+
+
+
+[data-animate] {
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+/* Aplica transform apenas em quem precisa subir */
+[data-animate="reveal"], 
+[data-animate="fade-up"] {
+  transform: translateY(30px);
+}
+
+/* Aplica blur apenas no premium */
+[data-animate="reveal"] {
+  filter: blur(10px);
+}

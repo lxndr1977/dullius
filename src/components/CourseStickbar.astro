@@ -1,0 +1,83 @@
+---
+import { ArrowUpRight } from "@lucide/astro";
+import Button from "./ui/Button.astro";
+
+interface Props {
+  courseName: string;
+  subtitle: string;
+  primaryButtonHref: string;
+  secondaryButtonHref: string;
+}
+
+const {
+  courseName,
+  subtitle,
+  primaryButtonHref,
+  secondaryButtonHref,
+} = Astro.props;
+---
+
+<div
+  id="sticky-bar"
+  class="fixed bottom-0 left-0 right-0 z-30 border-t border-neutral-300 bg-white/80 backdrop-blur-md transition-all duration-300 translate-y-full opacity-0 pointer-events-none"
+>
+  <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+    <div class="hidden sm:block">
+      <p class="font-medium text-neutral-800 text-lg xl:text-xl">{courseName}</p>
+      <p class="text-sm xl:text-base text-neutral-700">{subtitle}</p>
+    </div>
+    <div class="flex w-full gap-3 sm:w-auto">
+      <Button href={primaryButtonHref} variant="primary" class="w-full md:w-fit">
+        <span class="hidden sm:inline ml-1">Faça sua matrícula</span>
+        <span class="sm:hidden ml-1">Matricule-se</span>
+        <ArrowUpRight class="ml-1 h-5 w-5" />
+      </Button>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  const stickyBar = document.getElementById("sticky-bar");
+  const heroSection = document.getElementById("hero-course");
+
+  let lastScrollY = window.scrollY;
+  let heroVisible = true;
+
+  function showBar() {
+    stickyBar?.classList.remove("translate-y-full", "opacity-0", "pointer-events-none");
+    stickyBar?.classList.add("translate-y-0", "opacity-100");
+  }
+
+  function hideBar() {
+    stickyBar?.classList.remove("translate-y-0", "opacity-100");
+    stickyBar?.classList.add("translate-y-full", "opacity-0", "pointer-events-none");
+  }
+
+  if (stickyBar && heroSection) {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        heroVisible = entry.isIntersecting;
+        if (heroVisible) {
+          hideBar();
+        }
+      },
+      { threshold: 0 },
+    );
+
+    observer.observe(heroSection);
+
+    window.addEventListener("scroll", () => {
+      const currentScrollY = window.scrollY;
+      const scrollingUp = currentScrollY < lastScrollY;
+
+      if (scrollingUp || heroVisible) {
+        hideBar();
+      } else {
+        showBar();
+      }
+
+      lastScrollY = currentScrollY;
+    }, { passive: true });
+  }
+</script>

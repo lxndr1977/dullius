@@ -1,0 +1,87 @@
+---
+/**
+ * FixedBgSection.astro
+ *
+ * Seção com imagem de fundo fixada via background-attachment: fixed.
+ * A foto fica parada enquanto o conteúdo da página rola sobre ela —
+ * exatamente como o efeito da section_cta do Coverly template.
+ *
+ * Props:
+ *   - image: string           — URL ou caminho da imagem
+ *   - overlayColor?: string   — cor do overlay (padrão: "rgba(0,0,0,0.45)")
+ *   - minHeight?: string      — altura mínima da seção (padrão: "500px")
+ *   - position?: string       — posição do bg (padrão: "center center")
+ *
+ * Uso:
+ *   import FixedBgSection from '../components/FixedBgSection.astro';
+ *
+ *   <FixedBgSection image="/sua-foto.jpg">
+ *     <h2>Título aqui</h2>
+ *     <p>Qualquer conteúdo via slot</p>
+ *     <a href="#">Botão CTA</a>
+ *   </FixedBgSection>
+ */
+
+interface Props {
+  image: string;
+  overlayColor?: string;
+  minHeight?: string;
+  position?: string;
+}
+
+const {
+  image,
+  overlayColor = "rgba(0, 0, 0, 0.45)",
+  minHeight = "500px",
+  position = "center center",
+} = Astro.props;
+---
+
+<section
+  class="fixed-bg-section"
+  style={`
+    background-image: url('${image}');
+    background-position: ${position};
+    min-height: ${minHeight};
+  `}
+>
+  <!-- Overlay de cor sobre a foto -->
+  <div class="fixed-bg-overlay" style={`background: ${overlayColor};`}></div>
+
+  <!-- Conteúdo via slot -->
+  <div class="fixed-bg-content">
+    <slot />
+  </div>
+</section>
+
+<style>
+  .fixed-bg-section {
+    position: relative;
+    width: 100%;
+
+    /* ✅ Isso é tudo que faz a mágica:
+       a imagem fica presa na viewport enquanto a seção rola */
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .fixed-bg-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .fixed-bg-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 900px;
+    padding: 5rem 2rem;
+    text-align: center;
+  }
+</style>

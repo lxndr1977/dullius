@@ -1,0 +1,351 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import Section from "./ui/Section.astro";
+import SectionHeader from "./ui/SectionHeader.astro";
+
+interface Photo {
+  src: ImageMetadata | string;
+  alt: string;
+  caption?: string;
+  description?: string;
+}
+
+interface Props {
+  photos: Photo[];
+  cols?: number;
+  background?: "white" | "neutral" | "dark" | "primary";
+  aspect?: "4/3" | "3/4" | "16/9" | "9/16" | "1/1" | "3/2" | "2/3";
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  align?: "left" | "center" | "right";
+  galleryId: string;
+}
+
+const {
+  photos,
+  aspect = "4/3",
+  cols: colsProp = 3,
+  background = "white",
+  eyebrow,
+  title,
+  description,
+  align = "left",
+  galleryId,
+} = Astro.props;
+
+const cols = Math.max(1, colsProp);
+const id = `gallery-${galleryId}`;
+
+const getSrc = (src: ImageMetadata | string): string =>
+  typeof src === "string" ? src : src.src;
+
+const navThemes = {
+  white: {
+    button: "border-neutral-200 text-neutral-700 hover:bg-neutral-100",
+    dotInactive: "#d4d4d8",
+    dotActive: "var(--color-primary)",
+  },
+  neutral: {
+    button: "border-neutral-200 text-neutral-700 hover:bg-neutral-100",
+    dotInactive: "#d4d4d8",
+    dotActive: "var(--color-primary)",
+  },
+  dark: {
+    button: "border-white/20 text-white hover:bg-white/10",
+    dotInactive: "#ffffff40",
+    dotActive: "var(--color-primary)",
+  },
+  primary: {
+    button: "border-white/30 text-white hover:bg-white/15",
+    dotInactive: "#ffffff40",
+    dotActive: "#ffffff",
+  },
+};
+
+const nav = navThemes[background];
+---
+
+<Section {background} class="fadeUp" data-trig>
+  <SectionHeader {eyebrow} {title} {description} {background} {align} class="max-w-4xl" />
+
+  <div
+    class="swiper gallery-swiper-instance"
+    id={`${id}-swiper`}
+    data-gallery-id={id}
+    data-gallery-cols={cols}
+  >
+    <div class="swiper-wrapper">
+      {
+        photos.map((photo) => (
+          <div class="swiper-slide">
+            <a
+              href={getSrc(photo.src)}
+              class="glightbox block w-full overflow-hidden"
+              data-gallery={id}
+              data-description={photo.caption}
+            >
+              {typeof photo.src === "string" ? (
+                <img
+                  src={photo.src}
+                  alt={photo.alt}
+                  width={800}
+                  height={600}
+                  class="w-full aspect-img object-cover transition-transform duration-500 hover:scale-105"
+                />
+              ) : (
+                <Image
+                  src={photo.src}
+                  alt={photo.alt}
+                  width={800}
+                  height={600}
+                  class="w-full aspect-img object-cover transition-transform duration-500 hover:scale-105"
+                />
+              )}
+            </a>
+            {photo.caption && (
+              <p class="mt-2 text-sm text-neutral-500 text-center">
+                {photo.caption}
+              </p>
+            )}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <div class="mt-10 flex items-center justify-center gap-4">
+    <button
+      id={`${id}-prev`}
+      type="button"
+      class={`shrink-0 flex h-11 w-11 items-center justify-center border transition-all duration-200 active:scale-95 ${nav.button}`}
+      aria-label="Foto anterior"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="m15 18-6-6 6-6"></path>
+      </svg>
+    </button>
+
+    <div
+      id={`${id}-pagination`}
+      class="gallery-pagination-instance flex items-center gap-2"
+    >
+    </div>
+
+    <button
+      id={`${id}-next`}
+      type="button"
+      class={`shrink-0 flex h-11 w-11 items-center justify-center border transition-all duration-200 active:scale-95 ${nav.button}`}
+      aria-label="Próxima foto"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="m9 18 6-6-6-6"></path>
+      </svg>
+    </button>
+  </div>
+</Section>
+
+<style
+  define:vars={{
+    dotInactive: nav.dotInactive,
+    dotActive: nav.dotActive,
+    aspect,
+  }}
+>
+  .gallery-swiper-instance :global(.swiper-wrapper) {
+    align-items: stretch;
+  }
+  .gallery-swiper-instance :global(.swiper-slide) {
+    height: auto;
+  }
+  .gallery-pagination-instance :global(.swiper-pagination-bullet) {
+    width: 6px;
+    height: 6px;
+    background: var(--dotInactive);
+    opacity: 1;
+    border-radius: 9999px;
+    transition: all 0.3s;
+    margin: 0 !important;
+  }
+  .gallery-pagination-instance :global(.swiper-pagination-bullet-active) {
+    width: 24px;
+    background: var(--dotActive);
+  }
+  .gallery-pagination-instance {
+    position: static !important;
+    width: auto !important;
+    display: flex !important;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .gallery-swiper-instance :global(.aspect-img) {
+    aspect-ratio: var(--aspect);
+  }
+
+  .fadeUp {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+
+  .fadeUp.trig {
+    animation: fadeUp 0.9s ease-out forwards;
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(32px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<script>
+  import Swiper from "swiper";
+  import { Navigation, Pagination, Autoplay, A11y } from "swiper/modules";
+  import "swiper/css";
+  import GLightbox from "glightbox";
+  import "glightbox/dist/css/glightbox.css";
+
+  // Registros globais — compartilhados entre todas as instâncias do componente na página.
+  const swiperRegistry = new Map<string, Swiper>();
+  const lightboxRegistry = new Map<string, ReturnType<typeof GLightbox>>();
+
+  function initGalleries() {
+    document
+      .querySelectorAll<HTMLElement>("[data-gallery-id]")
+      .forEach((el) => {
+        const id = el.getAttribute("data-gallery-id");
+        if (!id) return;
+
+        if (swiperRegistry.has(id)) return;
+
+        const swiperEl = document.getElementById(`${id}-swiper`);
+        if (!swiperEl || swiperEl.classList.contains("swiper-initialized"))
+          return;
+
+        const cols = Math.max(
+          1,
+          Number(el.getAttribute("data-gallery-cols")) || 3,
+        );
+
+        const swiper = new Swiper(`#${id}-swiper`, {
+          modules: [Navigation, Pagination, Autoplay, A11y],
+          slidesPerView: 1,
+          spaceBetween: 16,
+          breakpoints: {
+            768: { slidesPerView: Math.min(2, cols), spaceBetween: 20 },
+            1024: { slidesPerView: cols, spaceBetween: 24 },
+          },
+          loop: true,
+          grabCursor: true,
+          simulateTouch: true,
+          allowTouchMove: true,
+          threshold: 5,
+          preventClicks: true,
+          preventClicksPropagation: true,
+          touchStartPreventDefault: true,
+          autoplay: {
+            delay: 4000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+          },
+          pagination: {
+            el: `#${id}-pagination`,
+            clickable: true,
+          },
+          navigation: {
+            prevEl: `#${id}-prev`,
+            nextEl: `#${id}-next`,
+          },
+          a11y: {
+            prevSlideMessage: "Foto anterior",
+            nextSlideMessage: "Próxima foto",
+          },
+          watchSlidesProgress: true,
+        });
+
+        swiperRegistry.set(id, swiper);
+
+        const toggleBtn = document.getElementById(`${id}-autoplay-toggle`);
+        if (toggleBtn) {
+          toggleBtn.addEventListener("click", () => {
+            const isPlaying = toggleBtn.getAttribute("data-playing") === "true";
+            if (isPlaying) {
+              swiper.autoplay.stop();
+              toggleBtn.setAttribute("data-playing", "false");
+              toggleBtn.setAttribute(
+                "aria-label",
+                "Retomar apresentação automática",
+              );
+              toggleBtn.querySelector(".icon-pause")?.classList.add("hidden");
+              toggleBtn.querySelector(".icon-play")?.classList.remove("hidden");
+            } else {
+              swiper.autoplay.start();
+              toggleBtn.setAttribute("data-playing", "true");
+              toggleBtn.setAttribute(
+                "aria-label",
+                "Pausar apresentação automática",
+              );
+              toggleBtn
+                .querySelector(".icon-pause")
+                ?.classList.remove("hidden");
+              toggleBtn.querySelector(".icon-play")?.classList.add("hidden");
+            }
+          });
+
+          swiperEl.addEventListener("keydown", () => {
+            if (toggleBtn.getAttribute("data-playing") === "true") {
+              swiper.autoplay.stop();
+              toggleBtn.setAttribute("data-playing", "false");
+              toggleBtn.setAttribute(
+                "aria-label",
+                "Retomar apresentação automática",
+              );
+              toggleBtn.querySelector(".icon-pause")?.classList.add("hidden");
+              toggleBtn.querySelector(".icon-play")?.classList.remove("hidden");
+            }
+          });
+        }
+      });
+  }
+
+
+  document.addEventListener("astro:before-swap", () => {
+    swiperRegistry.forEach((s) => s.destroy(true, true));
+    swiperRegistry.clear();
+    lightboxRegistry.forEach((lb) => lb.destroy());
+    lightboxRegistry.clear();
+  });
+
+  initGalleries();
+
+  document.addEventListener("astro:page-load", () => {
+    initGalleries();
+  });
+</script>

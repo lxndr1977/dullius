@@ -1,0 +1,174 @@
+---
+import type { ImageMetadata } from "astro";
+import Section from "./ui/Section.astro";
+import Button from "./ui/Button.astro";
+
+const id = `media-text-${Math.random().toString(36).slice(2, 7)}`;
+
+interface Photo {
+  src: ImageMetadata | string;
+  alt: string;
+  caption?: string;
+}
+
+type MediaSrc = ImageMetadata | string;
+
+interface CtaButton {
+  label: string;
+  href?: string;
+  variant?: "link";
+  size?: "sm" | "base" | "lg" | "xl";
+  target?: "_blank" | "_self";
+}
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  mediaPosition?: "left" | "right";
+  image?: MediaSrc;
+  imageAlt?: string;
+  photos?: Photo[];
+  galleryShowCaptions?: boolean;
+  background?: "white" | "neutral" | "dark" | "primary" | "transparent";
+  align?: "left" | "center" | "right";
+  ctaButton?: CtaButton;
+}
+
+const linkColorClass: Record<string, string> = {
+  white:       "text-primary",
+  transparent: "text-primary",
+  neutral:     "text-primary",
+  dark:        "text-primary",
+  primary:     "text-white",
+};
+
+const {
+  eyebrow,
+  title,
+  description,
+  mediaPosition = "right",
+  image,
+  imageAlt = title || "Media content",
+  background = "white",
+  ctaButton,
+} = Astro.props;
+
+const hasImage = !!image;
+
+function getSrc(src: ImageMetadata | string): string {
+  return typeof src === "string" ? src : src.src;
+}
+
+const themes = {
+  white: {
+    eyebrow: "text-primary",
+    title: "text-neutral-900",
+    description: "text-neutral-700",
+    ctaVariant: "primary" as const,
+  },
+  transparent: {
+    eyebrow: "text-primary",
+    title: "text-neutral-900",
+    description: "text-neutral-700",
+    ctaVariant: "primary" as const,
+  },
+  neutral: {
+    eyebrow: "text-primary",
+    title: "text-neutral-900",
+    description: "text-neutral-700",
+    ctaVariant: "primary" as const,
+  },
+  dark: {
+    eyebrow: "text-primary",
+    title: "text-white",
+    description: "text-neutral-400",
+    ctaVariant: "outline" as const,
+  },
+  primary: {
+    eyebrow: "text-white/90",
+    title: "text-white",
+    description: "text-white/90",
+    ctaVariant: "white" as const,
+  },
+};
+
+const theme = themes[background];
+---
+
+<Section {background}>
+  <div class="mx-auto max-w-7xl xl:container">
+    <div class="grid items-center gap-12 lg:gap-20 lg:grid-cols-2">
+      <!-- Text column -->
+      <div class={mediaPosition === "left" ? "lg:order-2" : ""} data-animate="reveal">
+        {
+          eyebrow && (
+            <p
+              class={`text-sm font-semibold uppercase tracking-widest ${theme.eyebrow}`}
+            >
+              {eyebrow}
+            </p>
+          )
+        }
+        {
+          title && (
+            <h2
+              class={`mt-3 text-5xl md:text-6xl tracking-tighter text-balance ${theme.title}`}
+            >
+              {title}
+            </h2>
+          )
+        }
+        {
+          description && (
+            <p class={`mt-6 text-lg leading-relaxed ${theme.description}`}>
+              {description}
+            </p>
+          )
+        }
+        <div class={`mt-6 text-lg leading-relaxed ${theme.description}`}>
+          <slot />
+        </div>
+        {
+          ctaButton && (
+            <div class="mt-8">
+              <Button
+                href={ctaButton.href}
+                variant={ctaButton.variant ?? theme.ctaVariant}
+                size={ctaButton.size ?? "base"}
+                target={ctaButton.target}
+                  class={ctaButton.variant === "link" ? linkColorClass[background] : undefined}
+              >
+                {ctaButton.label}
+              </Button>
+            </div>
+          )
+        }
+      </div>
+
+      <!-- Media column -->
+      <div
+        class:list={["relative", mediaPosition === "left" ? "lg:order-1" : ""]}
+      >
+        {
+          hasImage && (
+            <div
+              class="group relative cursor-pointer overflow-hidden"
+            >
+              <div class="relative aspect-4/3 duration-300 group-hover:scale-105" 
+              data-animate="fade-up"
+              data-animate-delay={0.2}
+              >
+                <img
+                  src={getSrc(image!)}
+                  alt={imageAlt}
+                  class="absolute inset-0 h-full w-full object-cover"
+                />
+              </div>
+            </div>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</Section>

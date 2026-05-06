@@ -1,0 +1,275 @@
+---
+import { ArrowUpRight } from "@lucide/astro";
+import Section from "./ui/Section.astro";
+import Button from "./ui/Button.astro";
+import { Play } from "@lucide/astro";
+
+interface CtaButton {
+  label: string;
+  href?: string;
+  size?: "sm" | "base" | "lg" | "xl";
+  target?: "_blank" | "_self";
+  variant?: "link";
+}
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  image?: string;
+  videoUrl?: string;
+  videoAspect?: "16/9" | "4/3" | "1/1" | "9/16" | "21/9";
+  mediaPosition?: "left" | "right" | "top" | "bottom";
+  background?: "white" | "neutral" | "dark" | "primary" | "transparent";
+  align?: "left" | "center" | "right";
+  ctaButton?: CtaButton;
+  verticalAlign?: "start" | "center" | "end";
+  stickyMedia?: boolean;
+}
+
+const {
+  eyebrow,
+  title,
+  description,
+  image = "/images/short-1.jpg",
+  videoUrl = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1",
+  videoAspect = "16/9",
+  mediaPosition = "right",
+  background = "transparent",
+  ctaButton,
+  align = "left",
+  verticalAlign = "center",
+  stickyMedia = false,
+} = Astro.props;
+
+const aspectClasses: Record<string, string> = {
+  "16/9": "aspect-video",
+  "4/3": "aspect-4/3",
+  "1/1": "aspect-square",
+  "9/16": "aspect-9/16",
+  "21/9": "aspect-21/9",
+};
+
+const aspectClass = aspectClasses[videoAspect] ?? "aspect-4/3";
+
+const themes = {
+  white: {
+    eyebrow: "text-primary",
+    title: "text-neutral-700",
+    description: "text-neutral-700",
+    ctaVariant: "primary" as const,
+    linkColor: "text-primary",
+  },
+  transparent: {
+    eyebrow: "text-primary",
+    title: "text-neutral-700",
+    description: "text-neutral-700",
+    ctaVariant: "primary" as const,
+    linkColor: "text-primary",
+  },
+  neutral: {
+    eyebrow: "text-primary",
+    title: "text-neutral-700",
+    description: "text-neutral-700",
+    ctaVariant: "primary" as const,
+    linkColor: "text-primary",
+  },
+  dark: {
+    eyebrow: "text-primary",
+    title: "text-white",
+    description: "text-neutral-400",
+    ctaVariant: "outline" as const,
+    linkColor: "text-primary",
+  },
+  primary: {
+    eyebrow: "text-white/90",
+    title: "text-white",
+    description: "text-white/90",
+    ctaVariant: "white" as const,
+    linkColor: "text-white",
+  },
+};
+
+const alignClass = {
+  left: "items-start text-left",
+  center: "items-center text-center",
+  right: "items-end text-right",
+};
+
+const theme = themes[background];
+
+// Layout helpers
+const isVertical = mediaPosition === "top" || mediaPosition === "bottom";
+const mediaFirst = mediaPosition === "top" || mediaPosition === "left";
+---
+
+<Section {background}>
+  <div class="media-text-container max-w-7xl xl:container">
+    <div
+      class:list={[
+        "flex gap-12",
+        isVertical
+          ? `flex-col lg:gap-16 ${alignClass[align ?? "left"]}` // ← aqui
+          : "flex-col lg:flex-row lg:items-center lg:gap-20 ",
+      ]}
+    >
+      <!-- Media -->
+      <div
+        class:list={[
+          "relative",
+          isVertical
+            ? align === "center"
+              ? "w-full md:max-w-5xl"
+              : align === "right"
+                ? "w-full md:max-w-5xl mx-auto"
+                : "w-full md:max-w-5xl mx-auto"
+            : "lg:w-1/2 lg:shrink-0",
+          mediaFirst ? "order-1" : "order-2",
+          isVertical ? "..." : "lg:w-1/2 lg:shrink-0",
+          !isVertical && stickyMedia && "lg:sticky lg:top-32 lg:self-start",
+        ]}
+      >
+        <div
+          class="group relative cursor-pointer overflow-hidden"
+          data-animate="fade-up"
+          data-animate-delay={0.2}
+          data-video-thumbnail
+        >
+          <div class:list={["relative duration-300 group-hover:scale-105", aspectClass]}>
+            <img
+              src={image}
+              alt={title || "Media content"}
+              class="absolute inset-0 h-full w-full object-cover"
+            />
+            <div
+              class="absolute inset-0 bg-neutral-900/5 transition-all duration-300 group-hover:bg-foreground/40"
+            >
+            </div>
+          </div>
+          {
+            videoUrl && (
+              <button
+                type="button"
+                class="absolute inset-0 flex items-center justify-center"
+                aria-label="Reproduzir video"
+                data-play-button
+              >
+                <div class="flex h-10 w-10 sm:h-12 sm:w-12 md:h-16 md:w-16 items-center justify-center bg-primary text-white shadow-2xl transition-transform hover:cursor-pointer">
+                  <Play class="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6" />
+                </div>
+              </button>
+            )
+          }
+        </div>
+
+        {
+          videoUrl && (
+            <div
+              class:list={["relative overflow-hidden hidden bg-neutral-100", aspectClass]}
+              data-video-iframe
+            >
+              <iframe
+                src=""
+                data-video-src={videoUrl}
+                title={title || "Video presentation"}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+                class="absolute inset-0 h-full w-full"
+              />
+            </div>
+          )
+        }
+      </div>
+
+      <!-- Text -->
+      <div
+        class:list={[
+          isVertical
+            ? align === "center"
+              ? "w-full md:max-w-4xl"
+              : align === "right"
+                ? "w-full md:max-w-4xl mx-auto"
+                : "w-full md:max-w-4xl mx-auto"
+            : "lg:w-1/2 ",
+          mediaFirst ? "order-2" : "order-1",
+        ]}
+        data-animate="reveal"
+      >
+        {
+          eyebrow && (
+            <p
+              class={`text-sm font-semibold uppercase tracking-widest ${theme.eyebrow}`}
+            >
+              {eyebrow}
+            </p>
+          )
+        }
+        {
+          title && (
+            <h2
+              class={`mt-3 text-5xl md:text-6xl tracking-tighter text-balance  ${theme.title}`}
+            >
+              {title}
+            </h2>
+          )
+        }
+        {
+          description && (
+            <p
+              class={`mt-6 text-lg xl:text-xl leading-relaxed text-balance ${theme.description}`}
+            >
+              {description}
+            </p>
+          )
+        }
+        <div
+          class={`mt-0 lg:mt-6 text-lg xl:text-xl leading-relaxed text-balance ${theme.description}`}
+        >
+          <slot />
+        </div>
+        {
+          ctaButton && (
+            <div class="mt-8">
+              <Button
+                href={ctaButton.href}
+                variant={ctaButton.variant ?? theme.ctaVariant}
+                size={ctaButton.size ?? "base"}
+                target={ctaButton.target}
+                class={
+                  ctaButton.variant === "link" ? theme.linkColor : undefined
+                }
+              >
+                <span class="ml-1">{ctaButton.label}</span>
+                <ArrowUpRight class="ml-1 h-5 w-5" />
+              </Button>
+            </div>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</Section>
+
+<script>
+  function setupVideos() {
+    const containers = document.querySelectorAll(".media-text-container");
+    containers.forEach((container) => {
+      const playButton = container.querySelector("[data-play-button]");
+      const thumbnail = container.querySelector("[data-video-thumbnail]");
+      const videoIframe = container.querySelector("[data-video-iframe]");
+      const iframe = videoIframe?.querySelector("iframe");
+
+      if (playButton && thumbnail && videoIframe && iframe) {
+        playButton.addEventListener("click", () => {
+          thumbnail.classList.add("hidden");
+          videoIframe.classList.remove("hidden");
+          const videoSrc = iframe.getAttribute("data-video-src");
+          if (videoSrc) iframe.src = videoSrc;
+        });
+      }
+    });
+  }
+
+  setupVideos();
+  document.addEventListener("astro:page-load", setupVideos);
+</script>

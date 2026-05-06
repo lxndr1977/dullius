@@ -1,0 +1,111 @@
+id: "inasicio"
+tag: "A partir de 2 anos"
+title: "Método Dullius"
+summary: "Dança clássica, moderna, acrobática e expressão em uma só aula integrada."
+description: "Ballet, dança moderna, ginástica acrobática e teatro, integrados em uma metodologia exclusiva que desenvolve postura, ritmo, memória, confiança e expressão desde a infância."
+imageSrc: "/images/capa-metodo-dullius.webp"
+
+intro:
+  eyebrow: "Método Dullius"
+  title: "Metodologia exclusiva que desenvolve corpo, mente e expressão"
+  paragraphs:
+    - |
+      Com muita alegria e espontaneidade, as crianças adquirem, nas aulas do
+      Método Dullius, noções de espaço, ritmo, coordenação motora, equilíbrio e
+      muito mais.
+    - |
+      Através do Ballet, corrigem a postura e se tornam delicadas e graciosas, o
+      que também lhes ajudará a transmitir linda energia ao executarem os passos
+      das danças modernas.
+    - |
+      Rápidas coreografias estimulam a memória enquanto a destreza e a
+      flexibilidade, que deixam a dança mais bonita, ficam por conta da
+      ginástica acrobática com ótimos exercícios para o desenvolvimento dos
+      reflexos e da autoconfiança.
+    - |
+      Com o teatro, elas tornam seus movimentos mais expressivos, aprendem a
+      lidar e a melhor conviver com seus sentimentos e, sem deixarem de ser
+      criativas, fortalecendo sua personalidade e individualidade, têm, nessas
+      aulas integradas, verdadeiras lições de vida, num clima de amizade e
+      harmonia!
+
+videoSection:
+  eyebrow: "Primeiros passos"
+  title: "Onde aprender também é conviver e se expressar"
+  description: "Nas nossas aulas de dança, cada pequena bailarina aprende a se comunicar e a respeitar as coleguinhas de forma carinhosa, ao mesmo tempo em que descobre o potencial de seu corpo em desenvolvimento."
+  image: "/images/capa-video-metodo-dullius.webp"
+  videoUrl: "https://www.youtube.com/embed/U0AehSbl_L0?autoplay=1"
+
+testimonials:
+  - name: "Paula Nunes Paglioli"
+    role: "Aluna"
+    text: "Meu avô diz que eu nasci bailarina, que tenho estilo e graça de bailarina. Tia Fabi (Dullius) e minha profe disseram que eu tenho o dom para ser bailarina, é só eu querer. E eu quero, mas eu quero ser bailarina da Dullius. Lá tudo é lindo! Minha sala, minha profe, a dança, tudo muito lindo! Por mim, eu dançava ballet todo dia lá na Dullius. Eu e minha prima Bibi adoramos dançar ballet, ela gosta de street, eu prefiro o clássico. Nós dançamos desde pequeninhas (2 anos) na Dullius e eu adoro as apresentações de fim de ano. Meu coração bate forte, quando abrem as cortinas e sei que minha família está todinha ali. Eu amo!"
+    initials: "PP"
+    photo: "/images/testimonials/paula-paglioli.webp"
+  - name: "Tânia Bischoff"
+    role: "Mãe da Marina Bischoff Müller"
+    text: "Minha história com a Escola Studio Dullius iniciou em março de 2002. Minha filha se desenvolveu, se desinibiu, tem iniciativa, ousa, enfrenta as situações mais inusitadas, principalmente quando envolve as relações com o outro nas quais tem que se posicionar, defender seu ponto de vista, mas também aprender a escutar e respeitar o ritmo do outro. Sem dúvida que o Dullius tem muito a ver com este modo de ser. Se a Escola quer que os alunos sejam felizes, posso afirmar a Marina é uma aluna feliz."
+    initials: "TB"
+    photo: "/images/testimonials/tania-bischoff.webp"
+  - name: "Rose Vassiliouk"
+    role: "Mãe da Giovanna"
+    text: "A Giovanna começou na escola com 1 ano e 10 meses, pelo que hoje vejo, o amor à dança. Tanto que ela diz que os dias de aula no Dullius são os dias mais felizes da semana. Ela ama a Dullius como um todo. Mas principlamente as aulas. Pelo método e a maneira com que alunas e familiares são recebidos e tratados, com respeito e carinho. Por isso me sinto tranquila ao deixar minha filha aos cuidados da equipe da escola. E ver o desejo da Giovanna se realizar. Ser feliz com a dança!."
+    initials: "RV"
+    photo: "/images/testimonials/rose-vassilliouk.webp"
+  - name: "Kátia Beatriz Garcia"
+    role: "Mãe da Paula Mariah"
+    text: "Minha filha começou na Dullius aos dois anos de idade, com o objetivo de interagir com outras crianças, aproveitando que ela amava música e dança. (...) O carinho da profe, a atenção e profissionalismo desta Escola maravilhosa, contribuíram e muito, para tornar minha filha mais alegre, desinibida e apaixonada por dança."
+    initials: "KG"
+    photo: "/images/testimonials/katia-beatriz.webp"
+  - name: "Giovana Strano"
+    role: "Mãe da Julia"
+    text: "Admiro muito a organização, a atenção de todos que trabalham na administração da escola. O fato das crianças serem conhecidas pelo nome e não serem simplesmente mais um. O fato da Julia adorar a aula e não querer faltar, ficar dançando em casa, demonstrou o quão contente ela está com a Dullius, e nós, pais, ficamos muito tranquilos."
+    initials: "GS"
+    photo: "/images/testimonials/giovana-strano.webp"
+  - name: "Libera e Luciano Diogo"
+    role: "Pais da Bibiana"
+    text: "Agradecemos a Escola, pois a satisfação da Bibiana e consequentemente nossa é de 100%, pois ela apresenta prazer, além de ter melhorado muito sua flexibilidade e postura. Ela adora os professores e faz com que acreditemos na escola como uma formadora de jovens."
+    initials: "LD"
+    photo: "/images/testimonials/libera-diogo.webp"
+  - name: "Sandra Goldman Ruwell"
+    role: "Maẽ da Andressa"
+    text: "Há anos que os dias mais felizes na vida da minha filha Andressa são aqueles em que ela dança na Dullius. Essa felicidade eu experimentei quando decidi voltar, depois de muito tempo, a dançar na Dullius também. Hoje, eu e a Andressa podemos dizer que vocês são responsáveis por esses momentos maravilhosos em nossas vidas.."
+    initials: "SR"
+
+gallery:
+  - src: "/images/metodo-dullius-galeria-01.jpg"
+    alt: "Método Dullius"
+    description: "Método Dullius"
+  - src: "/images/metodo-dullius-galeria-02.jpg"
+    alt: "Método Dullius"
+    description: "Método Dullius"
+  - src: "/images/metodo-dullius-galeria-03.jpg"
+    alt: "Método Dullius"
+    description: "Método Dullius"
+  - src: "/images/metodo-dullius-galeria-01.jpg"
+    alt: "Método Dullius"
+    description: "Método Dullius"
+  - src: "/images/metodo-dullius-galeria-02.jpg"
+    alt: "Método Dullius"
+    description: "Método Dullius"
+  - src: "/images/metodo-dullius-galeria-03.jpg"
+    alt: "Método Dullius"
+    description: "Método Dullius"
+
+
+cta:
+  eyebrow: "Conheça de perto"
+  title: "Um caminho de desenvolvimento para quem você mais ama"
+  description: "Agende uma aula experimental e descubra como a dança contribui para o desenvolvimento do seu filho."
+
+methods:
+  - "Método Baby"
+  - "Método Petit"
+  - "Mamy & Baby"
+
+related:
+  - "acrodance"
+  - "adultos"
+  - "ballet"
+  - "dancas-urbanas"
+  - "jazz"

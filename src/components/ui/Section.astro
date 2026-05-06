@@ -1,0 +1,48 @@
+---
+interface Props {
+  id?: string;
+  background?: 'white' | 'neutral' | 'dark' | 'primary' | 'transparent' | 'primaryLight';
+  container?: 'large' | 'content' | 'small' | 'full';
+  paddingTop?: boolean;
+  paddingBottom?: boolean;
+  class?: string;
+  [key: string]: any;
+}
+
+const {
+  id,
+  background = 'transparent',
+  container = 'large',
+  paddingTop = true,
+  paddingBottom = true,
+  class: className = '',
+  ...rest
+} = Astro.props;
+
+const bgClass = {
+  white: 'bg-white',
+  transparent: 'bg-transparent',
+  neutral: 'bg-neutral-100/60',
+  dark: 'bg-neutral-900',
+  primary: 'bg-primary',
+  primaryLight: 'bg-gradient-to-t from-primary/5 to-primary/10',
+}[background];
+
+const containerClass = {
+  large: 'max-w-7xl xl:container',
+  content: 'max-w-7xl',
+  small: 'max-w-4xl',
+  full: 'max-w-full',
+}[container];
+
+const paddingClass = [
+  paddingTop ? 'pt-24 lg:pt-32' : '',
+  paddingBottom ? 'pb-24 lg:pb-32' : '',
+].join(' ');
+---
+
+<section id={id} class={`${paddingClass} ${bgClass} ${className}`} {...rest}>
+  <div class={`mx-auto px-4 md:px-6 lg:px-8 ${containerClass}`}>
+    <slot />
+  </div>
+</section>

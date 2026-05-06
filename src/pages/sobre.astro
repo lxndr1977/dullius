@@ -1,0 +1,255 @@
+---
+import Page from "../layouts/Page.astro";
+import TestimonialsSection from "../components/TestimonialsSection.astro";
+import PhotoGallerySection from "../components/PhotoGallerySection.astro";
+import MediaTextSection from "../components/MediaTextSection.astro";
+import CtaSection from "../components/CtaSection.astro";
+import VideoTextSection from "../components/VideoTextSection.astro";
+import StackedCards from "../components/StackedCards.astro";
+import { Check } from "@lucide/astro";
+import SectionHeader from "../components/ui/SectionHeader.astro";
+
+interface Slide {
+  media: "image" | "video";
+  desktopImage: string;
+  mobileImage?: string;
+  videoSrc?: string;
+  gradientClass?: string;
+  eyebrow?: string;
+  title: string;
+  subtitle?: string;
+  contentPosition?: "left" | "center" | "right";
+  verticalPosition?: "top" | "center" | "bottom";
+  button?: {
+    label: string;
+    href: string;
+  };
+}
+
+
+const testimonials = [
+  {
+    name: "Ilda Nochi",
+    role: "Mãe da Alice",
+    text: "Pensar no desenvolvimento íntegro do ser humano é pensar também em quanto uma criança precisa ser apostada e acreditada. E isto é o que encontrei na Dullius, que através da seriedade com que trata a arte faz uma grande aposta nas crianças que se sentem parte importante de uma grande construção.",
+    initials: "IN",
+    photo: "/images/testimonials/ilda-nochi.webp",
+  },
+  {
+    name: "Aline e Sérgio Kober",
+    role: "Pais da Gabriele",
+    text: "As professoras e auxiliares além de competência, demonstram carisma, afetividade e incentivam o crescimento da socialização, do amadurecimento cognitivo e motor das crianças. O potencial individual é estimulado fazendo aumentar o gosto pela dança daqueles que já o possuem",
+    initials: "ASK",
+    photo: "/images/testimonials/aline-kober.webp",
+  },
+  {
+    name: "Jaqueline Bresolin",
+    role: "Mãe da Juliana e da Rafaela",
+    text: "Dullius pra mim é sinônimo de alegria, profissionalismo, comprometimento e principalmente união. É muito gostoso pensar que há anos atrás foi nessa escola que comecei a dançar e hoje continuo aqui com minhas duas filhas amando a dança tanto quanto eu. Tudo isso devo à Dullius e a essa estrutura maravilhosa que eles souberam criar e preservar",
+    initials: "JB",
+    photo: "/images/testimonials/jaqueline-bresolin.webp",
+  },
+  {
+    name: "Aline e Sérgio Kober",
+    role: "Pais da Gabriele",
+    text: "As professoras e auxiliares além de competência, demonstram carisma, afetividade e incentivam o crescimento da socialização, do amadurecimento cognitivo e motor das crianças. O potencial individual é estimulado fazendo aumentar o gosto pela dança daqueles que já o possuem",
+    initials: "ASK",
+    photo: "/images/testimonials/aline-kober.webp",
+  },
+  {
+    name: "Mary Oliveira",
+    role: "Mãe da Aurora",
+    text: "Acho que a escola Dullius contribuiu muito no desenvolvimento de minha filha em vários aspectos, mas destaco o que diz respeito à desinibição, segurança de apresentar-se a outras pessoas, o que fica claro no desembaraço durante os espetáculos de fim de ano. Também destaco o interesse na adaptação de cada aluno em particular, o que seria difícil numa escola com tantos alunos, se não fosse o real interesse da Fabiane e sua equipe. E o melhor de tudo é ver a alegria, a empolgação de nossas filhas em frequentar a Dullius.",
+    initials: "MO",
+    photo: "/images/testimonials/mary-oliveira.webp",
+  },
+  {
+    name: "Tânia Bischoff",
+    role: "Mãe da Marina Bischoff Müller",
+    text: "Minha história com a Escola Studio Dullius iniciou em março de 2002. Minha filha se desenvolveu, se desinibiu, tem iniciativa, ousa, enfrenta as situações mais inusitadas, principalmente quando envolve as relações com o outro nas quais tem que se posicionar, defender seu ponto de vista, mas também aprender a escutar e respeitar o ritmo do outro. Sem dúvida que o Dullius tem muito a ver com este modo de ser. Se a Escola quer que os alunos sejam felizes, posso afirmar a Marina é uma aluna feliz.",
+    initials: "TB",
+    photo: "/images/testimonials/tania-bischoff.webp",
+  },
+];
+
+const items = [
+  {
+    image: "/images/escola/cafe.jpg",
+    title: "Dullius Café",
+    text: "Sabor aliado ao conforto, no charmoso Dullius Café se descobre uma deliciosa variedade de lanches e produtos naturais. No intervalo de suas aulas, alunos e pais podem ler jornais e revistas, assistir TV, botar as novidades em dia ou descansar em um lindo pátio interno enquanto experimentam as diferentes opções de cafés e chás.",
+  },
+  {
+    image: "/images/escola/lounge.jpg",
+    title: "Dullius Lounge",
+    text: "Uma grande TV de plasma com sound system e aconchegantes sofás, preenchem esta ampla sala, onde os alunos, pais e acompanhantes podem também assistir a lindas filmagens de dança. ",
+  },
+  {
+    image: "/images/escola/loja.jpg",
+    title: "Dullius Shop",
+    text: "Para a comodidade dos alunos, a Dullius Shop é um espaço onde se podem encontrar os diversos modelos de uniformes, sapatilhas e outros artigos indispensáveis para a prática dos cursos existentes na escola. Além das roupas exclusivas, a lojinha também oferece inúmeros acessórios, adornos e souvenires do mundo de dança.",
+  },
+  {
+    image: "/images/escola/vestiarios.jpg",
+    title: "Vestiários",
+    text: "Pisos aquecidos em ambientes limpos e agradáveis, com espelhos, bancos, pias, cabides, etc. Para maior privacidade, há cabine individual, ducha separada e armários ventilados com opção de tranca. Todos os banheiros contam com ótimos equipamentos para a melhor higiene. Além de vasos e pias especiais para as crianças pequenas e para os deficientes físicos, um trocador de fraldas equipado também foi instalado, para maior conforto das mamães. ",
+  },
+];
+---
+
+<Page>
+  <section class="w-full mb-24 lg:mb-32">
+    <div
+      class="px-6 pb-12 lg:pt-36 md:pb-16 max-w-7xl mx-auto"
+      data-animate="reveal"
+    >
+      <div class="max-w-[75%]">
+        <div class="flex flex-col gap-3">
+          <p
+            class="text-sm font-semibold uppercase tracking-widest text-primary"
+          >
+            Dullius Dance
+          </p>
+
+          <h1
+            class="text-4xl md:text-5xl lg:text-7xl tracking-tighter text-balance text-neutral-800"
+          >
+            Tradição e excelência há mais de 50 anos
+          </h1>
+          <p
+            class="text-base md:text-lg xl:text-xl text-neutral-700 leading-relaxed text-balance"
+          >
+            Referência na formação em dança, a Dullius Dance une tradição,
+            excelência e uma abordagem contemporânea, com profissionais
+            experientes e estrutura preparada para o desenvolvimento artístico.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-7xl xl:container mx-auto">
+      <div
+        class="group relative w-full h-[65vh] md:h-[75vh] lg:h-[90vh] overflow-hidden rounded"
+        data-animate="reveal"
+        data-animate-delay="0.2"
+      >
+        <img
+          src="/images/escola/fachada-dullius-dance-01.webp"
+          alt="Dullius Dance"
+          class={`w-full h-full object-cover top transition-transform duration-[1200ms] ease-out group-hover:scale-[1.04]`}
+        />
+
+        <div
+          class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 via-black/5 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-700"
+        >
+        </div>
+
+        <div
+          class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,transparent,rgba(0,0,0,0.25))] opacity-40"
+        >
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <MediaTextSection
+    eyebrow="Sobre Nós"
+    title="Conheça a Dullius Dance"
+    description="Com mais de cinco décadas de história em Porto Alegre, a Dullius Dance construiu uma trajetória marcada por tradição, inovação e excelência no ensino da dança. Fundada em 1968, a escola evoluiu ao longo dos anos mantendo uma proposta que vai além da técnica, valorizando também o desenvolvimento pessoal e o bem-estar de seus alunos. Reconhecida por sua didática diferenciada e por formar gerações que carregam essa experiência com carinho, a Dullius se consolidou como um espaço onde arte, dedicação e alegria se encontram, criando uma verdadeira comunidade apaixonada pela dança."
+    mediaPosition="right"
+    image="/images/escola/sala-dullius-dance-02.webp"
+    imageAlt="Sobre Nós"
+    background="white"
+    align="left"
+  />
+
+  <VideoTextSection
+    mediaPosition="left"
+    verticalAlign="start"
+    stickyMedia={true}
+    videoAspect="16/9"
+    image="/images/escola/sala-dullius-dance-01.webp"
+    videoUrl="https://www.youtube.com/embed/f8Fe53CAmsU?autoplay=1"
+  >
+    <div class="pt-0 md:pt-32">
+      <SectionHeader
+        eyebrow="Infraestrutura"
+        title="Uma escola de dança pensada nos mínimos detalhes"
+        description="A sede da Dullius Dance foi projetada exclusivamente para proporcionar uma experiência única em dança. Em um ambiente sofisticado, acolhedor e tecnologicamente avançado, a escola reúne uma infraestrutura de alto padrão para quem valoriza excelência, conforto e performance."
+        align="left"
+      />
+
+      <ul class="divide-y divide-neutral-200 mt-8">
+        {
+          [
+            "Ambiente climatizado",
+            "Gerador próprio",
+            "Wi-Fi",
+            "Estacionamento exclusivo",
+            "Lounge",
+            "Pátio interno",
+            "Café",
+            "Shop",
+            "Vestiários com piso aquecido",
+            "5 amplas salas",
+            "Pisos flutuantes e flexíveis para proteção das articulações",
+          ].map((item) => (
+            <li class="flex items-center gap-4 py-4 text-neutral-700 text-base xl:text-lg leading-relaxed">
+              <Check class="w-4 h-4 text-primary shrink-0" />
+              {item}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </VideoTextSection>
+
+  <StackedCards
+    {items}
+    eyebrow="Galeria"
+    title="Nosso trabalho"
+    background="white"
+    align="center"
+  />
+
+  <TestimonialsSection
+    eyebrow="Depoimentos"
+    title="Histórias de quem vive a dança com a gente"
+    description="Conheça um pouco mais sobre a nossa escola através dos depoimentos de quem já faz parte da nossa comunidade."
+    background="transparent"
+    testimonials={testimonials}
+  />
+
+  <MediaTextSection
+    eyebrow="Desde 1968"
+    title="Uma trajetória construída com paixão pela dança"
+    description="Em 1968, o “Studio Dullius” foi fundado no bairro Três Figueiras pela Profª Marion Dullius e seu esposo, o engº José Fabiano Dullius, ex-presidente da Federação Rio-grandense de Ginástica. A partir de 1994, a escola passou a ser conduzida pela Profª Fabiane Dullius, filha do casal, dando continuidade à tradição da família. Com a filosofia de que a dança vai além do desenvolvimento técnico, valorizando também um ambiente saudável para o crescimento social e pessoal, a Dullius tornou-se, ao longo dos anos, uma verdadeira segunda casa para crianças, adolescentes e adultos. Muitas ex-alunas, hoje profissionais em diversas áreas, guardam com carinho essa vivência e retornam com suas filhas e netas para compartilhar da mesma experiência, mantendo vivo o vínculo com a escola e com a dança."
+    mediaPosition="left"
+    image="/images/escola/historia-dullius-dance-01.webp"
+    imageAlt="Sobre Nós"
+    background="white"
+    align="left"
+  />
+
+  <MediaTextSection
+    eyebrow="Fundadora"
+    title="A origem de uma trajetória inspiradora"
+    description="A Profª Marion Dullius construiu uma trajetória de destaque como atleta e educadora. Na Ginástica Artística, foi tricampeã brasileira, campeã argentina e a primeira atleta a representar o Brasil em um campeonato mundial de Ginástica Olímpica, além de, como técnica, levar sua equipe ao título nacional. Iniciou seus estudos de ballet no Rio de Janeiro, onde despertou para a dança, e ao longo de sua formação participou de cursos no Brasil e no exterior, incluindo Estados Unidos, França e Alemanha, ampliando sua atuação para as danças modernas e a expressão corporal. Fundadora da Associação Gaúcha de Dança, atuou como professora em cursos e palestras em diversos eventos e universidades, sendo também autora de livros didáticos e histórias infantis, como Alegria de Dançar e A Dança no Esporte."
+    mediaPosition="right"
+    image="/images/escola/marion-dullius.webp"
+    imageAlt="Marion Dullius"
+    background="white"
+    align="left"
+  />
+
+  <CtaSection
+    eyebrow="Vamos dançar juntos?"
+    title="Venha viver essa experiência"
+    description="A Dullius Dance é uma escola de dança que oferece aulas de ballet, jazz, contemporâneo, hip hop e muito mais. Com professores qualificados e uma estrutura completa, a escola é o lugar ideal para quem quer aprender a dançar e se divertir."
+    primaryButton={{
+      text: "Agendar aula experimental",
+      href: "/classes",
+    }}
+    image="/images/capa-metodo-dullius.webp"
+    imageAlt="Sobre Nós"
+  />
+</Page>

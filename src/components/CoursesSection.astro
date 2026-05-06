@@ -1,0 +1,92 @@
+---
+import { getCollection } from 'astro:content';
+import Section from "./ui/Section.astro";
+import SectionHeader from "./ui/SectionHeader.astro";
+
+// Buscamos todos os cursos da coleção 'courses'
+const courseEntries = await getCollection('courses');
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  background?: "white" | "neutral" | "dark" | "primary" | "transparent";
+  paddingTop?: boolean;
+  paddingBottom?: boolean;
+  align?: "left" | "center" | "right";
+}
+
+const { eyebrow, title, description, background, paddingTop, paddingBottom, align } = Astro.props;
+  ---
+
+<Section {background}  paddingTop={paddingTop}
+    paddingBottom={paddingBottom}>
+  <SectionHeader
+    {eyebrow}
+    {title}
+    {description}
+    {background}
+    {align} 
+    class="max-w-5xl mx-auto mb-24"
+    data-animate="reveal"
+   
+  />
+  <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-3"
+      data-animate="fade-up"
+      data-animate-delay={0.3}>
+    {
+      courseEntries.map((course, index) => {
+        const { data, id } = course;
+
+        const courseHref = `/modalidades/${id}`;
+        
+        return (
+          <div
+            class="course-card group relative flex flex-col overflow-hidden border border-neutral-200 bg-white transition-transform duration-300 hover:-translate-y-2 fadeIn"
+          >
+            <div class="relative aspect-[4/3] overflow-hidden">
+              <a href={courseHref} tabindex="-1">
+                <img
+                  src={data.imageSrc} 
+                  alt={data.title}
+                  class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div class="absolute inset-0 bg-foreground/20 transition-all duration-300 group-hover:bg-foreground/40" />
+                <span class="absolute left-4 top-4 bg-white/10 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm">
+                  {data.tag}
+                </span>
+              </a>
+            </div>
+
+            <div class="p-6 flex flex-col flex-1">
+              <div class="flex-1">
+                <a href={courseHref} class="block">
+                  <h3 class="text-xl xl:text-3xl text-neutral-700 font-medium tracking-tight">
+                    {data.title}
+                  </h3>
+                  <p class="mt-2 xl:text-lg text-neutral-700 leading-relaxed line-clamp-3">
+                    {data.summary}
+                  </p>
+                </a>
+              </div>
+
+              <div class="mt-8">
+                <a
+                  href={courseHref}
+                  class="group inline-flex items-center gap-2 text-sm font-semibold uppercase text-primary tracking-wider transition-all duration-300 ease-in-out relative"
+                >
+                  <span class="relative after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-current after:transition-all after:duration-300 group-hover:after:w-full">
+                   Saiba mais
+                  </span>
+                  <span class="transition-transform duration-300 group-hover:translate-x-3">
+                    →
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        )
+      })
+    }
+  </div>
+</Section>

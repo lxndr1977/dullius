@@ -1,0 +1,292 @@
+---
+// Testimonials.astro
+import Section from "./ui/Section.astro";
+import SectionHeader from "./ui/SectionHeader.astro";
+
+const id = `testimonials-${Math.random().toString(36).slice(2, 7)}`;
+
+interface Testimonial {
+  name: string;
+  role: string;
+  text: string;
+  initials: string;
+  photo?: string;
+}
+
+interface Props {
+  testimonials: Testimonial[];
+  background?:
+    | "white"
+    | "neutral"
+    | "dark"
+    | "primary"
+    | "primaryLight"
+    | "transparent";
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  align?: "left" | "center" | "right";
+  paddingTop?: boolean;
+  paddingBottom?: boolean;
+}
+
+const {
+  testimonials,
+  background = "neutral",
+  eyebrow,
+  title,
+  description,
+  align = "left",
+  paddingTop = true,
+  paddingBottom = true,
+} = Astro.props;
+
+const navThemes = {
+  white: {
+    button: "border-neutral-200 text-neutral-700 hover:bg-neutral-100",
+    dotInactive: "#d4d4d8",
+    dotActive: "var(--color-primary)",
+  },
+  neutral: {
+    button: "border-neutral-200 text-neutral-700 hover:bg-neutral-100",
+    dotInactive: "#d4d4d8",
+    dotActive: "var(--color-primary)",
+  },
+  transparent: {
+    button: "border-neutral-200 text-neutral-700 hover:bg-neutral-100",
+    dotInactive: "#d4d4d8",
+    dotActive: "var(--color-primary)",
+  },
+  dark: {
+    button: "border-white/20 text-white hover:bg-white/10",
+    dotInactive: "#ffffff40",
+    dotActive: "var(--color-primary)",
+  },
+  primary: {
+    button: "border-white/30 text-white hover:bg-white/15",
+    dotInactive: "#ffffff40",
+    dotActive: "#ffffff",
+  },
+  primaryLight: {
+    button: "border-white/30 text-white hover:bg-white/15",
+    dotInactive: "#ffffff40",
+    dotActive: "#ffffff",
+  },
+};
+
+const nav = navThemes[background];
+
+const cardThemes = {
+  white: "border border-neutral-200 bg-white",
+  neutral: "border border-neutral-100 bg-white",
+  transparent: "border border-neutral-200 bg-white",
+  dark: "border border-white/10 bg-white/5",
+  primary: "border border-white/20 bg-white/10",
+  primaryLight: "border border-white/20 bg-white/10",
+};
+
+const card = cardThemes[background];
+---
+
+<Section {background} paddingTop={paddingTop} paddingBottom={paddingBottom}>
+  <div data-animate="reveal">
+    <SectionHeader {eyebrow} {title} {description} {align} class="max-w-5xl mb-10" />
+  </div>
+
+  <div data-animate="reveal" data-animate-delay={0.2}>
+    <div class="swiper testimonials-swiper-instance" id={`${id}-swiper`}>
+      <div class="swiper-wrapper py-0.5">
+        {
+          testimonials.map((testimonial) => (
+            <div class="swiper-slide h-auto">
+              <div class={`flex flex-col gap-4 p-6 h-full ${card}`}>
+                <div class="flex h-10 w-10 items-center justify-center bg-red-50 text-primary flex-shrink-0">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z" />
+                    <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z" />
+                  </svg>
+                </div>
+                <blockquote class="text-neutral-700 leading-relaxed flex-1">
+                  {`"${testimonial.text}"`}
+                </blockquote>
+                <div class="flex items-center gap-3 pt-4 border-t border-neutral-100">
+                  {testimonial.photo ? (
+                    <img
+                      src={testimonial.photo}
+                      alt={testimonial.name}
+                      class="h-10 w-10 md:w-14 md:h-14 object-cover flex-shrink-0"
+                    />
+                  ) : (
+                    <div class="flex h-10 w-10 md:w-14 md:h-14 items-center justify-center bg-primary text-white font-semibold text-sm flex-shrink-0">
+                      {testimonial.initials}
+                    </div>
+                  )}
+                  <div>
+                    <p class="font-semibold text-neutral-700">
+                      {testimonial.name}
+                    </p>
+                    <p class="mt-0.5 text-sm text-neutral-500">
+                      {testimonial.role}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-10 flex items-center justify-center gap-4">
+    <button
+      id={`${id}-prev`}
+      type="button"
+      class={`testimonials-prev flex h-11 w-11 items-center justify-center border transition-all duration-200 active:scale-95 ${nav.button}`}
+      aria-label="Depoimento anterior"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg
+      >
+    </button>
+
+    <div
+      id={`${id}-pagination`}
+      class="testimonials-pagination-instance flex items-center justify-center gap-2 w-auto"
+    >
+    </div>
+
+    <button
+      id={`${id}-next`}
+      type="button"
+      class={`testimonials-next flex h-11 w-11 items-center justify-center border transition-all duration-200 active:scale-95 ${nav.button}`}
+      aria-label="Próximo depoimento"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg
+      >
+    </button>
+  </div>
+</Section>
+
+<style define:vars={{ dotInactive: nav.dotInactive, dotActive: nav.dotActive }}>
+  .testimonials-swiper-instance :global(.swiper-wrapper) {
+    align-items: stretch;
+  }
+
+  .testimonials-swiper-instance :global(.swiper-slide) {
+    height: auto;
+  }
+
+  .testimonials-pagination-instance :global(.swiper-pagination-bullet) {
+    width: 6px;
+    height: 6px;
+    background: var(--dotInactive);
+    opacity: 1;
+    border-radius: 9999px;
+    transition: all 0.3s;
+    margin: 0 !important;
+  }
+
+  .testimonials-pagination-instance {
+    position: static !important;
+    width: auto !important;
+    display: flex !important;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .testimonials-pagination-instance :global(.swiper-pagination-bullet-active) {
+    width: 24px;
+    background: var(--dotActive);
+  }
+
+  .fadeIn {
+    opacity: 0;
+  }
+
+  .fadeIn.trig {
+    animation: fadeIn 1.3s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+</style>
+
+<script define:vars={{ id }}>
+  window.__swiperIds = window.__swiperIds || {};
+  window.__swiperIds[id] = true;
+  document.currentScript.dataset.swiperId = id;
+</script>
+
+<script>
+  import Swiper from "swiper";
+  import { Navigation, Pagination, Autoplay, A11y } from "swiper/modules";
+  import "swiper/css";
+
+  Array.from(document.getElementsByTagName("script")).forEach((script) => {
+    const id = script.dataset.swiperId;
+    if (!id) return;
+
+    new Swiper(`#${id}-swiper`, {
+      autoHeight: false,
+      modules: [Navigation, Pagination, Autoplay, A11y],
+      slidesPerView: 1,
+      spaceBetween: 16,
+      breakpoints: {
+        768: { slidesPerView: 2, spaceBetween: 20 },
+        1024: { slidesPerView: 3, spaceBetween: 24 },
+      },
+      loop: true,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+      },
+      pagination: {
+        el: `#${id}-pagination`,
+        clickable: true,
+      },
+      navigation: {
+        prevEl: `#${id}-prev`,
+        nextEl: `#${id}-next`,
+      },
+      a11y: {
+        prevSlideMessage: "Depoimento anterior",
+        nextSlideMessage: "Próximo depoimento",
+      },
+    });
+  });
+</script>

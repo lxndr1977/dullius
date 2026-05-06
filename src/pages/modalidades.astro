@@ -1,0 +1,123 @@
+---
+import Page from "../layouts/Page.astro";
+import CoursesSection from "../components/CoursesSection.astro";
+import TestimonialsSection from "../components/TestimonialsSection.astro";
+import PhotoGallerySection from "../components/PhotoGallerySection.astro";
+import CtaSection from "../components/CtaSection.astro";
+
+const testimonials = [
+  {
+    name: "Ilda Nochi",
+    role: "Mãe da Alice",
+    text: "Pensar no desenvolvimento íntegro do ser humano é pensar também em quanto uma criança precisa ser apostada e acreditada. E isto é o que encontrei na Dullius, que através da seriedade com que trata a arte faz uma grande aposta nas crianças que se sentem parte importante de uma grande construção.",
+    initials: "IN",
+    photo: "/images/testimonials/ilda-nochi.webp",
+  },
+  {
+    name: "Aline e Sérgio Kober",
+    role: "Pais da Gabriele",
+    text: "As professoras e auxiliares além de competência, demonstram carisma, afetividade e incentivam o crescimento da socialização, do amadurecimento cognitivo e motor das crianças. O potencial individual é estimulado fazendo aumentar o gosto pela dança daqueles que já o possuem",
+    initials: "ASK",
+    photo: "/images/testimonials/aline-kober.webp",
+  },
+  {
+    name: "Jaqueline Bresolin",
+    role: "Mãe da Juliana e da Rafaela",
+    text: "Dullius pra mim é sinônimo de alegria, profissionalismo, comprometimento e principalmente união. É muito gostoso pensar que há anos atrás foi nessa escola que comecei a dançar e hoje continuo aqui com minhas duas filhas amando a dança tanto quanto eu. Tudo isso devo à Dullius e a essa estrutura maravilhosa que eles souberam criar e preservar",
+    initials: "JB",
+    photo: "/images/testimonials/jaqueline-bresolin.webp",
+  },
+  {
+    name: "Aline e Sérgio Kober",
+    role: "Pais da Gabriele",
+    text: "As professoras e auxiliares além de competência, demonstram carisma, afetividade e incentivam o crescimento da socialização, do amadurecimento cognitivo e motor das crianças. O potencial individual é estimulado fazendo aumentar o gosto pela dança daqueles que já o possuem",
+    initials: "ASK",
+    photo: "/images/testimonials/aline-kober.webp",
+  },
+  {
+    name: "Mary Oliveira",
+    role: "Mãe da Aurora",
+    text: "Acho que a escola Dullius contribuiu muito no desenvolvimento de minha filha em vários aspectos, mas destaco o que diz respeito à desinibição, segurança de apresentar-se a outras pessoas, o que fica claro no desembaraço durante os espetáculos de fim de ano. Também destaco o interesse na adaptação de cada aluno em particular, o que seria difícil numa escola com tantos alunos, se não fosse o real interesse da Fabiane e sua equipe. E o melhor de tudo é ver a alegria, a empolgação de nossas filhas em frequentar a Dullius.",
+    initials: "MO",
+    photo: "/images/testimonials/mary-oliveira.webp",
+  },
+  {
+    name: "Tânia Bischoff",
+    role: "Mãe da Marina Bischoff Müller",
+    text: "Minha história com a Escola Studio Dullius iniciou em março de 2002. Minha filha se desenvolveu, se desinibiu, tem iniciativa, ousa, enfrenta as situações mais inusitadas, principalmente quando envolve as relações com o outro nas quais tem que se posicionar, defender seu ponto de vista, mas também aprender a escutar e respeitar o ritmo do outro. Sem dúvida que o Dullius tem muito a ver com este modo de ser. Se a Escola quer que os alunos sejam felizes, posso afirmar a Marina é uma aluna feliz.",
+    initials: "TB",
+    photo: "/images/testimonials/tania-bischoff.webp",
+  },
+];
+---
+
+<Page bodyClass="pt-8">
+  <CoursesSection
+    eyebrow="Escolha seu estilo"
+    title="Modalidades para todas as idades e níveis"
+    description="Diferentes estilos de dança que desenvolvem técnica, expressão e confiança em todas as idades e níveis."
+    background="white"
+    align="center"
+  />
+
+  <TestimonialsSection
+    eyebrow="Depoimentos"
+    title="A experiência de quem vive a Dullius Dance"
+    description="Conheça as histórias de quem descobriu na dança um caminho de desenvolvimento, expressão e confiança."
+    background="neutral"
+    testimonials={testimonials}
+  />
+
+  <PhotoGallerySection
+    galleryId="home"
+    eyebrow="Galeria de Fotos"
+    title="Momentos que inspiram"
+    description="Confira as experiências de quem já faz parte da nossa comunidade."
+    background="white"
+    photos={[
+      {
+        src: "/images/acrodance-galeria-01.jpg",
+        alt: "Foto 1",
+        description: "Descrição da foto 1",
+      },
+      {
+        src: "/images/acrodance-galeria-02.jpg",
+        alt: "Foto 2",
+        description: "Descrição da foto 2",
+      },
+      {
+        src: "/images/dancas-urbanas-galeria-01.webp",
+        alt: "Foto 3",
+        description: "Descrição da foto 3",
+      },
+      {
+        src: "/images/dancas-urbanas-galeria-02.jpg",
+        alt: "Foto 4",
+        description: "Descrição da foto 4",
+      },
+      {
+        src: "/images/jazz-galeria-01.jpg",
+        alt: "Foto 5",
+        description: "Descrição da foto 5",
+      },
+      {
+        src: "/images/jazz-galeria-02.jpg",
+        alt: "Foto 6",
+        description: "Descrição da foto 6",
+      },
+    ]}
+  />
+
+  <CtaSection
+    eyebrow="Vamos dançar juntos?"
+    title="Venha viver essa experiência"
+    description="A Dullius Dance é uma escola de dança que oferece aulas de ballet, jazz, contemporâneo, hip hop e muito mais. Com professores qualificados e uma estrutura completa, a escola é o lugar ideal para quem quer aprender a dançar e se divertir."
+    primaryButton={{
+      text: "Agendar aula experimental",
+      href: "/classes",
+    }}
+    image="/images/capa-metodo-dullius.webp"
+    imageAlt="Sobre Nós"
+    paddingTop={false}
+  />
+</Page>

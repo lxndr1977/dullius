@@ -1,0 +1,92 @@
+id: "inicio"
+tag: "A partir de 6 anos"
+title: "Jazz"
+summary: "Técnica, musicalidade e expressão em aulas dinâmicas que desenvolvem presença de palco e versatilidade."
+description: "O Jazz combina técnica, energia e expressão em coreografias envolventes que estimulam coordenação, memória, flexibilidade e consciência corporal, formando bailarinos completos e confiantes."
+imageSrc: "/images/capa-jazz.webp"
+
+intro:
+  eyebrow: "Jazz"
+  title: "Elegância, energia e expressão em cada movimento"
+  paragraphs:
+    - |   
+      O Jazz é uma modalidade vibrante que desenvolve força, flexibilidade, coordenação e musicalidade por meio de movimentos dinâmicos e expressivos.
+    - | 
+      As aulas trabalham coreografias envolventes que estimulam memória, precisão e presença de palco, sempre ao som de músicas atuais e inspiradoras.
+    - | 
+      Com base técnica sólida e espaço para criatividade, cada aluno desenvolve seu estilo e sua forma de se comunicar através da dança.
+    - |   
+      Uma experiência completa que une disciplina, performance e paixão pela arte de dançar.
+
+videoSection:
+  eyebrow: "Vivência em aula"
+  title: "Expressão, técnica e confiança no palco"
+  description: "Nossas aulas de Jazz proporcionam um ambiente estimulante e acolhedor, onde os alunos desenvolvem técnica, postura e presença de palco, enquanto exploram sua expressividade e constroem confiança em cada movimento."
+  image: "/images/capa-video-jazz.webp"
+  videoUrl: "https://www.youtube.com/embed/9p2rBy9g3uQ?autoplay=1"
+
+testimonials:
+  - name: "Juliana Costa Ribeiro Maciel"
+    role: "Aluna"
+    text: "Danço na Dullius há mais de 7 anos e ao contrário do que esperava, a cada ano venho me interessando e gostando mais de dançar. Não sei se é por causa da alegria e simpatia dos professores ou mesmo porque os passos foram ficando mais difíceis e eu melhorando. Na Dullius Dance, não aprendi apenas coreografias mas também a importância em realizar o aquecimento corretamente e de trabalhar exercícios de flexibilidade."
+    initials: "JCR"
+    photo: "/images/testimonials/juliana-costa.webp"
+  - name: "Andressa Goldman Ruwel"
+    role: "Aluna"
+    text: "Eu adoro a turma que trabalha na Dullius. As gurias do bar, sempre me atendem alegres. As meninas da recepção são D+! O pessoal que fica no estacionamento está sempre brincando comigo e arranjando um lugar para minha mãe estacionar. Amo quem faz as minhas fantasias. Os professores, então, sem comentários, são hiper mega legais. Dullius Dance é 10!"
+    initials: "AGR"
+    photo: "/images/testimonials/andressa-ruwel.webp"
+  - name: "Kati Lima"
+    role: "Mãe da Luana Aniolla"
+    text: "Quando a Luana completou 2 anos comecei a procurar uma escola de ballet para colocá-la. Liguei para várias e nenhuma aceitava meu “bebê”, até que no Dullius, ao falar com a Fabi, descobri que não só aceitavam crianças a partir dos dois anos, como havia um método desenvolvido só para elas. Já se passaram mais de cinco anos e o encantamento continua. Costumo falar que o Dullius é diferente e só conhecendo para saber o porquê. Creio que é pela satisfação de todos (funcionários, alunos, familiares...), mas estas coisas não se pode explicar, só sentir"
+    initials: "KL"
+    photo: "/images/testimonials/kati-lima.webp"
+  - name: "Iami Gerbase"
+    role: "Aluna"
+    text: "É impossível explicar em meras palavras o que a Dullius representa em minha vida, pois ainda não foram criadas expressões capazes de demonstrar o que sinto. Os dias em que tenho aula de jazz são sempre os mais felizes, quando danço todos os problemas não importam mais e finalmente me sinto completa. Agradecer é pouco a todos aqueles que me fazem tão alegre, tenho orgulho de dizer que faço Dullius e amo demais tudo o que esta instituição representa."
+    initials: "IG"
+    photo: "/images/testimonials/iami-gerbase.webp"
+  - name: "Adriana Carvalho Leite Stürmer"
+    role: "Mãe da Sofia, Giovana e Manuella"
+    text: "Somos apaixonados por tudo o que o Dullius proporciona às nossas três filhas. A palavra família acontece em tudo, vocês sabem o nome das nossas filhas (e são mil alunas), vocês conhecem o jeitinho delas, vocês cuidam delas, além, é claro, do ensino da dança. Quando as deixamos aqui, estamos tranquilos e elas muito felizes."
+    initials: "AS"
+    photo: "/images/testimonials/adriana-sturmer.webp"
+
+gallery:
+  - src: "/images/jazz-galeria-01.jpg"
+    alt: "Jazz"
+    description: "Jazz"
+  - src: "/images/jazz-galeria-02.jpg"
+    alt: "Jazz"
+    description: "Jazz"
+  - src: "/images/jazz-galeria-01.jpg"
+    alt: "Jazz"
+    description: "Jazz"
+  - src: "/images/jazz-galeria-02.jpg"
+    alt: "Jazz"
+    description: "Jazz"
+  - src: "/images/jazz-galeria-01.jpg"
+    alt: "Jazz"
+    description: "Jazz"
+  - src: "/images/jazz-galeria-02.jpg"
+    alt: "Jazz"
+    description: "Jazz"
+
+cta:
+  eyebrow: "Agende uma aula"
+  title: "Descubra o potencial artístico em cada movimento"
+  description: "Agende uma aula experimental e vivencie o Jazz em um ambiente profissional que valoriza técnica, expressão e desenvolvimento individual."
+
+methods:
+  - "Jazz"
+  - "Jazz Avançado"
+  - "Jazz Intermediário"
+  - "Jazz Musical"
+  - "Jazz Contemporâneo"
+
+related:
+  - "acrodance"
+  - "adultos"
+  - "ballet"
+  - "dancas-urbanas"
+  - "metodo-dullius"

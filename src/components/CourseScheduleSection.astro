@@ -1,0 +1,461 @@
+---
+import Section from "./ui/Section.astro";
+import SectionHeader from "./ui/SectionHeader.astro";
+import { getEntry } from "astro:content";
+
+const companyInfo = await getEntry("company", "info");
+const whatsappNumber = companyInfo?.data?.whatsapp?.number ?? "";
+
+interface ScheduleItem {
+  age: string;
+  method: string;
+  time: string;
+  day: string;
+}
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  ctaHref?: string;
+  ctaText?: string;
+  schedules: ScheduleItem[];
+  paddingTop?: boolean;
+  paddingBottom?: boolean;
+  titleSize?: 'base' | 'medium' | 'large';
+}
+
+const {
+  eyebrow = "Horários",
+  title = "Encontre o horário ideal",
+  description = "Selecione a Turma do seu filho e o melhor dia para você.",
+  ctaHref = "/contato",
+  ctaText = "Agendar aula experimental",
+  paddingTop = true,
+  paddingBottom = true,
+  schedules,
+  titleSize = "large",
+} = Astro.props;
+
+const schedulesJson = JSON.stringify(schedules);
+---
+
+<Section id="course-schedule" background="neutral" {paddingTop} {paddingBottom}>
+  <div class="max-w-4xl mx-auto gap-12 lg:gap-20 items-start">
+    <div
+      id="schedule-wizard"
+      data-schedules={schedulesJson}
+      data-cta-href={ctaHref}
+      data-cta-text={ctaText}
+      data-whatsapp={whatsappNumber}
+      class="p-6 sm:p-10 mx-auto bg-white"
+    >
+      <SectionHeader
+        eyebrow={eyebrow}
+        title={title}
+        description={description}
+        align="left" 
+        titleSize={titleSize}
+      />
+
+      <div class="mb-8">
+        <div class="flex justify-between mb-3">
+          {
+            ["Turma", "Dia da semana", "Turmas"].map((label, i) => (
+              <span
+                id={`step-label-${i + 1}`}
+                class={`transition-colors ${i === 0 ? "text-primary font-medium" : "text-neutral-600"}`}
+              >
+                {label}
+              </span>
+            ))
+          }
+        </div>
+        <div class="relative h-1 rounded-full overflow-hidden bg-neutral-200">
+          <div
+            id="progress-fill"
+            class="absolute inset-y-0 left-0 rounded-full transition-all duration-500 bg-primary"
+            style="width: 33.33%"
+          >
+          </div>
+        </div>
+      </div>
+
+      <div id="step-1" class="schedule-step">
+        <p class="text-lg font-semibold mb-6 text-neutral-800">
+          Escolha uma turma
+        </p>
+        <div id="age-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
+      </div>
+
+      <div id="step-2" class="schedule-step hidden">
+        <div class="flex items-center justify-between px-4 py-3 rounded mb-6 bg-neutral-50 border border-neutral-200">
+          <div>
+            <p class="mb-0.5 text-neutral-600">Turma</p>
+            <p id="summary-age" class="font-medium text-neutral-800"></p>
+          </div>
+          <button
+            id="edit-step1"
+            class="underline underline-offset-2 transition-colors text-primary hover:text-primary/70 hover:cursor-pointer"
+          >
+            Editar
+          </button>
+        </div>
+
+        <p class="text-lg font-semibold mb-6 text-neutral-800">
+          Escolha um dia da semana
+        </p>
+        <div id="day-row" class="grid grid-cols-2 sm:grid-cols-3 gap-2.5"></div>
+
+        <div class="mt-6 pt-6 border-t border-neutral-200 flex flex-col sm:flex-row sm:items-center justify-start sm:justify-between gap-3">
+          <button
+            id="back-to-step1"
+            class="flex items-center gap-1.5 transition-colors text-neutral-600 hover:text-neutral-700 hover:cursor-pointer"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-4 h-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
+            </svg>
+            Voltar
+          </button>
+          <p class="text-neutral-600">
+            Não encontrou o dia que procurava?
+            <a
+              id="whatsapp-fallback-day"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="underline underline-offset-2 transition-colors text-primary hover:cursor-pointer"
+            >Fale conosco</a>
+          </p>
+        </div>
+      </div>
+
+      <div id="step-3" class="schedule-step hidden">
+        <div class="flex items-center justify-between px-4 py-3 rounded mb-6 bg-neutral-50 border border-neutral-200">
+          <div class="flex gap-6">
+            <div>
+              <p class="mb-0.5 text-neutral-600">Turma</p>
+              <p id="bc-age" class="font-medium text-neutral-800"></p>
+            </div>
+            <div>
+              <p class="mb-0.5 text-neutral-600">Dia</p>
+              <p id="bc-day" class="font-medium text-neutral-800"></p>
+            </div>
+          </div>
+          <button
+            id="restart-btn"
+            class="underline underline-offset-2 transition-colors text-primary hover:text-primary/70 hover:cursor-pointer"
+          >
+            Refazer
+          </button>
+        </div>
+
+        <p id="bc-count" class="font-medium mb-4 text-neutral-800"></p>
+
+        <div id="result-cards" class="space-y-3"></div>
+
+        <div id="empty-state" class="hidden text-center py-12">
+          <p class="text-base text-neutral-600">
+            Nenhuma turma disponível para essa combinação.
+          </p>
+          <button
+            id="restart-btn-empty"
+            class="mt-4 underline underline-offset-2 text-primary"
+          >
+            Fazer nova busca
+          </button>
+        </div>
+
+        <div class="mt-6 pt-6 border-t border-neutral-200 flex flex-col sm:flex-row sm:items-center justify-start sm:justify-between gap-3">
+          <button
+            id="back-to-step2"
+            class="flex items-center gap-1.5 transition-colors text-neutral-600 hover:text-neutral-700 hover:cursor-pointer"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-4 h-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
+            </svg>
+            Mudar o dia
+          </button>
+          <p class="text-neutral-600">
+            Não encontrou o horário que procurava?
+            <a
+              id="whatsapp-fallback-time"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="underline underline-offset-2 transition-colors text-primary hover:cursor-pointer"
+            >Fale conosco</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</Section>
+<script>
+  const wizard = document.getElementById("schedule-wizard")!;
+  const schedules: {
+    age: string;
+    method: string;
+    time: string;
+    day: string;
+  }[] = JSON.parse(wizard.dataset.schedules!);
+  const ctaText = wizard.dataset.ctaText || "Agendar aula experimental";
+  const whatsappNumber = wizard.dataset.whatsapp || "";
+
+  function buildWhatsAppUrl(r: { age: string; method: string; day: string; time: string }) {
+    const msg = [
+      `Olá! Gostaria de agendar uma aula experimental.`,
+      ``,
+      `*Modalidade:* ${r.method}`,
+      `*Turma:* ${r.age}`,
+      `*Dia:* ${r.day}`,
+      `*Horário:* ${r.time}`,
+    ].join("\n");
+    return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`;
+  }
+
+  const DAY_ORDER = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
+
+  let selAge = "";
+  let selMethod = "";
+  let selDay = "";
+
+  // ─── Progress bar ──────────────────────────────────────────────────────────
+
+  function setProgress(step: number) {
+    const fill = document.getElementById("progress-fill")!;
+    const widths = ["33.33%", "66.66%", "100%"];
+    fill.style.width = widths[step - 1];
+
+    for (let i = 1; i <= 3; i++) {
+      const label = document.getElementById(`step-label-${i}`)!;
+      label.className = `transition-colors ${
+        i === step ? "text-primary font-medium" : "text-neutral-600"
+      }`;
+    }
+  }
+
+  // ─── Helpers ──────────────────────────────────────────────────────────────
+
+  function showStep(n: number) {
+    document
+      .querySelectorAll<HTMLElement>(".schedule-step")
+      .forEach((el, i) => {
+        el.classList.toggle("hidden", i + 1 !== n);
+      });
+    setProgress(n);
+    triggerLayoutRecalc();
+  }
+
+  // ─── Step 1: modalidade + Turma ────────────────────────────────────
+
+  function buildAgeGrid() {
+    const seen = new Set<string>();
+    const ageMethodPairs = schedules.filter((s) => {
+      const key = `${s.age}||${s.method}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+
+    const grid = document.getElementById("age-grid")!;
+    grid.innerHTML = ageMethodPairs
+      .map((d) => `
+        <button
+          class="age-btn rounded group flex items-center gap-4 border px-5 py-4 text-left transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary border-neutral-200 hover:border-neutral-300 hover:bg-neutral-100 hover:cursor-pointer"
+          data-age="${d.age}"
+          data-method="${d.method}"
+        >
+          <div>
+            <span class="block font-medium transition-colors text-neutral-800">${d.method}</span>
+            <span class="block transition-colors text-neutral-600 group-hover:text-neutral-800">${d.age}</span>
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity text-neutral-800" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+          </svg>
+        </button>`)
+      .join("");
+
+    grid.querySelectorAll<HTMLButtonElement>(".age-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        selAge = btn.dataset.age!;
+        selMethod = btn.dataset.method!;
+        buildDayRow();
+        showStep(2);
+      });
+    });
+  }
+
+  // ─── Step 2: dia da semana ────────────────────────────────────────────────
+
+  function buildDayRow() {
+    document.getElementById("summary-age")!.textContent = `${selMethod} · ${selAge}`;
+
+    const availDays = DAY_ORDER.filter((d) =>
+      schedules.some((s) => s.age === selAge && s.method === selMethod && s.day === d),
+    );
+
+    document.getElementById("day-row")!.innerHTML = availDays
+      .map(
+        (day) => `
+      <button
+        class="day-btn border px-4 py-3 font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary text-center border-neutral-200 hover:border-neutral-300 hover:bg-neutral-100 text-neutral-600 hover:text-neutral-800 hover:cursor-pointer"
+        data-day="${day}"
+      >
+        ${day}
+      </button>`,
+      )
+      .join("");
+
+    const fallbackDayMsg = [
+      `Olá! Gostaria de mais informações sobre as aulas.`,
+      ``,
+      `*Modalidade:* ${selMethod}`,
+      `*Turma:* ${selAge}`,
+      ``,
+      `Não encontrei o dia que eu procurava na lista. Vocês teriam outras opções de dias?`
+    ].join("\n");
+    const fallbackDayLink = document.getElementById("whatsapp-fallback-day") as HTMLAnchorElement | null;
+    if (fallbackDayLink) {
+      fallbackDayLink.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(fallbackDayMsg)}`;
+    }
+
+    document.querySelectorAll<HTMLButtonElement>(".day-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        selDay = btn.dataset.day!;
+        buildResults();
+        showStep(3);
+      });
+    });
+  }
+
+  // ─── Step 3: resultados ───────────────────────────────────────────────────
+
+  function buildResults() {
+    const results = schedules.filter(
+      (s) => s.age === selAge && s.method === selMethod && s.day === selDay,
+    );
+
+    document.getElementById("bc-age")!.textContent = selAge;
+    document.getElementById("bc-day")!.textContent = selDay;
+    document.getElementById("bc-count")!.textContent =
+      results.length > 0
+        ? `${results.length} turma${results.length !== 1 ? "s" : ""} disponível${results.length !== 1 ? "is" : ""}`
+        : "";
+
+    const fallbackTimeMsg = [
+      `Olá! Gostaria de mais informações sobre as aulas.`,
+      ``,
+      `*Modalidade:* ${selMethod}`,
+      `*Turma:* ${selAge}`,
+      `*Dia de interesse:* ${selDay}`,
+      ``,
+      `Não encontrei um horário ideal pra mim nesse dia. Vocês teriam outras opções de horários?`
+    ].join("\n");
+
+    const fallbackTimeLink = document.getElementById("whatsapp-fallback-time") as HTMLAnchorElement | null;
+    if (fallbackTimeLink) {
+      fallbackTimeLink.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(fallbackTimeMsg)}`;
+    }
+
+    const grid = document.getElementById("result-cards")!;
+    const empty = document.getElementById("empty-state")!;
+
+    if (results.length === 0) {
+      grid.classList.add("hidden");
+      empty.classList.remove("hidden");
+      return;
+    }
+
+    empty.classList.add("hidden");
+    grid.classList.remove("hidden");
+    grid.innerHTML = results
+      .map(
+        (r, i) => `
+      <div
+        class="flex flex-col sm:flex-row sm:items-center sm:justify-between border p-5 gap-4 transition-all duration-200 border-neutral-200 bg-neutral-50"
+        style="animation: fadeUp 0.35s ease-out ${i * 70}ms both"
+      >
+        <div>
+          <p class="font-medium tracking-widest uppercase mb-1 text-primary">${r.day}</p>
+          <p class="text-2xl font-semibold text-neutral-900">${r.time}</p>
+          <p class="mt-0.5 text-neutral-600">${r.method} · ${r.age}</p>
+        </div>
+        
+        <a href="${buildWhatsAppUrl(r)}"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="shrink-0 inline-flex items-center justify-center gap-2 border rounded px-4 py-2.5 font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary border-primary text-primary hover:bg-primary hover:text-white hover:cursor-pointer"
+        >
+          <span class="ml-1">${ctaText}</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+        </a>
+      </div>`,
+      )
+      .join("");
+  }
+
+  // ─── Navegação ────────────────────────────────────────────────────────────
+
+  document.getElementById("back-to-step1")?.addEventListener("click", () => {
+    selAge = "";
+    selMethod = "";
+    selDay = "";
+    showStep(1);
+  });
+  document.getElementById("edit-step1")?.addEventListener("click", () => {
+    selAge = "";
+    selMethod = "";
+    selDay = "";
+    showStep(1);
+  });
+  document.getElementById("back-to-step2")?.addEventListener("click", () => {
+    selDay = "";
+    buildDayRow();
+    showStep(2);
+  });
+  document.getElementById("restart-btn")?.addEventListener("click", () => {
+    selAge = "";
+    selMethod = "";
+    selDay = "";
+    showStep(1);
+  });
+  document
+    .getElementById("restart-btn-empty")
+    ?.addEventListener("click", () => {
+      selAge = "";
+      selMethod = "";
+      selDay = "";
+      showStep(1);
+    });
+
+  // ─── Init ─────────────────────────────────────────────────────────────────
+
+  buildAgeGrid();
+  showStep(1);
+
+
+  function triggerLayoutRecalc() {
+  window.dispatchEvent(new Event('resize'));
+}
+</script>

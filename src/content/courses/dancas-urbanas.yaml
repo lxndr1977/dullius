@@ -1,0 +1,96 @@
+id: "inicio"
+tag: "A partir de 6 anos"
+title: "Danças Urbanas"
+summary: "Energia, atitude e técnica em aulas que desenvolvem ritmo, coordenação e expressão individual."
+description: "As Danças Urbanas combinam estilos como Hip Hop, Street Dance e suas vertentes em uma metodologia que estimula musicalidade, consciência corporal, criatividade e presença de palco, respeitando o estilo e a identidade de cada aluno."
+imageSrc: "/images/capa-dancas-urbanas.webp"
+
+intro:
+  eyebrow: "Danças Urbanas"
+  title: "A expressão da sua identidade em movimento"
+  paragraphs:
+    - | 
+      Ritmo, coordenação, agilidade e atitude se encontram em aulas dinâmicas que estimulam o corpo e a mente de forma completa.
+    - | 
+      Inspiradas pela cultura Hip Hop, as Danças Urbanas valorizam a individualidade, a improvisação e o domínio de diferentes partes do corpo com precisão e estilo.
+    - | 
+      Cada aula é uma experiência envolvente, onde técnica e liberdade caminham juntas para desenvolver confiança, presença e expressão.
+    - | 
+      Mais do que dançar, é sobre se posicionar, se comunicar e descobrir sua própria forma de se mover no mundo.
+
+videoSection:
+  eyebrow: "Vivência em aula"
+  title: "Energia, conexão e evolução a cada encontro"
+  description: "Nossas aulas de Danças Urbanas promovem um ambiente estimulante e acolhedor, onde os alunos desenvolvem coordenação, musicalidade e autoconfiança, enquanto exploram movimentos marcantes e constroem sua identidade artística."
+  image: "/images/capa-video-dancas-urbanas.webp"
+  videoUrl: "https://www.youtube.com/embed/7ikGgvZaf9Q?autoplay=1"
+
+testimonials:
+  - name: "Ilda Nochi"
+    role: "Mãe da Alice"
+    text: "Pensar no desenvolvimento íntegro do ser humano é pensar também em quanto uma criança precisa ser apostada e acreditada. E isto é o que encontrei na Dullius, que através da seriedade com que trata a arte faz uma grande aposta nas crianças que se sentem parte importante de uma grande construção." 
+    initials: "IN"
+    photo: "/images/testimonials/ilda-nochi.webp"
+  - name: "Débora Surreaux"
+    role: "Mãe da Roberta"
+    text: "Admiro muito o trabalho que vem sendo desenvolvido pela Dullius. Desde os dois aninhos, a Robi se diverte ao mesmo tempo que aprende. Nesses nove anos de Dullius ela desenvolveu graça, técnica, flexibilidade mas principalmente respeito, disciplina e acima de tudo amizade. Existe uma troca muito grande de afeto na escola, o diferencial da Dullius é a união existente não só entre as alunas como também dos professores. Fazendo jazz, ballet clássico e street dance, a dança é uma companheira inseparável da minha filha." 
+    initials: "DS"
+    photo: "/images/testimonials/debora-surreaux.webp"
+  - name: "Jaqueline Bresolin"
+    role: "Mãe da Juliana e da Rafaela"
+    text: "Dullius pra mim é sinônimo de alegria, profissionalismo, comprometimento e principalmente união. É muito gostoso pensar que há anos atrás foi nessa escola que comecei a dançar e hoje continuo aqui com minhas duas filhas amando a dança tanto quanto eu. Tudo isso devo à Dullius e a essa estrutura maravilhosa que eles souberam criar e preservar"
+    initials: "JB"
+    photo: "/images/testimonials/jaqueline-bresolin.webp"
+  - name: "Aline e Sérgio Kober"
+    role: "Pais da Gabriele"
+    text: "As professoras e auxiliares além de competência, demonstram carisma, afetividade e incentivam o crescimento da socialização, do amadurecimento cognitivo e motor das crianças. O potencial individual é estimulado fazendo aumentar o gosto pela dança daqueles que já o possuem"
+    initials: "ASK"
+    photo: "/images/testimonials/aline-kober.webp"
+  - name: "Mary Oliveira"
+    role: "Mãe da Aurora"
+    text: "Acho que a escola Dullius contribuiu muito no desenvolvimento de minha filha em vários aspectos, mas destaco o que diz respeito à desinibição, segurança de apresentar-se a outras pessoas, o que fica claro no desembaraço durante os espetáculos de fim de ano. Também destaco o interesse na adaptação de cada aluno em particular, o que seria difícil numa escola com tantos alunos, se não fosse o real interesse da Fabiane e sua equipe. E o melhor de tudo é ver a alegria, a empolgação de nossas filhas em frequentar a Dullius."
+    initials: "MO"
+    photo: "/images/testimonials/mary-oliveira.webp"
+  - name: "Tânia Bischoff"
+    role: "Mãe da Marina Bischoff Müller"
+    text: "Minha história com a Escola Studio Dullius iniciou em março de 2002. Minha filha se desenvolveu, se desinibiu, tem iniciativa, ousa, enfrenta as situações mais inusitadas, principalmente quando envolve as relações com o outro nas quais tem que se posicionar, defender seu ponto de vista, mas também aprender a escutar e respeitar o ritmo do outro. Sem dúvida que o Dullius tem muito a ver com este modo de ser. Se a Escola quer que os alunos sejam felizes, posso afirmar a Marina é uma aluna feliz."
+    initials: "TB"
+    photo: "/images/testimonials/tania-bischoff.webp"
+
+
+gallery:
+  - src: "/images/dancas-urbanas-galeria-01.webp"
+    alt: "Danças Urbanas"
+    description: "Danças Urbanas"
+  - src: "/images/dancas-urbanas-galeria-02.jpg"
+    alt: "Danças Urbanas"
+    description: "Danças Urbanas"
+  - src: "/images/dancas-urbanas-galeria-03.jpg"
+    alt: "Danças Urbanas"
+    description: "Danças Urbanas"
+  - src: "/images/dancas-urbanas-galeria-01.jpg"
+    alt: "Danças Urbanas"
+    description: "Danças Urbanas"
+  - src: "/images/dancas-urbanas-galeria-02.jpg"
+    alt: "Danças Urbanas"
+    description: "Danças Urbanas"
+  - src: "/images/dancas-urbanas-galeria-03.jpg"
+    alt: "Danças Urbanas"
+    description: "Danças Urbanas"
+ 
+
+cta:
+  eyebrow: "Agende uma aula"
+  title: "Descubra o estilo que move você"
+  description: "Agende uma aula experimental e vivencie a energia das Danças Urbanas em um ambiente profissional, acolhedor e inspirador."
+
+methods:
+  - "Street Dance"
+  - "Dance 4 Fun"
+
+related:
+  - "acrodance"
+  - "adultos"
+  - "ballet"
+  - "jazz"
+  - "metodo-dullius"

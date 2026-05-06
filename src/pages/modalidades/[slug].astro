@@ -1,0 +1,196 @@
+---
+import {
+  getCollection,
+  getEntry,
+  getEntries,
+  type CollectionEntry,
+} from "astro:content";
+
+import Page from "../../layouts/Page.astro";
+import HeroCourse from "../../components/HeroCourse.astro";
+import CourseIntro from "../../components/CourseIntro.astro";
+import VideoTextSection from "../../components/VideoTextSection.astro";
+import TestimonialsSection from "../../components/TestimonialsSection.astro";
+import PhotoGallerySection from "../../components/PhotoGallerySection.astro";
+import CtaSection from "../../components/CtaSection.astro";
+import CourseStickbar from "../../components/CourseStickbar.astro";
+import RelatedCourses from "../../components/RelatedCourses.astro";
+
+interface Props {
+  entry: CollectionEntry<"courses">;
+}
+
+interface RelatedCourseItem {
+  title: string;
+  description: string;
+  image: string;
+  age: string;
+  href: string;
+}
+
+export async function getStaticPaths() {
+  const courseEntries: CollectionEntry<"courses">[] =
+    await getCollection("courses");
+
+  return courseEntries.map((entry: CollectionEntry<"courses">) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const companyEntry = await getEntry("company", "info");
+
+if (!companyEntry) {
+  throw new Error(
+    "Não foi possível encontrar o arquivo 'src/content/company/info.yaml'. Certifique-se de que ele existe.",
+  );
+}
+
+const companyInfo = companyEntry.data;
+const { entry } = Astro.props;
+const { data } = entry;
+
+let relatedCoursesData: RelatedCourseItem[] = [];
+
+if (data.related) {
+  const entries = await getEntries(data.related);
+  relatedCoursesData = entries.map((course) => ({
+    title: course.data.title,
+    description: course.data.summary,
+    image: course.data.imageSrc,
+    age: course.data.tag,
+    href: `/modalidades/${course.id}`,
+  }));
+}
+
+const whatsappMessage = encodeURIComponent(
+  `Olá! Gostaria de agendar uma aula experimental para ${data.title}.`,
+);
+const whatsappUrl = `https://wa.me/${companyInfo.whatsapp.number}?text=${whatsappMessage}`;
+
+import CourseScheduleSection from "../../components/CourseScheduleSection.astro";
+import FixedBgSection from "../../components/FixedBgSection.astro";
+
+const allScheduleEntries = await getCollection("schedules");
+
+const allSchedules = allScheduleEntries.flatMap(
+  (entry) =>
+    entry.data as { age: string; method: string; time: string; day: string }[],
+);
+
+const courseSchedules = allSchedules.filter((s) => {
+  const matchesMethod =
+    !data.methods?.length || data.methods.includes(s.method);
+  const matchesAge = !data.ages?.length || data.ages.includes(s.age);
+  return matchesMethod && matchesAge;
+});
+---
+
+<Page title={`${data.title} | Dullius Dance`}>
+
+  <HeroCourse
+    id="hero-course"
+    tag="Modalidade"
+    title={data.title}
+    description={data.description}
+    ctaText="Agendar aula experimental"
+    ctaHref={whatsappUrl}
+    imageSrc={data.imageSrc}
+  />
+
+  <CourseIntro
+    eyebrow={data.intro.eyebrow}
+    title={data.intro.title}
+    titleSize="large"
+    align="left"
+    paddingBottom={!data.videoSection?.videoUrl}
+    paddingTop={true}
+  >
+    {
+      data.intro.paragraphs.map((paragraph: string) => (
+        <p class="text-lg xl:text-xl text-neutral-600 leading-relaxed mb-4">
+          {paragraph}
+        </p>
+      ))
+    }
+  </CourseIntro>
+
+  {
+    data.videoSection?.videoUrl && (
+      <VideoTextSection
+        eyebrow={data.videoSection.eyebrow}
+        title={data.videoSection.title}
+        description={data.videoSection.description}
+        mediaPosition="top"
+        align="left"
+        background="transparent"
+        image={data.videoSection.image}
+        videoUrl={data.videoSection.videoUrl}
+        ctaButton={{
+          label: "Agendar aula experimental",
+          href: whatsappUrl,
+        }}
+      />
+    )
+  }
+
+  <CourseScheduleSection
+    eyebrow="Horários"
+    title="Encontre o horário ideal"
+    description="Escolha o horário que melhor se adapta à sua rotina."
+    ctaHref="/contato"
+    ctaText="Agendar aula experimental"
+    titleSize="medium"
+    schedules={courseSchedules}
+  />
+
+  <TestimonialsSection
+    eyebrow="Depoimentos"
+    title="A experiência de quem vive a Dullius Dance"
+    description="Conheça as histórias de quem descobriu na dança um caminho de desenvolvimento."
+    background="white"
+    testimonials={data.testimonials}
+  />
+
+  <PhotoGallerySection
+    galleryId={entry.id}
+    eyebrow="Galeria de Fotos"
+    title="Momentos que inspiram"
+    description="Confira as experiências de quem já faz parte da nossa comunidade."
+    background="neutral"
+    photos={data.gallery}
+  />
+
+  <CtaSection
+    eyebrow={data.cta.eyebrow}
+    title={data.cta.title}
+    description={data.cta.description}
+    primaryButton={{
+      text: "Agendar aula experimental",
+      textMobile: "Agendar aula",
+      href: whatsappUrl,
+    }}
+    image={data.imageSrc}
+    imageAlt={data.title}
+    paddingTop={true}
+    paddingBottom={false}
+  />
+
+  <CourseStickbar
+    courseName={data.title}
+    subtitle={`${data.tag} - Vagas limitadas`}
+    primaryButtonHref={whatsappUrl}
+    secondaryButtonHref="#contato"
+  />
+
+  {
+    relatedCoursesData.length > 0 && (
+      <RelatedCourses
+        eyebrow="Você pode se interessar"
+        title="Descubra outros estilos"
+        description="Explore as diferentes modalidades de dança oferecidas pela Dullius Dance."
+        courses={relatedCoursesData}
+      />
+    )
+  }
+</Page>

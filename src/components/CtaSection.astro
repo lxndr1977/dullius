@@ -1,0 +1,99 @@
+---
+// CtaSection.astro
+import { ArrowUpRight } from "@lucide/astro";
+import Button from "./ui/Button.astro";
+import Section from "./ui/Section.astro";
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  primaryButton?: {
+    text: string;
+    textMobile: string;
+    href: string;
+  };
+  image: string;
+  imageAlt?: string;
+  class?: string;
+  paddingTop?: boolean;
+  paddingBottom?: boolean;
+}
+
+const {
+  eyebrow = "Vamos dancar juntos?",
+  title,
+  description,
+  primaryButton,
+  image,
+  imageAlt = "",
+  class: className = "",
+  paddingTop = true,
+  paddingBottom = true,
+} = Astro.props;
+---
+
+<Section
+  paddingTop={paddingTop}
+  paddingBottom={paddingBottom}
+  data-animate="fade-up"
+  data-animate-delay={0.2}
+  size="full"
+>
+  <div class:list={["relative overflow-hidden ", className]}>
+    <div class="bg-primary mx-auto grid lg:grid-cols-2 items-stretch">
+      {/* Text Side */}
+      <div
+        class="flex flex-col justify-center p-8 md:p-12 lg:p-16 xl:p-20"
+        data-animate="reveal"
+      >
+        {
+          eyebrow && (
+            <span class="text-sm font-bold uppercase tracking-widest text-white/90 mb-5 block">
+              {eyebrow}
+            </span>
+          )
+        }
+
+        <h2
+          class="text-3xl md:text-4xl lg:text-6xl font-medium text-white tracking-tight text-balance mb-6"
+        >
+          {title}
+        </h2>
+
+        {
+          description && (
+            <p class="text-lg xl:text-xl text-white/90 mb-10 max-w-md leading-relaxed">
+              {description}
+            </p>
+          )
+        }
+
+        <div class="flex flex-wrap gap-4 items-center">
+          {
+            primaryButton && (
+              <Button href={primaryButton.href} variant="white">
+                <span class="hidden md:inline">{primaryButton.text}</span>
+                <span class="md:hidden">{primaryButton.textMobile}</span>
+                <ArrowUpRight class="w-5 h-5" />
+              </Button>
+            )
+          }
+        </div>
+      </div>
+
+      {/* Image Side */}
+      <div
+        class="relative h-full min-h-[300px] lg:min-h-[500px] pt-12 lg:pt-16"
+      >
+        <div class="relative h-full w-full overflow-hidden">
+          <img
+            src={image}
+            alt={imageAlt}
+            class="absolute inset-0 h-full w-full object-cover transition duration-300 hover:scale-105"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</Section>

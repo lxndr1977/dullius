@@ -1,0 +1,278 @@
+---
+import { ArrowUpRight } from "@lucide/astro";
+import Button from "./ui/Button.astro";
+
+interface Slide {
+  media: "image" | "video";
+  desktopImage: string;
+  mobileImage?: string;
+  videoSrc?: string;
+  gradientClass?: string;
+  eyebrow?: string;
+  title: string;
+  subtitle?: string;
+  contentPosition?: "left" | "center" | "right";
+  verticalPosition?: "top" | "center" | "bottom";
+  imagePosition?:
+    | "top"
+    | "center"
+    | "bottom"
+    | "left"
+    | "right"
+    | "left-top"
+    | "right-top";
+  button?: {
+    label: string;
+    href: string;
+  };
+}
+
+interface Props {
+  slides: Slide[];
+}
+
+const { slides } = Astro.props;
+
+const objectPositionMap: Record<string, string> = {
+  top: "object-top",
+  center: "object-center",
+  bottom: "object-bottom",
+  left: "object-left",
+  right: "object-right",
+  "left-top": "object-left-top",
+  "right-top": "object-right-top",
+};
+
+const justifyMap: Record<string, string> = {
+  left: "items-start",
+  center: "items-center",
+  right: "items-end",
+};
+
+const alignMap: Record<string, string> = {
+  left: "items-start text-left",
+  center: "items-center text-center",
+  right: "items-end text-right",
+};
+
+const verticalMap: Record<string, string> = {
+  top: "justify-start pt-24",
+  center: "justify-center",
+  bottom: "justify-end pb-24",
+};
+---
+
+<section class="relative w-full h-screen overflow-hidden">
+  <div class="swiper hero-swiper w-full h-full">
+    <div class="swiper-wrapper">
+      {
+        slides.map((slide) => {
+          const pos = slide.contentPosition ?? "left";
+          const vpos = slide.verticalPosition ?? "center";
+          return (
+            <div class="swiper-slide relative w-full h-full overflow-hidden">
+              {/* Background Media */}
+              <div class="absolute inset-0 z-0">
+                {slide.media === "video" && slide.videoSrc ? (
+                  <video
+                    src={slide.videoSrc}
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    class="absolute inset-0 w-full h-full object-cover"
+                  />
+                ) : (
+                  <picture>
+                    {slide.mobileImage && (
+                      <source
+                        media="(max-width: 768px)"
+                        srcset={slide.mobileImage}
+                      />
+                    )}
+                    <img
+                      src={slide.desktopImage}
+                      alt={slide.title}
+                      class={`absolute inset-0 w-full h-full object-cover ${objectPositionMap[slide.imagePosition ?? "center"]}`}
+                    />
+                  </picture>
+                )}
+                <div
+                  class={`absolute inset-0 z-10 ${slide.gradientClass || "bg-black/20"}`}
+                />
+              </div>
+
+              {/* Content */}
+              <div
+                class={`relative z-20 w-full h-full container mx-auto px-4 text-white flex flex-col ${verticalMap[vpos]} ${justifyMap[pos]}`}
+              >
+                <div class={`max-w-4xl flex flex-col ${alignMap[pos]}`}>
+                  {slide.eyebrow && (
+                    <span class="hero-fadeup block text-sm md:text-base font-medium uppercase tracking-[0.3rem] mb-2 text-white">
+                      {slide.eyebrow}
+                    </span>
+                  )}
+                  <h1 class="hero-fadeup text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-medium leading-tighter mb-4 text-balance">
+                    {slide.title}
+                  </h1>
+                  {slide.subtitle && (
+                    <p
+                      class={`hero-fadeup text-lg md:text-xl lg:text-2xl xl:text-3xl text-white/90 mb-8 max-w-2xl text-balance ${pos === "center" ? "mx-auto" : ""}`}
+                    >
+                      {slide.subtitle}
+                    </p>
+                  )}
+                  {slide.button && (
+                    <div class="hero-fadeup">
+                      <Button
+                        href={slide.button.href}
+                        variant="transparent"
+                        size="lg"
+                        class={`${pos === "center" ? "self-center" : pos === "right" ? "self-end" : "self-start"}`}
+                      >
+                        {slide.button.label}
+                        <ArrowUpRight class="w-5 h-5" />
+                      </Button>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+
+    {/* Navigation */}
+    <div
+      class="hero-nav-prev hidden md:flex absolute top-1/2 -translate-y-1/2 left-8 z-30 w-12 h-12 border border-white/30 rounded-full items-center justify-center backdrop-blur-sm text-white hover:bg-white hover:text-black transition-all cursor-pointer"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="22"
+        height="22"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg
+      >
+    </div>
+    <div
+      class="hero-nav-next hidden md:flex absolute top-1/2 -translate-y-1/2 right-8 z-30 w-12 h-12 border border-white/30 rounded-full items-center justify-center backdrop-blur-sm text-white hover:bg-white hover:text-black transition-all cursor-pointer"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="22"
+        height="22"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg
+      >
+    </div>
+
+    {/* Pagination */}
+    <div class="swiper-pagination hero-pagination"></div>
+  </div>
+</section>
+
+<style is:global>
+  /* Fade up animation */
+  .hero-fadeup {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .swiper-slide-active .hero-fadeup:nth-child(1) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.2s;
+  }
+  .swiper-slide-active .hero-fadeup:nth-child(2) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.38s;
+  }
+  .swiper-slide-active .hero-fadeup:nth-child(3) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.56s;
+  }
+  .swiper-slide-active .hero-fadeup:nth-child(4) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.74s;
+  }
+
+  /* Minimalist pagination dots */
+  .hero-swiper .hero-pagination {
+    position: absolute;
+    bottom: 2rem !important;
+    left: 50% !important;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+    width: auto !important;
+  }
+
+  .hero-swiper .hero-pagination .swiper-pagination-bullet {
+    display: inline-block;
+    width: 6px !important;
+    height: 6px !important;
+    border-radius: 999px !important;
+    background: rgba(255, 255, 255, 0.4) !important;
+    opacity: 1 !important;
+    margin: 0 !important;
+    transition:
+      width 0.3s ease,
+      background 0.3s ease;
+  }
+
+  .hero-swiper .hero-pagination .swiper-pagination-bullet-active {
+    width: 24px !important;
+    background: white !important;
+  }
+</style>
+
+<script>
+  import Swiper from "swiper";
+  import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
+  import "swiper/css";
+  import "swiper/css/effect-fade";
+
+  function initHeroSwiper() {
+    if ((document.querySelector(".hero-swiper") as any)?.swiper) return;
+    const swiperEl = document.querySelector(".hero-swiper");
+    if (!swiperEl) return;
+
+    new Swiper(".hero-swiper", {
+      modules: [Navigation, Pagination, Autoplay, EffectFade],
+      effect: "fade",
+      speed: 1000,
+      loop: true,
+      autoplay: {
+        delay: 6000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: ".hero-swiper .hero-pagination",
+        clickable: true,
+        type: "bullets",
+      },
+      navigation: {
+        nextEl: ".hero-nav-next",
+        prevEl: ".hero-nav-prev",
+      },
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", initHeroSwiper);
+  document.addEventListener("astro:after-swap", initHeroSwiper);
+</script>

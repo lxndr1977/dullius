@@ -1,0 +1,88 @@
+id: "inicio"
+tag: "Para todas as idades"
+title: "Adultos"
+summary: "Bem-estar, expressão e qualidade de vida através da dança, em aulas pensadas para o seu ritmo."
+description: "Nossas aulas para adultos unem movimento, técnica e prazer em dançar, promovendo condicionamento físico, consciência corporal e bem-estar em um ambiente acolhedor e motivador, sem necessidade de experiência prévia."
+imageSrc: "/images/capa-adultos.webp"
+
+intro:
+  eyebrow: "Modalidade Adultos"
+  title: "Movimento que transforma corpo, mente e rotina"
+  paragraphs:
+    - | 
+      A dança é uma forma completa e prazerosa de cuidar do corpo e da mente, promovendo saúde, leveza e bem-estar no dia a dia.
+    - | 
+      Em um ambiente acolhedor e descontraído, nossas aulas combinam técnica e liberdade para que cada aluno evolua no seu próprio ritmo, sem a necessidade de experiência prévia.
+    - | 
+      Modalidades como Ballet, Jazz, Danças Urbanas e aulas dinâmicas com diferentes ritmos ajudam a desenvolver condicionamento físico, postura, coordenação, flexibilidade e consciência corporal.
+    - | 
+      Mais do que exercício, é um momento para se reconectar consigo, aliviar o estresse e redescobrir o prazer de se expressar através do movimento.
+
+videoSection:
+  eyebrow: "Vivência em aula"
+  title: "Um momento seu, com leveza e energia"
+  description: "Nossas aulas para adultos proporcionam um espaço acolhedor e inspirador, onde movimento, música e convivência se encontram para promover saúde, autoestima e bem-estar em cada encontro."
+  image: "/images/capa-video-adultos.webp"
+  videoUrl: "https://www.youtube.com/embed/Y9ui0EccEi8?autoplay=1"
+
+testimonials:
+  - name: "Iami Gerbase"
+    role: "Aluna"
+    text: "É impossível explicar em meras palavras o que a Dullius representa em minha vida, pois ainda não foram criadas expressões capazes de demonstrar o que sinto. Os dias em que tenho aula de jazz são sempre os mais felizes, quando danço todos os problemas não importam mais e finalmente me sinto completa. Agradecer é pouco a todos aqueles que me fazem tão alegre, tenho orgulho de dizer que faço Dullius e amo demais tudo o que esta instituição representa."
+    initials: "IG"
+    photo: "/images/testimonials/iami-gerbase.webp"  
+  - name: "Andressa Goldman Ruwel"
+    role: "Aluna"
+    text: "Eu adoro a turma que trabalha na Dullius. As gurias do bar, sempre me atendem alegres. As meninas da recepção são D+! O pessoal que fica no estacionamento está sempre brincando comigo e arranjando um lugar para minha mãe estacionar. Amo quem faz as minhas fantasias. Os professores, então, sem comentários, são hiper mega legais. Dullius Dance é 10!"
+    initials: "AGR"
+    photo: "/images/testimonials/andressa-ruwel.webp"
+  - name: "Juliana Costa Ribeiro Maciel"
+    role: "Aluna"
+    text: "Danço na Dullius há mais de 7 anos e ao contrário do que esperava, a cada ano venho me interessando e gostando mais de dançar. Não sei se é por causa da alegria e simpatia dos professores ou mesmo porque os passos foram ficando mais difíceis e eu melhorando. Na Dullius Dance, não aprendi apenas coreografias mas também a importância em realizar o aquecimento corretamente e de trabalhar exercícios de flexibilidade."
+    initials: "JCR"
+    photo: "/images/testimonials/juliana-costa.webp"
+  - name: "Ilda Nochi"
+    role: "Mãe da Alice"
+    text: "Pensar no desenvolvimento íntegro do ser humano é pensar também em quanto uma criança precisa ser apostada e acreditada. E isto é o que encontrei na Dullius, que através da seriedade com que trata a arte faz uma grande aposta nas crianças que se sentem parte importante de uma grande construção." 
+    initials: "IN"
+    photo: "/images/testimonials/ilda-nochi.webp"
+  - name: "Débora Surreaux"
+    role: "Mãe da Roberta"
+    text: "Admiro muito o trabalho que vem sendo desenvolvido pela Dullius. Desde os dois aninhos, a Robi se diverte ao mesmo tempo que aprende. Nesses nove anos de Dullius ela desenvolveu graça, técnica, flexibilidade mas principalmente respeito, disciplina e acima de tudo amizade. Existe uma troca muito grande de afeto na escola, o diferencial da Dullius é a união existente não só entre as alunas como também dos professores. Fazendo jazz, ballet clássico e street dance, a dança é uma companheira inseparável da minha filha." 
+    initials: "DS"
+    photo: "/images/testimonials/debora-surreaux.webp"
+    
+gallery:
+  - src: "/images/capa-adultos.webp"
+    alt: "Adultos"
+    description: "Adultos"
+  - src: "/images/capa-adultos.webp"
+    alt: "Adultos"
+    description: "Adultos"
+  - src: "/images/capa-adultos.webp"
+    alt: "Adultos"
+    description: "Adultos"
+  - src: "/images/capa-adultos.webp"
+    alt: "Adultos"
+    description: "Adultos"  
+  - src: "/images/capa-adultos.webp"
+    alt: "Adultos"
+    description: "Adultos"
+  - src: "/images/capa-adultos.webp"
+    alt: "Adultos"
+    description: "Adultos"
+
+cta:
+  eyebrow: "Agende uma aula"
+  title: "Descubra o prazer de dançar no seu tempo"
+  description: "Agende uma aula experimental e viva uma experiência que combina movimento, bem-estar e leveza em um ambiente acolhedor e sem julgamentos."
+
+ages:
+  - "Adulto"
+
+related:
+  - "acrodance"
+  - "ballet"
+  - "dancas-urbanas"
+  - "jazz"
+  - "metodo-dullius"

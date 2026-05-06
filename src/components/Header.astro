@@ -1,0 +1,303 @@
+---
+// Header.astro
+import { ArrowUpRight, Menu, X } from "@lucide/astro";
+import Button from "./ui/Button.astro";
+
+interface Props {
+  variant?: "home" | "internal";
+  initial?: "transparent" | "solid";
+}
+
+const { variant = "home", initial = "internal" } = Astro.props;
+
+const navLinks = [
+  { label: "Modalidades", href: "/modalidades" },
+  { label: "Sobre", href: "/sobre" },
+  { label: "Equipe", href: "/equipe" },
+  { label: "Infraestrutura", href: "/infraestrutura" },
+  { label: "Contato", href: "/contato" },
+];
+
+const alwaysSolid = initial ? initial === "solid" : variant === "internal";
+---
+
+<header
+  class={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+    alwaysSolid ? "bg-white shadow-sm" : "bg-transparent"
+  }`}
+  data-header
+  data-always-solid={alwaysSolid}
+>
+  <div
+    class="mx-auto flex max-w-7xl xl:container items-center justify-between px-6 py-2"
+  >
+    <a href="/" class="flex items-center gap-2">
+      <img
+        src="/logo-dullius-dance-branco.svg"
+        alt="Dullius Dance"
+        class="h-12 sm:h-16 block"
+        data-logo-white
+      />
+      <img
+        src="/logo-dullius-dance.svg"
+        alt="Dullius Dance"
+        class="h-12 sm:h-16 hidden"
+        data-logo-red
+      />
+    </a>
+
+    <nav class="hidden items-center gap-8 lg:flex">
+      {
+        navLinks.map((link) => (
+          <a
+            href={link.href}
+            class={`text-sm font-medium tracking-wide uppercase transition-colors duration-300 hover:opacity-70 ${
+              alwaysSolid ? "text-neutral-700" : "text-white"
+            }`}
+            data-nav-link
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="hidden items-center gap-4 lg:flex">
+      <div data-btn-white>
+        <Button variant="white" href="tel:5198594793"> Inscreva-se </Button>
+      </div>
+      <div class="hidden" data-btn-primary>
+        <Button variant="primary" href="tel:5198594793">
+          <span class="hidden sm:inline ml-1">Faça sua matrícula</span>
+          <span class="sm:hidden ml-1">Matricule-se</span>
+          <ArrowUpRight class="ml-1 h-5 w-5" />
+        </Button>
+      </div>
+    </div>
+
+    <button
+      type="button"
+      class={`lg:hidden transition-colors duration-300 ${
+        alwaysSolid ? "text-neutral-700" : "text-white"
+      }`}
+      data-mobile-toggle
+      aria-label="Abrir menu"
+    >
+      <Menu class="h-6 w-6" data-menu-icon />
+      <X class="h-6 w-6 hidden" data-close-icon />
+    </button>
+  </div>
+</header>
+
+<!-- Mobile Menu: fullscreen overlay -->
+  <div
+    class="fixed inset-0 z-50 flex flex-col bg-white lg:hidden"
+    data-mobile-menu
+    style="opacity: 0; transform: translateY(-100%); pointer-events: none; background-color: #ffffff;"
+  >
+    <!-- Topo do menu mobile com logo e botão fechar -->
+    <div
+      class="flex items-center justify-between px-6 py-2 border-b border-neutral-100"
+    >
+      <a href="/" class="flex items-center gap-2">
+        <img
+          src="/logo-dullius-dance.svg"
+          alt="Dullius Dance"
+          class="h-12 sm:h-16"
+        />
+      </a>
+      <button
+        type="button"
+        class="text-neutral-700"
+        data-mobile-close
+        aria-label="Fechar menu"
+      >
+        <X class="h-6 w-6" />
+      </button>
+    </div>
+
+    <!-- Links de navegação -->
+    <nav class="flex flex-col justify-center flex-1 px-8 gap-2">
+      {
+        navLinks.map((link, i) => (
+          <a
+            href={link.href}
+            class="mobile-nav-link py-4 text-2xl font-semibold uppercase tracking-widest text-neutral-800 border-b border-neutral-100 transition-colors hover:text-red-600"
+            data-mobile-link
+            style={`opacity: 0; transform: translateY(20px);`}
+            data-index={i}
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <!-- Botão CTA no rodapé do menu -->
+    <div
+      class="px-8 pb-12"
+      data-mobile-cta
+      style="opacity: 0; transform: translateY(20px);"
+    >
+      <Button
+        variant="primary"
+        href="tel:5198594793"
+        class="w-full justify-center"
+        size="base"
+      >
+        Faça sua matrícula
+        <ArrowUpRight class="ml-1 h-5 w-5" />
+      </Button>
+    </div>
+  </div>
+<script>
+  import gsap from "gsap";
+  import Lenis from "lenis";
+
+  // ---- HEADER STATE ----
+  const header = document.querySelector("[data-header]");
+  const alwaysSolid = header?.getAttribute("data-always-solid") === "true";
+  const logoWhite = document.querySelector("[data-logo-white]");
+  const logoRed = document.querySelector("[data-logo-red]");
+  const navLinks = document.querySelectorAll("[data-nav-link]");
+  const mobileToggle = document.querySelector("[data-mobile-toggle]");
+  const mobileClose = document.querySelector("[data-mobile-close]");
+  const btnWhite = document.querySelector("[data-btn-white]");
+  const btnPrimary = document.querySelector("[data-btn-primary]");
+  const mobileMenu = document.querySelector("[data-mobile-menu]");
+  const mobileLinks = document.querySelectorAll("[data-mobile-link]");
+  const mobileCta = document.querySelector("[data-mobile-cta]");
+
+  let menuOpen = false;
+  let lastScrollY = window.scrollY;
+  const SCROLL_THRESHOLD = 10;
+
+  // ---- COR ----
+  function setSolid(solid: boolean) {
+    if (!header) return;
+    const shouldBeSolid = alwaysSolid || solid;
+    if (shouldBeSolid) {
+      header.classList.add("bg-white", "shadow-sm", "backdrop-blur-md");
+      header.classList.remove("bg-transparent");
+      logoWhite?.classList.add("hidden");
+      logoRed?.classList.remove("hidden");
+      navLinks.forEach((l) => {
+        l.classList.add("text-neutral-700");
+        l.classList.remove("text-white");
+      });
+      btnWhite?.classList.add("hidden");
+      btnPrimary?.classList.remove("hidden");
+      mobileToggle?.classList.add("text-neutral-700");
+      mobileToggle?.classList.remove("text-white");
+    } else {
+      header.classList.remove("bg-white", "shadow-sm", "backdrop-blur-md");
+      header.classList.add("bg-transparent");
+      logoWhite?.classList.remove("hidden");
+      logoRed?.classList.add("hidden");
+      navLinks.forEach((l) => {
+        l.classList.remove("text-neutral-700");
+        l.classList.add("text-white");
+      });
+      btnWhite?.classList.remove("hidden");
+      btnPrimary?.classList.add("hidden");
+      mobileToggle?.classList.remove("text-neutral-700");
+      mobileToggle?.classList.add("text-white");
+    }
+  }
+
+  setSolid(alwaysSolid ? true : window.scrollY > 0);
+
+  // ---- SCROLL ----
+  function handleScroll() {
+    if (!header || menuOpen) return;
+    const currentScrollY = window.scrollY;
+    if (!alwaysSolid) setSolid(currentScrollY > 250);
+    if (currentScrollY <= 0) {
+      header.classList.remove("-translate-y-full");
+    } else if (
+      currentScrollY > lastScrollY &&
+      currentScrollY > SCROLL_THRESHOLD
+    ) {
+      header.classList.add("-translate-y-full");
+    } else if (currentScrollY < lastScrollY) {
+      header.classList.remove("-translate-y-full");
+    }
+    lastScrollY = currentScrollY;
+  }
+
+  window.addEventListener("scroll", () => requestAnimationFrame(handleScroll), {
+    passive: true,
+  });
+
+  // ---- MENU MOBILE ----
+  function getLenis() {
+    // Pega a instância do Lenis exposta pelo layout
+    return (window as any).__lenis ?? null;
+  }
+
+  function openMenu() {
+    if (!mobileMenu || menuOpen) return;
+    menuOpen = true;
+    (mobileMenu as HTMLElement).style.pointerEvents = "all";
+    getLenis()?.stop();
+
+    gsap.to(mobileMenu, {
+      opacity: 1,
+      y: 0,
+      duration: 0.5,
+      ease: "power3.out",
+    });
+    gsap.to(mobileLinks, {
+      opacity: 1,
+      y: 0,
+      duration: 0.4,
+      ease: "power2.out",
+      stagger: 0.07,
+      delay: 0.2,
+    });
+    gsap.to(mobileCta, {
+      opacity: 1,
+      y: 0,
+      duration: 0.4,
+      ease: "power2.out",
+      delay: 0.45,
+    });
+  }
+
+  function closeMenu() {
+    if (!mobileMenu || !menuOpen) return;
+    menuOpen = false;
+    getLenis()?.start();
+
+    gsap.set(mobileLinks, { opacity: 0, y: 20 });
+    gsap.set(mobileCta, { opacity: 0, y: 20 });
+    gsap.to(mobileMenu, {
+      opacity: 0,
+      y: "-100%",
+      duration: 0.4,
+      ease: "power3.in",
+      onComplete: () => {
+        (mobileMenu as HTMLElement).style.pointerEvents = "none";
+      },
+    });
+  }
+
+  mobileToggle?.addEventListener("click", openMenu);
+  mobileClose?.addEventListener("click", closeMenu);
+  mobileLinks.forEach((link) => link.addEventListener("click", closeMenu));
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && menuOpen) closeMenu();
+  });
+</script>
+
+<style>
+  header {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  [data-mobile-menu] {
+    background-color: #ffffff !important;
+    isolation: isolate;
+  }
+</style>

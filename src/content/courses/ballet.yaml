@@ -1,0 +1,94 @@
+id: "inicio"
+tag: "A partir de 3 anos"
+title: "Ballet"
+summary: "Elegância, disciplina e sensibilidade em uma formação completa que desenvolve corpo e expressão desde a infância."
+description: "O Ballet é a base de toda a dança, trabalhando postura, coordenação, musicalidade e disciplina com técnica e delicadeza. Uma formação artística completa que desenvolve confiança, consciência corporal e sensibilidade estética."
+imageSrc: "/images/capa-ballet.webp"
+
+intro:
+  eyebrow: "Ballet"
+  title: "A base de toda a dança, com leveza e excelência"
+  paragraphs:
+    - | 
+      O Ballet é uma das formas mais tradicionais e encantadoras de expressão artística, reconhecido por sua elegância, precisão e beleza.
+    - | 
+      Através de uma metodologia cuidadosa e progressiva, os alunos desenvolvem postura, flexibilidade, equilíbrio e coordenação, respeitando cada fase do seu desenvolvimento.
+    - | 
+      Mais do que técnica, o Ballet estimula disciplina, concentração e sensibilidade, formando não apenas bailarinos, mas indivíduos mais confiantes e expressivos.
+    - | 
+      Uma experiência que une arte, educação e desenvolvimento em um ambiente acolhedor e inspirador.
+
+videoSection:
+  eyebrow: "Vivência em aula"
+  title: "Delicadeza, disciplina e desenvolvimento contínuo"
+  description: "Nossas aulas de Ballet proporcionam um ambiente acolhedor e estruturado, onde cada aluno desenvolve técnica, postura e expressão artística, enquanto aprende valores como disciplina, respeito e dedicação."
+  image: "/images/capa-video-ballet.webp"
+  videoUrl: "https://www.youtube.com/embed/RJRYiDw5Yq4?autoplay=1"
+
+testimonials:
+  - name: "Juliana Costa Ribeiro Maciel"
+    role: "Aluna"
+    text: "Danço na Dullius há mais de 7 anos e ao contrário do que esperava, a cada ano venho me interessando e gostando mais de dançar. Não sei se é por causa da alegria e simpatia dos professores ou mesmo porque os passos foram ficando mais difíceis e eu melhorando. Na Dullius Dance, não aprendi apenas coreografias mas também a importância em realizar o aquecimento corretamente e de trabalhar exercícios de flexibilidade."
+    initials: "JCR"
+    photo: "/images/testimonials/juliana-costa.webp"
+  - name: "Rose Vassiliouk"
+    role: "Mãe da Giovanna"
+    text: "A Giovanna começou na escola com 1 ano e 10 meses, pelo que hoje vejo, o amor à dança. Tanto que ela diz que os dias de aula no Dullius são os dias mais felizes da semana. Ela ama a Dullius como um todo. Mas principlamente as aulas. Pelo método e a maneira com que alunas e familiares são recebidos e tratados, com respeito e carinho. Por isso me sinto tranquila ao deixar minha filha aos cuidados da equipe da escola. E ver o desejo da Giovanna se realizar. Ser feliz com a dança!."
+    initials: "RV"
+    photo: "/images/testimonials/rose-vassilliouk.webp"
+  - name: "Kátia Beatriz Garcia"
+    role: "Mãe da Paula Mariah"
+    text: "Minha filha começou na Dullius aos dois anos de idade, com o objetivo de interagir com outras crianças, aproveitando que ela amava música e dança. (...) O carinho da profe, a atenção e profissionalismo desta Escola maravilhosa, contribuíram e muito, para tornar minha filha mais alegre, desinibida e apaixonada por dança."
+    initials: "KG"
+    photo: "/images/testimonials/katia-beatriz.webp"
+  - name: "Giovana Strano"
+    role: "Mãe da Julia"
+    text: "Admiro muito a organização, a atenção de todos que trabalham na administração da escola. O fato das crianças serem conhecidas pelo nome e não serem simplesmente mais um. O fato da Julia adorar a aula e não querer faltar, ficar dançando em casa, demonstrou o quão contente ela está com a Dullius, e nós, pais, ficamos muito tranquilos."
+    initials: "GS"
+    photo: "/images/testimonials/giovana-strano.webp"
+  - name: "Libera e Luciano Diogo"
+    role: "Pais da Bibiana"
+    text: Agradecemos a Escola, pois a satisfação da Bibiana e consequentemente nossa é de 100%, pois ela apresenta prazer, além de ter melhorado muito sua flexibilidade e postura. Ela adora os professores e faz com que acreditemos na escola como uma formadora de jovens."
+    initials: "LD"
+    photo: "/images/testimonials/libera-diogo.webp"
+  - name: "Sandra Goldman Ruwell"
+    role: "Maẽ da Andressa"
+    text: "Há anos que os dias mais felizes na vida da minha filha Andressa são aqueles em que ela dança na Dullius. Essa felicidade eu experimentei quando decidi voltar, depois de muito tempo, a dançar na Dullius também. Hoje, eu e a Andressa podemos dizer que vocês são responsáveis por esses momentos maravilhosos em nossas vidas.."
+    initials: "SR"
+
+gallery:
+  - src: "/images/ballet-galeria-01.jpg"
+    alt: "Ballet"
+    description: "Ballet"
+  - src: "/images/ballet-galeria-02.jpg"
+    alt: "Ballet"
+    description: "Ballet"
+  - src: "/images/ballet-galeria-03.jpg"
+    alt: "Ballet"
+    description: "Ballet"
+  - src: "/images/ballet-galeria-01.jpg"
+    alt: "Ballet"
+    description: "Ballet"
+  - src: "/images/ballet-galeria-02.jpg"
+    alt: "Ballet"
+    description: "Ballet"
+  - src: "/images/ballet-galeria-03.jpg"
+    alt: "Ballet"
+    description: "Ballet"
+
+cta:
+  eyebrow: "Agende uma aula"
+  title: "Encante-se com a beleza do Ballet"
+  description: "Agende uma aula experimental e proporcione uma formação artística completa em um ambiente que valoriza excelência, cuidado e desenvolvimento individual."
+
+methods:
+  - "Ballet"
+  - "Ballet Fitness"
+  - "Ballet Intermediário"
+
+related:
+  - "acrodance"
+  - "adultos"
+  - "dancas-urbanas"
+  - "jazz"
+  - "metodo-dullius"

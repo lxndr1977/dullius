@@ -1,11 +1,264 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import HeroSection from "../components/HeroSection.astro";
+import DifferentialsSection from "../components/DifferentialsSection.astro";
+import CoursesSection from "../components/CoursesSection.astro";
+import TestimonialsSection from "../components/TestimonialsSection.astro";
+import PhotoGallerySection from "../components/PhotoGallerySection.astro";
+import MediaTextSection from "../components/MediaTextSection.astro";
+import CtaSection from "../components/CtaSection.astro";
+import VideoTextSection from "../components/VideoTextSection.astro";
+import PhotoGallerySection2 from "../components/PhotoGallerySection2.astro";
+import PhotoGallerySection3 from "../components/PhotoGallerySection3.astro";
+import FixedBgSection from "../components/FixedBgSection.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import { Check } from "@lucide/astro";
+import SectionHeader from "../components/ui/SectionHeader.astro";
+import Features from "../components/Features.astro";
+
+
+interface Slide {
+  media: "image" | "video";
+  desktopImage: string;
+  mobileImage?: string;
+  videoSrc?: string;
+  gradientClass?: string;
+  eyebrow?: string;
+  title: string;
+  subtitle?: string;
+  contentPosition?: "left" | "center" | "right";
+  verticalPosition?: "top" | "center" | "bottom";
+  imagePosition?:
+    | "top"
+    | "center"
+    | "bottom"
+    | "left"
+    | "right"
+    | "left-top"
+    | "right-top";
+  button?: {
+    label: string;
+    href: string;
+  };
+}
+
+const heroSlides: Slide[] = [
+  {
+    media: "image",
+    desktopImage: "/images/capa-hero.webp",
+    mobileImage: "/images/capa-metodo-dullius.webp", // Using same for demo if mobile specific not available
+    gradientClass: "bg-gradient-to-r from-black/80 to-black/20",
+    eyebrow: "Bem-vindo à Dullius Dance",
+    title: "Quem dança é mais feliz",
+    subtitle:
+      "Aulas de dança para todas as idades e níveis. Descubra o seu ritmo com professores experientes e uma estrutura completa.",
+    contentPosition: "left",
+    verticalPosition: "bottom",
+    imagePosition: "center",
+    button: {
+      label: "Agendar aula experimental",
+      href: "/classes",
+    },
+  },
+  {
+    media: "image",
+    desktopImage: "/images/capa-dancas-urbanas.webp",
+    mobileImage: "/images/capa-dancas-urbanas.webp",
+    gradientClass: "bg-gradient-to-r from-black/70 to-black/70",
+    eyebrow: "Danças Urbanas",
+    title: "Explore o universo das danças urbanas",
+    subtitle:
+      "Aulas de dança para todas as idades e níveis. Descubra o seu ritmo com professores experientes e uma estrutura completa.",
+    contentPosition: "center",
+    imagePosition: "bottom",
+    button: {
+      label: "Agendar aula experimental",
+      href: "/join",
+    },
+  },
+];
+
+const testimonials = [
+  {
+    name: "Ilda Nochi",
+    role: "Mãe da Alice",
+    text: "Pensar no desenvolvimento íntegro do ser humano é pensar também em quanto uma criança precisa ser apostada e acreditada. E isto é o que encontrei na Dullius, que através da seriedade com que trata a arte faz uma grande aposta nas crianças que se sentem parte importante de uma grande construção.",
+    initials: "IN",
+    photo: "/images/testimonials/ilda-nochi.webp",
+  },
+  {
+    name: "Aline e Sérgio Kober",
+    role: "Pais da Gabriele",
+    text: "As professoras e auxiliares além de competência, demonstram carisma, afetividade e incentivam o crescimento da socialização, do amadurecimento cognitivo e motor das crianças. O potencial individual é estimulado fazendo aumentar o gosto pela dança daqueles que já o possuem",
+    initials: "ASK",
+    photo: "/images/testimonials/aline-kober.webp",
+  },
+  {
+    name: "Jaqueline Bresolin",
+    role: "Mãe da Juliana e da Rafaela",
+    text: "Dullius pra mim é sinônimo de alegria, profissionalismo, comprometimento e principalmente união. É muito gostoso pensar que há anos atrás foi nessa escola que comecei a dançar e hoje continuo aqui com minhas duas filhas amando a dança tanto quanto eu. Tudo isso devo à Dullius e a essa estrutura maravilhosa que eles souberam criar e preservar",
+    initials: "JB",
+    photo: "/images/testimonials/jaqueline-bresolin.webp",
+  },
+  {
+    name: "Aline e Sérgio Kober",
+    role: "Pais da Gabriele",
+    text: "As professoras e auxiliares além de competência, demonstram carisma, afetividade e incentivam o crescimento da socialização, do amadurecimento cognitivo e motor das crianças. O potencial individual é estimulado fazendo aumentar o gosto pela dança daqueles que já o possuem",
+    initials: "ASK",
+    photo: "/images/testimonials/aline-kober.webp",
+  },
+  {
+    name: "Mary Oliveira",
+    role: "Mãe da Aurora",
+    text: "Acho que a escola Dullius contribuiu muito no desenvolvimento de minha filha em vários aspectos, mas destaco o que diz respeito à desinibição, segurança de apresentar-se a outras pessoas, o que fica claro no desembaraço durante os espetáculos de fim de ano. Também destaco o interesse na adaptação de cada aluno em particular, o que seria difícil numa escola com tantos alunos, se não fosse o real interesse da Fabiane e sua equipe. E o melhor de tudo é ver a alegria, a empolgação de nossas filhas em frequentar a Dullius.",
+    initials: "MO",
+    photo: "/images/testimonials/mary-oliveira.webp",
+  },
+  {
+    name: "Tânia Bischoff",
+    role: "Mãe da Marina Bischoff Müller",
+    text: "Minha história com a Escola Studio Dullius iniciou em março de 2002. Minha filha se desenvolveu, se desinibiu, tem iniciativa, ousa, enfrenta as situações mais inusitadas, principalmente quando envolve as relações com o outro nas quais tem que se posicionar, defender seu ponto de vista, mas também aprender a escutar e respeitar o ritmo do outro. Sem dúvida que o Dullius tem muito a ver com este modo de ser. Se a Escola quer que os alunos sejam felizes, posso afirmar a Marina é uma aluna feliz.",
+    initials: "TB",
+    photo: "/images/testimonials/tania-bischoff.webp",
+  },
+];
+
 ---
 
 <Layout>
-	<Welcome />
+  <HeroSection slides={heroSlides} />
+
+  <DifferentialsSection />
+  <CoursesSection
+    eyebrow="Dullius Dance"
+    title="Modalidades para todas as idades e níveis"
+    description="Nossas modalidades combinam formação técnica, orientação especializada e um ambiente preparado para o desenvolvimento artístico."
+    background="white"
+    paddingTop={false}
+    align="center"
+  />
+
+  <TestimonialsSection
+    eyebrow="Depoimentos"
+    title="A experiência de quem vive a Dullius Dance"
+    description="Conheça as histórias de quem descobriu na dança um caminho de desenvolvimento, expressão e confiança."
+    background="neutral"
+    testimonials={testimonials}
+  />
+
+  <VideoTextSection
+    mediaPosition="right"
+    verticalAlign="start"
+    stickyMedia={true}
+    videoAspect="16/9"
+    eyebrow="Infraestrutura"
+    title="Uma escola de dança pensada nos mínimos detalhes"
+    description="A sede da Dullius Dance foi projetada exclusivamente para proporcionar uma experiência única em dança. Em um ambiente sofisticado, acolhedor e tecnologicamente avançado, a escola reúne uma infraestrutura de alto padrão para quem valoriza excelência, conforto e performance."
+    image="/images/escola/sala-dullius-dance-01.webp"
+    videoUrl="https://www.youtube.com/embed/f8Fe53CAmsU?autoplay=1"
+  >
+    <!-- <div class="pt-0 md:pt-32">
+      <SectionHeader
+        eyebrow="Infraestrutura"
+        title="Uma escola de dança pensada nos mínimos detalhes"
+        description="A sede da Dullius Dance foi projetada exclusivamente para proporcionar uma experiência única em dança. Em um ambiente sofisticado, acolhedor e tecnologicamente avançado, a escola reúne uma infraestrutura de alto padrão para quem valoriza excelência, conforto e performance."
+        align="left"
+        titleSize="medium"
+      />
+
+      <ul class="divide-y divide-neutral-200 mt-8">
+        {
+          [
+            "Ambiente climatizado",
+            "Gerador próprio",
+            "Wi-Fi",
+            "Estacionamento exclusivo",
+            "Lounge",
+            "Pátio interno",
+            "Café",
+            "Shop",
+            "Vestiários com piso aquecido",
+            "5 amplas salas",
+            "Pisos flutuantes e flexíveis para proteção das articulações",
+          ].map((item) => (
+            <li class="flex items-center gap-4 py-4 text-neutral-700 text-base xl:text-lg leading-relaxed">
+              <Check class="w-4 h-4 text-primary shrink-0" />
+              {item}
+            </li>
+          ))
+        }
+      </ul>
+    </div> -->
+  </VideoTextSection>
+<Features />  
+
+  <MediaTextSection
+    eyebrow="Sobre Nós"
+    title="Conheça a Dullius Dance"
+    description="Referência na formação em dança, a Dullius Dance reúne tradição, excelência e uma abordagem contemporânea de ensino. Seu corpo docente é formado por profissionais experientes, e sua estrutura foi concebida para oferecer conforto, sofisticação e as condições ideais para o desenvolvimento artístico. Cada detalhe é pensado para proporcionar uma experiência completa, onde técnica, expressão e evolução caminham lado a lado."
+    mediaPosition="left"
+    image="/images/escola/fachada-dullius-dance-01.webp"
+    imageAlt="Sobre Nós"
+    background="white"
+    align="left"
+    ctaButton={{
+      label: "Saiba Mais",
+      href: "/sobre",
+      variant: "link",
+      size: "sm",
+    }}
+  />
+
+  <PhotoGallerySection
+    galleryId="home"
+    eyebrow="Galeria de Fotos"
+    title="Momentos que inspiram"
+    description="Confira as experiências de quem já faz parte da nossa comunidade."
+    background="neutral"
+    photos={[
+      {
+        src: "/images/acrodance-galeria-01.jpg",
+        alt: "Foto 1",
+        description: "Descrição da foto 1",
+      },
+      {
+        src: "/images/acrodance-galeria-02.jpg",
+        alt: "Foto 2",
+        description: "Descrição da foto 2",
+      },
+      {
+        src: "/images/dancas-urbanas-galeria-01.webp",
+        alt: "Foto 3",
+        description: "Descrição da foto 3",
+      },
+      {
+        src: "/images/dancas-urbanas-galeria-02.jpg",
+        alt: "Foto 4",
+        description: "Descrição da foto 4",
+      },
+      {
+        src: "/images/jazz-galeria-01.jpg",
+        alt: "Foto 5",
+        description: "Descrição da foto 5",
+      },
+      {
+        src: "/images/jazz-galeria-02.jpg",
+        alt: "Foto 6",
+        description: "Descrição da foto 6",
+      },
+    ]}
+  />
+
+  <CtaSection
+    eyebrow="Vamos dançar juntos?"
+    title="Venha viver essa experiência"
+    description="A Dullius Dance é uma escola de dança que oferece aulas de ballet, jazz, contemporâneo, hip hop e muito mais. Com professores qualificados e uma estrutura completa, a escola é o lugar ideal para quem quer aprender a dançar e se divertir."
+    primaryButton={{
+      text: "Agendar aula experimental",
+      textMobile: "Agendar aula",
+      href: "/classes",
+    }}
+    image="/images/capa-metodo-dullius.webp"
+    imageAlt="Sobre Nós"
+  />
 </Layout>

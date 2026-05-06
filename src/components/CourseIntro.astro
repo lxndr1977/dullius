@@ -1,0 +1,41 @@
+---
+import Section from "./ui/Section.astro";
+import SectionHeader from "./ui/SectionHeader.astro";
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  align?: "left" | "center" | "right";
+  titleSize?: "base" | "medium" | "large";
+  paddingBottom?: boolean;
+  paddingTop?: boolean;
+  class?: string;
+}
+
+const { eyebrow, title, align, titleSize, paddingTop, paddingBottom, class: className = "", ...rest } = Astro.props;
+---
+
+<Section paddingTop={paddingTop} paddingBottom={paddingBottom}>
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-30 items-start relative">
+    <div class="md:sticky md:top-48" data-animate="fadein">
+      <div>
+        <SectionHeader
+          eyebrow={eyebrow}
+          title={title}
+          align={align}
+          class={className}
+          titleSize={titleSize}
+          {...rest}
+        />
+      </div>
+    </div>
+
+    <div data-animate="fadein" data-animate-delay="0.2">
+      <p
+        class="mx-auto mt-4 max-w-2xl text-base lg:text-lg text-neutral-600 leading-relaxed"
+      >
+        <slot />
+      </p>
+    </div>
+  </div>
+</Section>
