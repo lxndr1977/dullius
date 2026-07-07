@@ -3,7 +3,7 @@ tag: "A partir de 2 anos"
 title: "Método Dullius"
 summary: "Dança clássica, moderna, acrobática e expressão em uma só aula integrada."
 description: "Ballet, dança moderna, ginástica acrobática e teatro, integrados em uma metodologia exclusiva que desenvolve postura, ritmo, memória, confiança e expressão desde a infância."
-imageSrc: "/images/capa-metodo-dullius-02.webp"
+imageSrc: "/images/metodo-dullius/capa-metodo-dullius.webp"
 
 intro:
   eyebrow: "Método Dullius"
@@ -33,7 +33,7 @@ videoSection:
   eyebrow: "Primeiros passos"
   title: "Onde aprender também é conviver e se expressar"
   description: "Nas nossas aulas de dança, cada pequena bailarina aprende a se comunicar e a respeitar as coleguinhas de forma carinhosa, ao mesmo tempo em que descobre o potencial de seu corpo em desenvolvimento."
-  image: "/images/capa-video-metodo-dullius.webp"
+  image: "/images/metodo-dullius/capa-video-metodo-dullius.webp"
   videoUrl: "https://www.youtube.com/embed/U0AehSbl_L0?autoplay=1"
 
 testimonials:

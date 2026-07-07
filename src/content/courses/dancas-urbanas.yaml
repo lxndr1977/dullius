@@ -3,19 +3,19 @@ tag: "A partir de 6 anos"
 title: "Danças Urbanas"
 summary: "Energia, atitude e técnica em aulas que desenvolvem ritmo, coordenação e expressão individual."
 description: "As Danças Urbanas combinam estilos como Hip Hop, Street Dance e suas vertentes em uma metodologia que estimula musicalidade, consciência corporal, criatividade e presença de palco, respeitando o estilo e a identidade de cada aluno."
-imageSrc: "/images/capa-dancas-urbanas-02.webp"
+imageSrc: "/images/dancas-urbanas/capa-dancas-urbanas-02.webp"
 
 intro:
   eyebrow: "Danças Urbanas"
   title: "A expressão da sua identidade em movimento"
   paragraphs:
-    - | 
+    - |
       Ritmo, coordenação, agilidade e atitude se encontram em aulas dinâmicas que estimulam o corpo e a mente de forma completa.
-    - | 
+    - |
       Inspiradas pela cultura Hip Hop, as Danças Urbanas valorizam a individualidade, a improvisação e o domínio de diferentes partes do corpo com precisão e estilo.
-    - | 
+    - |
       Cada aula é uma experiência envolvente, onde técnica e liberdade caminham juntas para desenvolver confiança, presença e expressão.
-    - | 
+    - |
       Mais do que dançar, é sobre se posicionar, se comunicar e descobrir sua própria forma de se mover no mundo.
 
 videoSection:
@@ -28,12 +28,12 @@ videoSection:
 testimonials:
   - name: "Ilda Nochi"
     role: "Mãe da Alice"
-    text: "Pensar no desenvolvimento íntegro do ser humano é pensar também em quanto uma criança precisa ser apostada e acreditada. E isto é o que encontrei na Dullius, que através da seriedade com que trata a arte faz uma grande aposta nas crianças que se sentem parte importante de uma grande construção." 
+    text: "Pensar no desenvolvimento íntegro do ser humano é pensar também em quanto uma criança precisa ser apostada e acreditada. E isto é o que encontrei na Dullius, que através da seriedade com que trata a arte faz uma grande aposta nas crianças que se sentem parte importante de uma grande construção."
     initials: "IN"
     photo: "/images/testimonials/ilda-nochi.webp"
   - name: "Débora Surreaux"
     role: "Mãe da Roberta"
-    text: "Admiro muito o trabalho que vem sendo desenvolvido pela Dullius. Desde os dois aninhos, a Robi se diverte ao mesmo tempo que aprende. Nesses nove anos de Dullius ela desenvolveu graça, técnica, flexibilidade mas principalmente respeito, disciplina e acima de tudo amizade. Existe uma troca muito grande de afeto na escola, o diferencial da Dullius é a união existente não só entre as alunas como também dos professores. Fazendo jazz, ballet clássico e street dance, a dança é uma companheira inseparável da minha filha." 
+    text: "Admiro muito o trabalho que vem sendo desenvolvido pela Dullius. Desde os dois aninhos, a Robi se diverte ao mesmo tempo que aprende. Nesses nove anos de Dullius ela desenvolveu graça, técnica, flexibilidade mas principalmente respeito, disciplina e acima de tudo amizade. Existe uma troca muito grande de afeto na escola, o diferencial da Dullius é a união existente não só entre as alunas como também dos professores. Fazendo jazz, ballet clássico e street dance, a dança é uma companheira inseparável da minha filha."
     initials: "DS"
     photo: "/images/testimonials/debora-surreaux.webp"
   - name: "Jaqueline Bresolin"
@@ -59,25 +59,25 @@ testimonials:
 
 
 gallery:
-  - src: "/images/dancas-urbanas-galeria-01.webp"
+  - src: "/images/dancas-urbanas/dancas-urbanas-galeria-01.webp"
     alt: "Danças Urbanas"
     description: "Danças Urbanas"
-  - src: "/images/dancas-urbanas-galeria-02.jpg"
+  - src: "/images/dancas-urbanas/dancas-urbanas-galeria-02.webp"
     alt: "Danças Urbanas"
     description: "Danças Urbanas"
-  - src: "/images/dancas-urbanas-galeria-03.jpg"
+  - src: "/images/dancas-urbanas/dancas-urbanas-galeria-03.webp"
     alt: "Danças Urbanas"
     description: "Danças Urbanas"
-  - src: "/images/dancas-urbanas-galeria-01.jpg"
+  - src: "/images/dancas-urbanas/dancas-urbanas-galeria-04.webp"
     alt: "Danças Urbanas"
     description: "Danças Urbanas"
-  - src: "/images/dancas-urbanas-galeria-02.jpg"
+  - src: "/images/dancas-urbanas/dancas-urbanas-galeria-05.webp"
     alt: "Danças Urbanas"
     description: "Danças Urbanas"
-  - src: "/images/dancas-urbanas-galeria-03.jpg"
+  - src: "/images/dancas-urbanas/dancas-urbanas-galeria-06.webp"
     alt: "Danças Urbanas"
     description: "Danças Urbanas"
- 
+
 
 cta:
   eyebrow: "Agende uma aula"
