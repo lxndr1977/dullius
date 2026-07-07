@@ -3,7 +3,6 @@ import { getCollection } from 'astro:content';
 import Section from "./ui/Section.astro";
 import SectionHeader from "./ui/SectionHeader.astro";
 
-// Buscamos todos os cursos da coleção 'courses'
 const courseEntries = await getCollection('courses');
 
 interface Props {
@@ -17,7 +16,7 @@ interface Props {
 }
 
 const { eyebrow, title, description, background, paddingTop, paddingBottom, align } = Astro.props;
-  ---
+---
 
 <Section {background}  paddingTop={paddingTop}
     paddingBottom={paddingBottom}>

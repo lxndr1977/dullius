@@ -58,24 +58,23 @@ testimonials:
     photo: "/images/testimonials/tania-bischoff.webp"
 
 gallery:
-  - src: "/images/acrodance-galeria-01.jpg"
+  - src: "/images/acrodance/acrodance-galeria-01.webp"
     alt: "Acrodance"
     description: "Acrodance"
-  - src: "/images/acrodance-galeria-02.jpg"
+  - src: "/images/acrodance/acrodance-galeria-04.webp"
     alt: "Acrodance"
     description: "Acrodance"
-  - src: "/images/acrodance-galeria-01.jpg"
+  - src: "/images/acrodance/acrodance-galeria-02.webp"
     alt: "Acrodance"
     description: "Acrodance"
-  - src: "/images/acrodance-galeria-01.jpg"
+  - src: "/images/acrodance/acrodance-galeria-03.webp"
     alt: "Acrodance"
     description: "Acrodance"
-  - src: "/images/acrodance-galeria-02.jpg"
+  - src: "/images/acrodance/acrodance-galeria-05.webp"
     alt: "Acrodance"
     description: "Acrodance"
-  - src: "/images/acrodance-galeria-01.jpg"
-    alt: "Acrodance"
-    description: "Acrodance"
+
+ 
 
 cta:
   eyebrow: "Agende uma aula"
