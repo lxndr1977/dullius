@@ -1,0 +1,93 @@
+id: "inicio"
+tag: "A partir de 4 anos"
+title: "Teatro"
+summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
+imageSrc: "/images/teatro/capa-teatro.webp"
+
+intro:
+  eyebrow: "Teatro"
+  title: "Lorem ipsum dolor sit amet"
+  paragraphs:
+    - | 
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    - | 
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    - | 
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    - | 
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+# videoSection:
+#   eyebrow: "Vivência em aula"
+#   title: "Desenvolvimento físico com expressão artística"
+#   description: "Nossas aulas de Teatro são cuidadosamente estruturadas para desenvolver habilidades físicas com segurança, ao mesmo tempo em que estimulam a expressão, a disciplina e a autoconfiança em um ambiente acolhedor e motivador."
+#   image: "/images/capa-video-metodo-dullius.jpg"
+#   videoUrl: "https://www.youtube.com/embed/RJRYiDw5Yq4?autoplay=1"
+
+testimonials:
+  - name: "Ilda Nochi"
+    role: "Mãe da Alice"
+    text: "Pensar no desenvolvimento íntegro do ser humano é pensar também em quanto uma criança precisa ser apostada e acreditada. E isto é o que encontrei na Dullius, que através da seriedade com que trata a arte faz uma grande aposta nas crianças que se sentem parte importante de uma grande construção." 
+    initials: "IN"
+    photo: "/images/testimonials/ilda-nochi.webp"
+  - name: "Débora Surreaux"
+    role: "Mãe da Roberta"
+    text: "Admiro muito o trabalho que vem sendo desenvolvido pela Dullius. Desde os dois aninhos, a Robi se diverte ao mesmo tempo que aprende. Nesses nove anos de Dullius ela desenvolveu graça, técnica, flexibilidade mas principalmente respeito, disciplina e acima de tudo amizade. Existe uma troca muito grande de afeto na escola, o diferencial da Dullius é a união existente não só entre as alunas como também dos professores. Fazendo jazz, ballet clássico e street dance, a dança é uma companheira inseparável da minha filha." 
+    initials: "DS"
+    photo: "/images/testimonials/debora-surreaux.webp"
+  - name: "Jaqueline Bresolin"
+    role: "Mãe da Juliana e da Rafaela"
+    text: "Dullius pra mim é sinônimo de alegria, profissionalismo, comprometimento e principalmente união. É muito gostoso pensar que há anos atrás foi nessa escola que comecei a dançar e hoje continuo aqui com minhas duas filhas amando a dança tanto quanto eu. Tudo isso devo à Dullius e a essa estrutura maravilhosa que eles souberam criar e preservar"
+    initials: "JB"
+    photo: "/images/testimonials/jaqueline-bresolin.webp"
+  - name: "Aline e Sérgio Kober"
+    role: "Pais da Gabriele"
+    text: "As professoras e auxiliares além de competência, demonstram carisma, afetividade e incentivam o crescimento da socialização, do amadurecimento cognitivo e motor das crianças. O potencial individual é estimulado fazendo aumentar o gosto pela dança daqueles que já o possuem"
+    initials: "ASK"
+    photo: "/images/testimonials/aline-kober.webp"
+  - name: "Mary Oliveira"
+    role: "Mãe da Aurora"
+    text: "Acho que a escola Dullius contribuiu muito no desenvolvimento de minha filha em vários aspectos, mas destaco o que diz respeito à desinibição, segurança de apresentar-se a outras pessoas, o que fica claro no desembaraço durante os espetáculos de fim de ano. Também destaco o interesse na adaptação de cada aluno em particular, o que seria difícil numa escola com tantos alunos, se não fosse o real interesse da Fabiane e sua equipe. E o melhor de tudo é ver a alegria, a empolgação de nossas filhas em frequentar a Dullius."
+    initials: "MO"
+    photo: "/images/testimonials/mary-oliveira.webp"
+  - name: "Tânia Bischoff"
+    role: "Mãe da Marina Bischoff Müller"
+    text: "Minha história com a Escola Studio Dullius iniciou em março de 2002. Minha filha se desenvolveu, se desinibiu, tem iniciativa, ousa, enfrenta as situações mais inusitadas, principalmente quando envolve as relações com o outro nas quais tem que se posicionar, defender seu ponto de vista, mas também aprender a escutar e respeitar o ritmo do outro. Sem dúvida que o Dullius tem muito a ver com este modo de ser. Se a Escola quer que os alunos sejam felizes, posso afirmar a Marina é uma aluna feliz."
+    initials: "TB"
+    photo: "/images/testimonials/tania-bischoff.webp"
+
+gallery:
+  - src: "/images/teatro/teatro-galeria-01.webp"
+    alt: "Teatro"
+    description: "Teatro"
+  - src: "/images/teatro/teatro-galeria-04.webp"
+    alt: "Teatro"
+    description: "Teatro"
+  - src: "/images/teatro/teatro-galeria-02.webp"
+    alt: "Teatro"
+    description: "Teatro"
+  - src: "/images/teatro/teatro-galeria-03.webp"
+    alt: "Teatro"
+    description: "Teatro"
+  - src: "/images/teatro/teatro-galeria-05.webp"
+    alt: "Teatro"
+    description: "Teatro"
+
+ 
+
+cta:
+  eyebrow: "Agende uma aula"
+  title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+
+
+methods:
+  - "AcroDance"
+
+related:
+  - "adultos"
+  - "ballet"
+  - "dancas-urbanas"
+  - "jazz"
+  - "metodo-dullius"

@@ -3,7 +3,7 @@ tag: "Para todas as idades"
 title: "Adultos"
 summary: "Bem-estar, expressão e qualidade de vida através da dança, em aulas pensadas para o seu ritmo."
 description: "Nossas aulas para adultos unem movimento, técnica e prazer em dançar, promovendo condicionamento físico, consciência corporal e bem-estar em um ambiente acolhedor e motivador, sem necessidade de experiência prévia."
-imageSrc: "/images/capa-adultos-02.webp"
+imageSrc: "/images/adultos/capa-adultos-02.webp"
 
 intro:
   eyebrow: "Modalidade Adultos"
@@ -53,24 +53,18 @@ testimonials:
     photo: "/images/testimonials/debora-surreaux.webp"
     
 gallery:
-  - src: "/images/capa-adultos.webp"
+  - src: "/images/adultos/adultos-galeria-01.webp"
     alt: "Adultos"
     description: "Adultos"
-  - src: "/images/capa-adultos.webp"
+  - src: "/images/adultos/adultos-galeria-02.webp"
     alt: "Adultos"
     description: "Adultos"
-  - src: "/images/capa-adultos.webp"
+  - src: "/images/adultos/adultos-galeria-03.webp"
     alt: "Adultos"
     description: "Adultos"
-  - src: "/images/capa-adultos.webp"
+  - src: "/images/adultos/adultos-galeria-04.webp"
     alt: "Adultos"
     description: "Adultos"  
-  - src: "/images/capa-adultos.webp"
-    alt: "Adultos"
-    description: "Adultos"
-  - src: "/images/capa-adultos.webp"
-    alt: "Adultos"
-    description: "Adultos"
 
 cta:
   eyebrow: "Agende uma aula"
