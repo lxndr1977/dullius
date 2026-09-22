@@ -1,4 +1,5 @@
 id: "inicio"
+order: 7
 tag: "Para todas as idades"
 title: "Adultos"
 summary: "Bem-estar, expressão e qualidade de vida através da dança, em aulas pensadas para o seu ritmo."
@@ -8,15 +9,13 @@ imageSrc: "/images/adultos/capa-adultos-02.webp"
 intro:
   eyebrow: "Modalidade Adultos"
   title: "Movimento que transforma corpo, mente e rotina"
-  paragraphs:
-    - | 
-      A dança é uma forma completa e prazerosa de cuidar do corpo e da mente, promovendo saúde, leveza e bem-estar no dia a dia.
-    - | 
-      Em um ambiente acolhedor e descontraído, nossas aulas combinam técnica e liberdade para que cada aluno evolua no seu próprio ritmo, sem a necessidade de experiência prévia.
-    - | 
-      Modalidades como Ballet, Jazz, Danças Urbanas e aulas dinâmicas com diferentes ritmos ajudam a desenvolver condicionamento físico, postura, coordenação, flexibilidade e consciência corporal.
-    - | 
-      Mais do que exercício, é um momento para se reconectar consigo, aliviar o estresse e redescobrir o prazer de se expressar através do movimento.
+  content:
+    - type: paragraph
+      text: |
+        A dança é uma forma completa e prazerosa de cuidar do corpo e da mente, promovendo saúde, leveza e bem-estar no dia a dia.
+    - type: paragraph
+      text: |
+        Em um ambiente acolhedor e descontraído, nossas aulas combinam técnica e liberdade para que cada aluno evolua no seu próprio ritmo, com aulas dinâmicas que ajudam a desenvolver condicionamento físico, postura, coordenação, flexibilidade e consciência corporal.
 
 videoSection:
   eyebrow: "Vivência em aula"
@@ -24,6 +23,24 @@ videoSection:
   description: "Nossas aulas para adultos proporcionam um espaço acolhedor e inspirador, onde movimento, música e convivência se encontram para promover saúde, autoestima e bem-estar em cada encontro."
   image: "/images/capa-video-adultos.webp"
   videoUrl: "https://www.youtube.com/embed/Y9ui0EccEi8?autoplay=1"
+
+submodalitiesSection:
+  eyebrow: "Modalidades para adultos"
+  title: "Descubra a modalidade que combina com você"
+
+submodalities:
+  - name: "Dance4Fun"
+    description: "Uma aula leve, divertida e cheia de energia, que une diferentes estilos de dança em uma experiência descontraída. Ideal para quem quer se movimentar, melhorar a coordenação e o condicionamento físico, liberar o estresse e, acima de tudo, dançar e se divertir!"
+  - name: "Ballet Fitness"
+    description: "Uma aula que combina a técnica e a elegância do ballet com exercícios de fortalecimento e condicionamento físico. Contribui para melhorar a postura, flexibilidade, coordenação, equilíbrio e tonificação muscular, proporcionando mais disposição, bem-estar e qualidade de vida."
+  - name: "Jazz Adulto"
+    description: "Uma aula que combina técnica, expressão e musicalidade, proporcionando condicionamento físico, coordenação, flexibilidade e consciência corporal. Um espaço para desenvolver a dança, explorar a criatividade e se expressar com liberdade e energia."
+  - name: "Ballet Adulto"
+    description: "Uma aula que une técnica, elegância e expressão, promovendo fortalecimento muscular, flexibilidade, equilíbrio, postura e consciência corporal. Uma experiência para quem deseja aprender, aprimorar sua dança e vivenciar toda a magia do ballet em qualquer idade."
+  - name: "Acrodance Adulto"
+    description: "Uma modalidade que une dança, acrobacia e expressão corporal, desenvolvendo força, flexibilidade, equilíbrio, coordenação e consciência corporal. Uma experiência desafiadora e divertida para explorar novos movimentos e superar limites através da dança."
+  - name: "Danças Urbanas"
+    description: "Uma aula dinâmica e cheia de atitude, que explora diferentes estilos das danças urbanas, desenvolvendo ritmo, coordenação, musicalidade e expressão corporal. Um espaço para se movimentar, criar, se desafiar e dançar com liberdade e autenticidade."
 
 testimonials:
   - name: "Iami Gerbase"

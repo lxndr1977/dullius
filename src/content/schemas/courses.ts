@@ -2,7 +2,8 @@ import { z } from 'zod';
 import { reference } from 'astro:content'; 
 
 export const courseSchema = z.object({
-  id: z.string(), 
+  id: z.string(),
+  order: z.number().int().positive(),
   tag: z.string(),
   title: z.string(),
   summary: z.string(),
@@ -12,7 +13,23 @@ export const courseSchema = z.object({
   intro: z.object({
     eyebrow: z.string(),
     title: z.string(),
-    paragraphs: z.array(z.string()),
+    content: z.array(z.discriminatedUnion('type', [
+      z.object({
+        type: z.literal('paragraph'),
+        text: z.string(),
+      }),
+      z.object({
+        type: z.literal('heading'),
+        text: z.string(),
+      }),
+      z.object({
+        type: z.literal('list'),
+        items: z.array(z.object({
+          label: z.string(),
+          text: z.string(),
+        })),
+      }),
+    ])),
   }),
   
   videoSection: z.object({
@@ -21,6 +38,16 @@ export const courseSchema = z.object({
     description: z.string(),
     image: z.string(),
     videoUrl: z.string(),
+  }).optional(),
+
+  submodalities: z.array(z.object({
+    name: z.string(),
+    description: z.string(),
+  })).optional(),
+
+  submodalitiesSection: z.object({
+    eyebrow: z.string(),
+    title: z.string(),
   }).optional(),
   
   testimonials: z.array(z.object({

@@ -1,4 +1,5 @@
 id: "inicio"
+order: 4
 tag: "A partir de 6 anos"
 title: "Danças Urbanas"
 summary: "Energia, atitude e técnica em aulas que desenvolvem ritmo, coordenação e expressão individual."
@@ -8,15 +9,19 @@ imageSrc: "/images/dancas-urbanas/capa-dancas-urbanas-02.webp"
 intro:
   eyebrow: "Danças Urbanas"
   title: "A expressão da sua identidade em movimento"
-  paragraphs:
-    - |
-      Ritmo, coordenação, agilidade e atitude se encontram em aulas dinâmicas que estimulam o corpo e a mente de forma completa.
-    - |
-      Inspiradas pela cultura Hip Hop, as Danças Urbanas valorizam a individualidade, a improvisação e o domínio de diferentes partes do corpo com precisão e estilo.
-    - |
-      Cada aula é uma experiência envolvente, onde técnica e liberdade caminham juntas para desenvolver confiança, presença e expressão.
-    - |
-      Mais do que dançar, é sobre se posicionar, se comunicar e descobrir sua própria forma de se mover no mundo.
+  content:
+    - type: paragraph
+      text: |
+        Ritmo, coordenação, agilidade e atitude se encontram em aulas dinâmicas que estimulam o corpo e a mente de forma completa.
+    - type: paragraph
+      text: |
+        Inspiradas pela cultura Hip Hop, as Danças Urbanas valorizam a individualidade, a improvisação e o domínio de diferentes partes do corpo com precisão e estilo.
+    - type: paragraph
+      text: |
+        Cada aula é uma experiência envolvente, onde técnica e liberdade caminham juntas para desenvolver confiança, presença e expressão.
+    - type: paragraph
+      text: |
+        Mais do que dançar, é sobre se posicionar, se comunicar e descobrir sua própria forma de se mover no mundo.
 
 videoSection:
   eyebrow: "Vivência em aula"

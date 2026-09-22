@@ -1,22 +1,41 @@
 id: "inicio"
+order: 6
 tag: "A partir de 4 anos"
 title: "Teatro"
-summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
+summary: "Trabalhado de forma integrada ao corpo e à expressão cênica, dialogando diretamente com a dança"
+description: "​As aulas de Teatro da Dullius são um espaço de desenvolvimento artístico e expressivo. Ao longo do ano, os alunos exploram exercícios de improviso, criação de personagens, construção de cenas e interpretação de textos."
 imageSrc: "/images/teatro/capa-teatro.webp"
 
 intro:
   eyebrow: "Teatro"
-  title: "Lorem ipsum dolor sit amet"
-  paragraphs:
-    - | 
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    - | 
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    - | 
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    - | 
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+  title: "Corpo e expressão cênica dialogando diretamente com a dança"
+  content:
+    - type: paragraph
+      text: |
+        O teatro é trabalhado de forma integrada ao corpo e à expressão cênica, dialogando diretamente com a dança. As atividades estimulam a criatividade, a escuta, a imaginação e a autonomia, além de desenvolverem a consciência corporal, coordenação, ritmo e ocupação do espaço.
+    - type: heading
+      text: "O Teatro Integrado à Dança"
+    - type: paragraph
+      text: |
+        O teatro é trabalhado de forma integrada ao corpo e à expressão cênica, dialogando diretamente com a dança. As atividades estimulam a criatividade, a escuta, a imaginação e a autonomia, além de desenvolverem a consciência corporal, coordenação, ritmo e ocupação do espaço.
+    - type: heading
+      text: "Benefícios para além do palco"
+    - type: paragraph
+      text: |
+        A prática do teatro também contribui para habilidades fundamentais no dia a dia, tais como:
+    - type: list
+      items:
+        - label: "Foco e concentração"
+          text: "Melhora na atenção e memorização."
+        - label: "Trabalho em equipe e empatia"
+          text: "Respeito ao espaço do outro e colaboração."
+        - label: "Autoconfiança"
+          text: "Mais segurança e desenvoltura para se comunicar."
+    - type: heading
+      text: "Espetáculo de final de ano"
+    - type: paragraph
+      text: |
+        No segundo semestre, inicia-se a preparação da apresentação que fará parte do espetáculo de final de ano da escola, permitindo que os alunos vivenciem todo o processo criativo até o grande dia no palco!
 
 # videoSection:
 #   eyebrow: "Vivência em aula"
@@ -78,8 +97,8 @@ gallery:
 
 cta:
   eyebrow: "Agende uma aula"
-  title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
-  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  title: "Vivencie essa experiência na prática"
+  description: "Agende uma aula experimental e desenvolva o seu potencial artístico com a Dullius. Descubra como o teatro pode transformar a sua expressão e criatividade."
 
 
 methods:

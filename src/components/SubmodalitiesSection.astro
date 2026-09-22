@@ -1,0 +1,61 @@
+---
+import Section from "./ui/Section.astro";
+import SectionHeader from "./ui/SectionHeader.astro";
+
+interface Submodality {
+  name: string;
+  description: string;
+}
+
+interface Props {
+  submodalities: Submodality[];
+  eyebrow?: string;
+  title?: string;
+}
+
+const {
+  submodalities,
+  eyebrow = "Submodalidades",
+  title = "Descubra o que combina com você",
+} = Astro.props;
+---
+
+<Section background="neutral" data-submodalities>
+  <SectionHeader
+    {eyebrow}
+    {title}
+    align="center"
+    titleSize="medium"
+    class="max-w-4xl mx-auto mb-12 lg:mb-16"
+    data-animate="reveal"
+  />
+
+  <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    {
+      submodalities.map((submodality, index) => (
+        <article
+          class="h-full border border-neutral-200 bg-white p-6 md:p-8"
+          data-animate="fade-up"
+          data-animate-delay={index * 0.1}
+        >
+          <h3 class="text-xl font-medium tracking-tight text-primary xl:text-2xl">
+            {submodality.name}
+          </h3>
+          <p class="mt-4 text-base leading-relaxed text-neutral-600">
+            {submodality.description}
+          </p>
+        </article>
+      ))
+    }
+  </div>
+</Section>
+
+<style>
+  @media (prefers-reduced-motion: reduce) {
+    [data-submodalities] [data-animate] {
+      opacity: 1;
+      transform: none;
+      filter: none;
+    }
+  }
+</style>

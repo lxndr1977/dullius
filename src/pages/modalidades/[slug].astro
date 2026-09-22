@@ -15,6 +15,7 @@ import PhotoGallerySection from "../../components/PhotoGallerySection.astro";
 import CtaSection from "../../components/CtaSection.astro";
 import CourseStickbar from "../../components/CourseStickbar.astro";
 import RelatedCourses from "../../components/RelatedCourses.astro";
+import SubmodalitiesSection from "../../components/SubmodalitiesSection.astro";
 
 interface Props {
   entry: CollectionEntry<"courses">;
@@ -107,11 +108,36 @@ const courseSchedules = allSchedules.filter((s) => {
     paddingTop={true}
   >
     {
-      data.intro.paragraphs.map((paragraph: string) => (
-        <p class="text-lg xl:text-xl text-neutral-600 leading-relaxed mb-4">
-          {paragraph}
-        </p>
-      ))
+      data.intro.content.map((block) => {
+        if (block.type === "heading") {
+          return (
+            <h3 class="mb-4 mt-8 text-xl font-semibold tracking-tight text-neutral-800 xl:text-xl">
+              {block.text}
+            </h3>
+          );
+        }
+
+        if (block.type === "list") {
+          return (
+            <ul class="mb-4 list-disc space-y-3 pl-6 text-lg leading-relaxed text-neutral-600 xl:text-xl">
+              {block.items.map((item) => (
+                <li>
+                  <strong class="font-semibold text-neutral-700">
+                    {item.label}:
+                  </strong>{" "}
+                  {item.text}
+                </li>
+              ))}
+            </ul>
+          );
+        }
+
+        return (
+          <p class="mb-4 text-lg leading-relaxed text-neutral-600 xl:text-xl">
+            {block.text}
+          </p>
+        );
+      })
     }
   </CourseIntro>
 
@@ -130,6 +156,16 @@ const courseSchedules = allSchedules.filter((s) => {
           label: "Agendar aula experimental",
           href: whatsappUrl,
         }}
+      />
+    )
+  }
+
+  {
+    data.submodalities?.length > 0 && (
+      <SubmodalitiesSection
+        eyebrow={data.submodalitiesSection?.eyebrow ?? `Modalidades para ${data.title.toLocaleLowerCase("pt-BR")}`}
+        title={data.submodalitiesSection?.title ?? "Encontre a aula que combina com você"}
+        submodalities={data.submodalities}
       />
     )
   }

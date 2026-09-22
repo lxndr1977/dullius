@@ -1,4 +1,5 @@
 id: "inicio"
+order: 3
 tag: "A partir de 6 anos"
 title: "Jazz"
 summary: "Técnica, musicalidade e expressão em aulas dinâmicas que desenvolvem presença de palco e versatilidade."
@@ -8,15 +9,19 @@ imageSrc: "/images/capa-jazz-02.webp"
 intro:
   eyebrow: "Jazz"
   title: "Elegância, energia e expressão em cada movimento"
-  paragraphs:
-    - |   
-      O Jazz é uma modalidade vibrante que desenvolve força, flexibilidade, coordenação e musicalidade por meio de movimentos dinâmicos e expressivos.
-    - | 
-      As aulas trabalham coreografias envolventes que estimulam memória, precisão e presença de palco, sempre ao som de músicas atuais e inspiradoras.
-    - | 
-      Com base técnica sólida e espaço para criatividade, cada aluno desenvolve seu estilo e sua forma de se comunicar através da dança.
-    - |   
-      Uma experiência completa que une disciplina, performance e paixão pela arte de dançar.
+  content:
+    - type: paragraph
+      text: |
+        O Jazz é uma modalidade vibrante que desenvolve força, flexibilidade, coordenação e musicalidade por meio de movimentos dinâmicos e expressivos.
+    - type: paragraph
+      text: |
+        As aulas trabalham coreografias envolventes que estimulam memória, precisão e presença de palco, sempre ao som de músicas atuais e inspiradoras.
+    - type: paragraph
+      text: |
+        Com base técnica sólida e espaço para criatividade, cada aluno desenvolve seu estilo e sua forma de se comunicar através da dança.
+    - type: paragraph
+      text: |
+        Uma experiência completa que une disciplina, performance e paixão pela arte de dançar.
 
 videoSection:
   eyebrow: "Vivência em aula"

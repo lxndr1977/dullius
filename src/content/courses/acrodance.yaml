@@ -1,5 +1,6 @@
 id: "inicio"
-tag: "A partir de 4 anos"
+order: 5
+tag: "A partir de 7 anos"
 title: "Acrodance"
 summary: "Força, flexibilidade e expressão em aulas que integram dança e elementos acrobáticos com segurança e técnica."
 description: "O Acrodance combina a leveza da dança com a precisão da acrobacia, desenvolvendo coordenação, consciência corporal, força e confiança. Uma modalidade completa que une técnica, fluidez e impacto visual em cada movimento."
@@ -8,15 +9,19 @@ imageSrc: "/images/acrodance/capa-acrodance-02.webp"
 intro:
   eyebrow: "Acrodance"
   title: "Força e leveza em perfeita harmonia"
-  paragraphs:
-    - | 
-      O Acrodance une o melhor da dança e da acrobacia em uma prática dinâmica, desafiadora e encantadora.
-    - | 
-      Os alunos desenvolvem força, flexibilidade, equilíbrio e controle corporal enquanto executam movimentos que combinam fluidez e precisão técnica.
-    - | 
-      Elementos de ginástica, circo e dança são integrados de forma progressiva e segura, respeitando o ritmo de cada aluno.
-    - | 
-      O resultado é uma expressão artística impactante, que alia desempenho físico, confiança e beleza em cada apresentação.
+  content:
+    - type: paragraph
+      text: |
+        O Acrodance une o melhor da dança e da acrobacia em uma prática dinâmica, desafiadora e encantadora.
+    - type: paragraph
+      text: |
+        Os alunos desenvolvem força, flexibilidade, equilíbrio e controle corporal enquanto executam movimentos que combinam fluidez e precisão técnica.
+    - type: paragraph
+      text: |
+        Elementos de ginástica e dança são integrados de forma progressiva e segura, respeitando o ritmo de cada aluno.
+    - type: paragraph
+      text: |
+        O resultado é uma expressão artística impactante, que alia desempenho físico, confiança e beleza em cada apresentação.
 
 # videoSection:
 #   eyebrow: "Vivência em aula"

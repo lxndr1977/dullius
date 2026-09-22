@@ -1,4 +1,5 @@
 id: "inasicio"
+order: 1
 tag: "A partir de 2 anos"
 title: "Método Dullius"
 summary: "Dança clássica, moderna, acrobática e expressão em uma só aula integrada."
@@ -8,26 +9,19 @@ imageSrc: "/images/metodo-dullius/capa-metodo-dullius.webp"
 intro:
   eyebrow: "Método Dullius"
   title: "Metodologia exclusiva que desenvolve corpo, mente e expressão"
-  paragraphs:
-    - |
-      Com muita alegria e espontaneidade, as crianças adquirem, nas aulas do
-      Método Dullius, noções de espaço, ritmo, coordenação motora, equilíbrio e
-      muito mais.
-    - |
-      Através do Ballet, corrigem a postura e se tornam delicadas e graciosas, o
-      que também lhes ajudará a transmitir linda energia ao executarem os passos
-      das danças modernas.
-    - |
-      Rápidas coreografias estimulam a memória enquanto a destreza e a
-      flexibilidade, que deixam a dança mais bonita, ficam por conta da
-      ginástica acrobática com ótimos exercícios para o desenvolvimento dos
-      reflexos e da autoconfiança.
-    - |
-      Com o teatro, elas tornam seus movimentos mais expressivos, aprendem a
-      lidar e a melhor conviver com seus sentimentos e, sem deixarem de ser
-      criativas, fortalecendo sua personalidade e individualidade, têm, nessas
-      aulas integradas, verdadeiras lições de vida, num clima de amizade e
-      harmonia!
+  content:
+    - type: paragraph
+      text: |
+        Com muita alegria e espontaneidade, as crianças desenvolvem no Método Dullius noções fundamentais de espaço, ritmo, coordenação motora e equilíbrio.
+    - type: paragraph
+      text: |
+        Através do Ballet, elas trabalham a postura, a consciência corporal e a leveza - criando a base perfeita para se expressarem com energia e liberdade nas Danças Modernas.
+    - type: paragraph
+      text: |
+        As coreografias dinâmicas estimulam a memória e o raciocínio rápido, enquanto a Ginástica Acrobática desenvolve flexibilidade, destreza, reflexos e autoconfiança.
+    - type: paragraph
+      text: |
+        Para completar, o Teatro ajuda os pequenos a expressarem suas emoções, estimula a criatividade e fortalece a individualidade de cada criança. Em nossas aulas integradas, eles aprendem valores para a vida inteira, sempre em um ambiente seguro, acolhedor e repleto de amizade!
 
 videoSection:
   eyebrow: "Primeiros passos"

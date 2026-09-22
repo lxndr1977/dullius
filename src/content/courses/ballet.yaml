@@ -1,5 +1,6 @@
 id: "inicio"
-tag: "A partir de 3 anos"
+order: 2
+tag: "A partir de 7 anos"
 title: "Ballet"
 summary: "Elegância, disciplina e sensibilidade em uma formação completa que desenvolve corpo e expressão desde a infância."
 description: "O Ballet é a base de toda a dança, trabalhando postura, coordenação, musicalidade e disciplina com técnica e delicadeza. Uma formação artística completa que desenvolve confiança, consciência corporal e sensibilidade estética."
@@ -8,15 +9,19 @@ imageSrc: "/images/ballet/capa-ballet-02.webp"
 intro:
   eyebrow: "Ballet"
   title: "A base de toda a dança, com leveza e excelência"
-  paragraphs:
-    - | 
-      O Ballet é uma das formas mais tradicionais e encantadoras de expressão artística, reconhecido por sua elegância, precisão e beleza.
-    - | 
-      Através de uma metodologia cuidadosa e progressiva, os alunos desenvolvem postura, flexibilidade, equilíbrio e coordenação, respeitando cada fase do seu desenvolvimento.
-    - | 
-      Mais do que técnica, o Ballet estimula disciplina, concentração e sensibilidade, formando não apenas bailarinos, mas indivíduos mais confiantes e expressivos.
-    - | 
-      Uma experiência que une arte, educação e desenvolvimento em um ambiente acolhedor e inspirador.
+  content:
+    - type: paragraph
+      text: |
+        O Ballet é uma das formas mais tradicionais e encantadoras de expressão artística, reconhecido por sua elegância, precisão e beleza.
+    - type: paragraph
+      text: |
+        Através de uma metodologia cuidadosa e progressiva, os alunos desenvolvem postura, flexibilidade, equilíbrio e coordenação, respeitando cada fase do seu desenvolvimento.
+    - type: paragraph
+      text: |
+        Mais do que técnica, o Ballet estimula disciplina, concentração e sensibilidade, formando não apenas bailarinos, mas indivíduos mais confiantes e expressivos.
+    - type: paragraph
+      text: |
+        Uma experiência que une arte, educação e desenvolvimento em um ambiente acolhedor e inspirador.
 
 videoSection:
   eyebrow: "Vivência em aula"
